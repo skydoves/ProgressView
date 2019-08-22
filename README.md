@@ -16,7 +16,7 @@
 </p>
 
 ## Including in your project
-
+[![Jitpack](https://jitpack.io/v/skydoves/ProgressView.svg)](https://jitpack.io/#skydoves/ProgressView)
 ### Gradle 
 Add below codes to your **root** `build.gradle` file (not your module build.gradle file).
 ```gradle
