@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
       if (customTagBalloon.isShowing) {
         customTagBalloon.dismiss()
       } else {
-        customTagBalloon.showAlignTop(progressView.highlight)
+        customTagBalloon.showAlignTop(progressView.highlightView)
       }
     }
 
@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
       if (customStarBalloon.isShowing) {
         customStarBalloon.dismiss()
       } else {
-        customStarBalloon.showAlignTop(progressView1.highlight)
+        customStarBalloon.showAlignTop(progressView1.highlightView)
       }
     }
 

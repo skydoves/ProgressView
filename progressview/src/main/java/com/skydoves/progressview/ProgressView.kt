@@ -40,8 +40,8 @@ fun progressView(context: Context, block: ProgressView.Builder.() -> Unit): Prog
 /** ProgressView is a progress bar with a flexible text and animations. */
 class ProgressView : FrameLayout {
 
-  val label = TextView(context)
-  val highlight = HighlightView(context)
+  val labelView = TextView(context)
+  val highlightView = HighlightView(context)
 
   var duration = 1000L
   var autoAnimate = true
@@ -106,7 +106,7 @@ class ProgressView : FrameLayout {
   var onProgressClickListener: OnProgressClickListener? = null
     set(value) {
       field = value
-      this.highlight.onProgressClickListener = value
+      this.highlightView.onProgressClickListener = value
     }
 
   constructor(context: Context) : super(context)
@@ -158,7 +158,7 @@ class ProgressView : FrameLayout {
     this.duration = a.getInteger(R.styleable.ProgressView_progressView_duration, duration.toInt()).toLong()
     this.colorBackground = a.getColor(R.styleable.ProgressView_progressView_colorBackground, colorBackground)
     this.autoAnimate = a.getBoolean(R.styleable.ProgressView_progressView_autoAnimate, autoAnimate)
-    with(this.highlight) {
+    with(this.highlightView) {
       alpha = a.getFloat(R.styleable.ProgressView_progressView_highlightAlpha, highlightAlpha)
       color = a.getColor(R.styleable.ProgressView_progressView_colorProgress, color)
       colorGradientStart = a.getColor(R.styleable.ProgressView_progressView_colorGradientStart, 65555)
@@ -208,32 +208,32 @@ class ProgressView : FrameLayout {
     } else {
       params.width = getProgressSize().toInt()
     }
-    this.highlight.layoutParams = params
-    this.highlight.updateHighlightView()
-    removeView(highlight)
-    addView(highlight)
+    this.highlightView.layoutParams = params
+    this.highlightView.updateHighlightView()
+    removeView(highlightView)
+    addView(highlightView)
   }
 
   private fun updateLabel() {
     val params = ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT)
-    this.label.layoutParams = params
-    this.label.text = labelText
-    this.label.setTextSize(TypedValue.COMPLEX_UNIT_PX, labelSize)
-    this.label.setTypeface(label.typeface, labelTypeface)
-    this.label.gravity = Gravity.CENTER_VERTICAL
-    removeView(label)
-    addView(label)
+    this.labelView.layoutParams = params
+    this.labelView.text = labelText
+    this.labelView.setTextSize(TypedValue.COMPLEX_UNIT_PX, labelSize)
+    this.labelView.setTypeface(labelView.typeface, labelTypeface)
+    this.labelView.gravity = Gravity.CENTER_VERTICAL
+    removeView(labelView)
+    addView(labelView)
 
     post {
       when {
-        max <= progress -> this.label.x = width.toFloat() - this.label.width - this.labelSpace
-        this.label.width + labelSpace < getProgressSize() -> {
-          this.label.x = getProgressSize() - this.label.width - this.labelSpace
-          this.label.setTextColor(labelColorInner)
+        max <= progress -> this.labelView.x = width.toFloat() - this.labelView.width - this.labelSpace
+        this.labelView.width + labelSpace < getProgressSize() -> {
+          this.labelView.x = getProgressSize() - this.labelView.width - this.labelSpace
+          this.labelView.setTextColor(labelColorInner)
         }
         else -> {
-          this.label.x = getProgressSize() + this.labelSpace
-          this.label.setTextColor(labelColorOuter)
+          this.labelView.x = getProgressSize() + this.labelSpace
+          this.labelView.setTextColor(labelColorOuter)
         }
       }
     }
@@ -245,8 +245,8 @@ class ProgressView : FrameLayout {
 
   private fun getLabelPosition(): Float {
     return when {
-      max <= progress -> width.toFloat() - this.label.width - this.labelSpace
-      this.label.width + labelSpace < getProgressSize() -> getProgressSize() - this.label.width - this.labelSpace
+      max <= progress -> width.toFloat() - this.labelView.width - this.labelSpace
+      this.labelView.width + labelSpace < getProgressSize() -> getProgressSize() - this.labelView.width - this.labelSpace
       else -> getProgressSize() + this.labelSpace
     }
   }
@@ -259,14 +259,14 @@ class ProgressView : FrameLayout {
 
   /** animates [ProgressView]'s progress bar. */
   fun progressAnimate() {
-    this.label.x = 0f
-    this.highlight.updateLayoutParams { width = 0 }
+    this.labelView.x = 0f
+    this.highlightView.updateLayoutParams { width = 0 }
     val animator = ValueAnimator.ofFloat(0f, 1f)
     animator.duration = duration
     animator.addUpdateListener {
       val value = it.animatedValue as Float
-      this.label.x = getLabelPosition() * value
-      this.highlight.updateLayoutParams {
+      this.labelView.x = getLabelPosition() * value
+      this.highlightView.updateLayoutParams {
         width = (getProgressSize() * value).toInt()
       }
     }
@@ -293,7 +293,7 @@ class ProgressView : FrameLayout {
 
   /** applies [TextForm] attributes to a TextView. */
   fun applyTextForm(textForm: TextForm) {
-    this.label.applyTextForm(textForm)
+    this.labelView.applyTextForm(textForm)
   }
 
   /** Builder class for creating [ProgressView]. */
@@ -316,18 +316,18 @@ class ProgressView : FrameLayout {
     fun setLabelColorInner(value: Int): Builder = apply { this.progressView.labelColorInner = value }
     fun setLabelColorOuter(value: Int): Builder = apply { this.progressView.labelColorOuter = value }
     fun setLabelTypeface(value: Int): Builder = apply { this.progressView.labelTypeface = value }
-    fun setProgressbarAlpha(value: Float): Builder = apply { this.progressView.highlight.alpha = value }
-    fun setProgressbarColor(value: Int): Builder = apply { this.progressView.highlight.color = value }
-    fun setProgressbarColorGradientStart(value: Int): Builder = apply { this.progressView.highlight.colorGradientStart = value }
-    fun setProgressbarColorGradientEnd(value: Int): Builder = apply { this.progressView.highlight.colorGradientEnd = value }
-    fun setProgressbarRadius(value: Float): Builder = apply { this.progressView.highlight.radius = value }
-    fun setProgressbarPadding(value: Float): Builder = apply { this.progressView.highlight.padding = value }
-    fun setHighlightColor(value: Int): Builder = apply { this.progressView.highlight.highlightColor = value }
-    fun setHighlighting(value: Boolean): Builder = apply { this.progressView.highlight.highlighting = value }
-    fun setHighlightThickness(value: Int): Builder = apply { this.progressView.highlight.highlightThickness = value }
+    fun setProgressbarAlpha(value: Float): Builder = apply { this.progressView.highlightView.alpha = value }
+    fun setProgressbarColor(value: Int): Builder = apply { this.progressView.highlightView.color = value }
+    fun setProgressbarColorGradientStart(value: Int): Builder = apply { this.progressView.highlightView.colorGradientStart = value }
+    fun setProgressbarColorGradientEnd(value: Int): Builder = apply { this.progressView.highlightView.colorGradientEnd = value }
+    fun setProgressbarRadius(value: Float): Builder = apply { this.progressView.highlightView.radius = value }
+    fun setProgressbarPadding(value: Float): Builder = apply { this.progressView.highlightView.padding = value }
+    fun setHighlightColor(value: Int): Builder = apply { this.progressView.highlightView.highlightColor = value }
+    fun setHighlighting(value: Boolean): Builder = apply { this.progressView.highlightView.highlighting = value }
+    fun setHighlightThickness(value: Int): Builder = apply { this.progressView.highlightView.highlightThickness = value }
     fun setOnProgressChangeListener(value: OnProgressChangeListener): Builder = apply { this.progressView.onProgressChangeListener = value }
     fun setOnProgressClickListener(value: OnProgressClickListener): Builder = apply { this.progressView.onProgressClickListener = value }
-    fun setTextForm(value: TextForm): Builder = apply { this.progressView.label.applyTextForm(value) }
+    fun setTextForm(value: TextForm): Builder = apply { this.progressView.labelView.applyTextForm(value) }
     fun setOnProgressChangeListener(block: (Float) -> Unit): Builder = apply {
       this.progressView.onProgressChangeListener = object : OnProgressChangeListener {
         override fun onChange(progress: Float) {
