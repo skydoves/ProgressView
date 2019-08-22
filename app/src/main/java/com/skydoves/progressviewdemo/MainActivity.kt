@@ -30,10 +30,10 @@ class MainActivity : AppCompatActivity() {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
 
-    progressView.setOnProgressChangeListener { progressView.labelText = "achieve ${it.toInt()}%" }
-    progressView1.setOnProgressChangeListener { progressView1.labelText = "achieve ${it.toInt()}%" }
+    progressView.setOnProgressChangeListener { progressView.labelText = "heart ${it.toInt()}%" }
+    progressView1.setOnProgressChangeListener { progressView1.labelText = "star ${it.toInt()}%" }
     progressView2.setOnProgressChangeListener { progressView2.labelText = "achieve ${it.toInt()}%" }
-    progressView3.setOnProgressChangeListener { progressView3.labelText = "achieve ${it.toInt()}%" }
+    progressView3.setOnProgressChangeListener { progressView3.labelText = "score ${it.toInt()}/100" }
     progressView4.setOnProgressChangeListener { progressView4.labelText = "achieve ${it.toInt()}%" }
     progressView5.setOnProgressChangeListener { progressView5.labelText = "achieve ${it.toInt()}%" }
 

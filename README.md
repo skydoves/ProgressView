@@ -12,7 +12,7 @@
 </p>
 
 <p align="center">
-<img src="https://user-images.githubusercontent.com/24237865/63489993-973b0980-c4ee-11e9-9a46-9ae174fa529a.gif" width="32%"/>
+<img src="https://user-images.githubusercontent.com/24237865/63502889-6916f300-c509-11e9-893a-d634f1c6a850.gif" width="32%"/>
 </p>
 
 ## Including in your project
