@@ -130,7 +130,7 @@ This is how to create `TextForm` using kotlin dsl.
 ```kotlin
 val form = textForm(context) {
   text = "This is a TextForm"
-  textColor = ContextCompat.getColor(baseContext, com.skydoves.balloondemo.R.color.white_87)
+  textColor = ContextCompat.getColor(baseContext, R.color.white_87)
   textSize = 14f
   textTypeface = Typeface.BOLD
 }
