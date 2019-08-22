@@ -16,6 +16,7 @@
 </p>
 
 ## Including in your project
+[![Download](https://api.bintray.com/packages/devmagician/maven/progressview/images/download.svg) ](https://bintray.com/devmagician/maven/progressview/_latestVersion)
 [![Jitpack](https://jitpack.io/v/skydoves/ProgressView.svg)](https://jitpack.io/#skydoves/ProgressView)
 ### Gradle 
 Add below codes to your **root** `build.gradle` file (not your module build.gradle file).
