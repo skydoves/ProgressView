@@ -119,6 +119,19 @@ progressView.setOnProgressChangeListener { progressView.labelText = "achieve ${i
 progressView.setOnProgressClickListener { Toast.makeText(baseContext, "clicked", Toast.LENGTH_SHORT).show() }
 ```
 
+### Vertical Orientation
+We can implement the `ProgressView` vertically using the below option. <br>
+We should set the width and height value like vertical shape.
+
+```gradle
+<com.skydoves.progressview.ProgressView
+  android:layout_width="35dp"
+  android:layout_height="300dp"
+  app:progressView_orientation="vertical"
+  
+  ...
+```
+
 ### TextForm
 TextFrom is an attribute class that has some attributes about TextView for customizing `ProgressView`'s label.
 
