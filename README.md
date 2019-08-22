@@ -8,11 +8,12 @@
 </p>
 
 <p align="center">
-🌊 A polished and flexible progress bar, fully customizable with and animations.
+🌊 A polished and flexible ProgressView, fully customizable with and animations.
 </p>
 
 <p align="center">
 <img src="https://user-images.githubusercontent.com/24237865/63502889-6916f300-c509-11e9-893a-d634f1c6a850.gif" width="32%"/>
+<img src="https://user-images.githubusercontent.com/24237865/63537603-182aed00-c551-11e9-95ea-08e25517f046.gif" width="32%"/>
 </p>
 
 ## Including in your project
@@ -30,7 +31,7 @@ allprojects {
 And add a dependency code to your **module**'s `build.gradle` file.
 ```gradle
 dependencies {
-    implementation "com.github.skydoves:progressview:1.0.0"
+    implementation "com.github.skydoves:progressview:1.0.1"
 }
 ```
 
@@ -57,10 +58,6 @@ Here is a basic example of implementing progressView on your `.xml` layout .
   app:progressView_labelSpace="10dp" // the space size of the between label and progress bar. 
   app:progressView_labelText="achieve 65%" // the text of the label.
   app:progressView_labelTypeface="bold" // the typeface of the label.
-  app:progressView_highlighting="true" // gives the highlighting effect or not.
-  app:progressView_highlightAlpha="0.8" // the alpha of the highlight.
-  app:progressView_highlightColor="@color/skyBlue" // the color of the highlight.
-  app:progressView_highlightWidth="1dp" // the thickness of the highlight.
  />
 ```
 
@@ -76,13 +73,24 @@ app:progressView_colorGradientEnd="@color/md_yellow_200" // ending color of the 
 We can implement the filling animation using below attributes or method.
 
 ```gradle
-app:progressView_autoAnimate="true" // starts filling animation automatically when finishing inflate.
+app:progressView_autoAnimate="true" // starts filling animation automatically when progress is changed.
 ```
 
 or we can animate manually using below method.
 
 ```kotlin
 progressView.progressAnimate()
+```
+
+### Hilighting Effect
+We can give a highlighting effect on the progress bar when clicked.
+
+```gradle
+app:progressView_highlighting="true" // gives the highlighting effect or not.
+app:progressView_highlightAlpha="0.8" // the alpha of the highlight.
+app:progressView_highlightColor="@color/skyBlue" // the color of the highlight.
+app:progressView_highlightWidth="1.5dp" // the thickness of the highlight.
+app:progressView_padding="1.5dp" // the padding of the progress bar.
 ```
 
 ### OnProgressChangeListener, OnProgressClickListener
