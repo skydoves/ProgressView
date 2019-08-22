@@ -84,6 +84,11 @@ class HighlightView(context: Context, attrs: AttributeSet? = null) :
       field = value
       updateHighlightView()
     }
+  var orientation = ProgressViewOrientation.HORIZONTAL
+    set(value) {
+      field = value
+      updateHighlightView()
+    }
   var onProgressClickListener: OnProgressClickListener? = null
 
   override fun onFinishInflate() {
@@ -100,8 +105,11 @@ class HighlightView(context: Context, attrs: AttributeSet? = null) :
 
   private fun updateBodyView() {
     if (colorGradientStart != 65555 && colorGradientEnd != 65555) {
-      val gradient = GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT,
-        intArrayOf(colorGradientStart, colorGradientEnd))
+      var gradientOrientation = GradientDrawable.Orientation.LEFT_RIGHT
+      if (orientation == ProgressViewOrientation.VERTICAL) {
+        gradientOrientation = GradientDrawable.Orientation.TOP_BOTTOM
+      }
+      val gradient = GradientDrawable(gradientOrientation, intArrayOf(colorGradientStart, colorGradientEnd))
       gradient.cornerRadius = radius
       this.bodyView.background = gradient
     } else if (this.drawable == null) {

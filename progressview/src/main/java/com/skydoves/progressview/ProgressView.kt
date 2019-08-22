@@ -150,8 +150,14 @@ class ProgressView : FrameLayout {
       2 -> this.labelTypeface = Typeface.ITALIC
     }
     when (a.getInt(R.styleable.ProgressView_progressView_orientation, ProgressViewOrientation.HORIZONTAL.value)) {
-      0 -> this.orientation = ProgressViewOrientation.HORIZONTAL
-      1 -> this.orientation = ProgressViewOrientation.VERTICAL
+      0 -> {
+        this.orientation = ProgressViewOrientation.HORIZONTAL
+        this.highlightView.orientation = ProgressViewOrientation.HORIZONTAL
+      }
+      1 -> {
+        this.orientation = ProgressViewOrientation.VERTICAL
+        this.highlightView.orientation = ProgressViewOrientation.VERTICAL
+      }
     }
     this.max = a.getFloat(R.styleable.ProgressView_progressView_max, max)
     this.progress = a.getFloat(R.styleable.ProgressView_progressView_progress, progress)
@@ -225,27 +231,39 @@ class ProgressView : FrameLayout {
   }
 
   private fun updateLabel() {
-    val params = ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT)
+    var params = ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT)
+    if (!isVertical()) {
+      this.labelView.gravity = Gravity.CENTER_VERTICAL
+    } else {
+      params = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+      this.labelView.gravity = Gravity.BOTTOM or Gravity.CENTER_HORIZONTAL
+    }
     this.labelView.layoutParams = params
     this.labelView.text = labelText
     this.labelView.setTextSize(TypedValue.COMPLEX_UNIT_PX, labelSize)
     this.labelView.setTypeface(labelView.typeface, labelTypeface)
-    this.labelView.gravity = Gravity.CENTER_VERTICAL
     removeView(labelView)
     addView(labelView)
 
     post {
       when {
-        max <= progress -> this.labelView.y = getViewSize(this).toFloat() - getViewSize(this.labelView) - this.labelSpace
-        getViewSize(this.labelView) + labelSpace < getProgressSize() -> {
-          this.labelView.x = getProgressSize() - getViewSize(this.labelView) - this.labelSpace
+        this.labelView.width + labelSpace < getProgressSize() -> {
+          setLabelViewPosition(getProgressSize() - this.labelView.width - this.labelSpace)
           this.labelView.setTextColor(labelColorInner)
         }
         else -> {
-          this.labelView.x = getProgressSize() + this.labelSpace
+          setLabelViewPosition(getProgressSize() + this.labelSpace)
           this.labelView.setTextColor(labelColorOuter)
         }
       }
+    }
+  }
+
+  private fun setLabelViewPosition(position: Float) {
+    if (isVertical()) {
+      labelView.y = position
+    } else {
+      labelView.x = position
     }
   }
 
@@ -255,8 +273,7 @@ class ProgressView : FrameLayout {
 
   private fun getLabelPosition(): Float {
     return when {
-      max <= progress -> getViewSize(this) - getViewSize(this.labelView) - this.labelSpace
-      getViewSize(this.labelView) + labelSpace < getProgressSize() -> getProgressSize() - getViewSize(this.labelView) - this.labelSpace
+      this.labelView.width + labelSpace < getProgressSize() -> getProgressSize() - this.labelView.width - this.labelSpace
       else -> getProgressSize() + this.labelSpace
     }
   }
@@ -286,7 +303,7 @@ class ProgressView : FrameLayout {
     animator.duration = duration
     animator.addUpdateListener {
       val value = it.animatedValue as Float
-      this.labelView.x = getLabelPosition() * value
+      setLabelViewPosition(getLabelPosition() * value)
       this.highlightView.updateLayoutParams {
         if (isVertical()) {
           height = (getProgressSize() * value).toInt()
