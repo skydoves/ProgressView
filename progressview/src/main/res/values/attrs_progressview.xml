@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <declare-styleable name="ProgressView">
+    <attr name="progressView_labelText" format="string" />
+    <attr name="progressView_labelSize" format="dimension" />
+    <attr name="progressView_labelColorInner" format="color" />
+    <attr name="progressView_labelColorOuter" format="color" />
+    <attr name="progressView_labelSpace" format="dimension" />
+    <attr name="progressView_labelTypeface" format="enum">
+      <enum name="normal" value="0" />
+      <enum name="bold" value="1" />
+      <enum name="italic" value="2" />
+    </attr>
+    <attr name="progressView_orientation" format="enum">
+      <enum name="horizontal" value="0" />
+      <enum name="vertical" value="1" />
+    </attr>
+    <attr name="progressView_max" format="float" />
+    <attr name="progressView_progress" format="float" />
+    <attr name="progressView_radius" format="dimension" />
+    <attr name="progressView_padding" format="dimension" />
+    <attr name="progressView_duration" format="integer" />
+    <attr name="progressView_colorProgress" format="color" />
+    <attr name="progressView_colorBackground" format="color" />
+    <attr name="progressView_colorGradientStart" format="color" />
+    <attr name="progressView_colorGradientEnd" format="color" />
+    <attr name="progressView_autoAnimate" format="boolean" />
+    <attr name="progressView_highlighting" format="boolean" />
+    <attr name="progressView_highlightColor" format="color" />
+    <attr name="progressView_highlightAlpha" format="float" />
+    <attr name="progressView_highlightWidth" format="dimension" />
+  </declare-styleable>
+</resources>

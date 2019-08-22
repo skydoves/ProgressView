@@ -1,0 +1,13 @@
+apply plugin: 'com.novoda.bintray-release'
+apply from: '../dependencies.gradle'
+
+publish {
+    userOrg = 'devmagician'
+    groupId = 'com.github.skydoves'
+    artifactId = 'progressview'
+    publishVersion = versions.versionName
+    desc = '🌊 A polished and flexible progress bar with fully customizable and animations.'
+    website = 'https://github.com/skydoves/ProgressView'
+    issueTracker = "${website}/issues"
+    repository = "${website}.git"
+}
