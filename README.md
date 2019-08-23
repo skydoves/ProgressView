@@ -36,9 +36,14 @@ dependencies {
 ```
 
 ## Usage
+Add following XML namespace inside your XML layout file.
+
+```gradle
+xmlns:app="http://schemas.android.com/apk/res-auto"
+```
 
 ### ProgressView
-Here is a basic example of implementing progressView on your `.xml` layout .
+Here is a basic example of implementing `ProgressView`.
 
 ```gradle
 <com.skydoves.progressview.ProgressView
