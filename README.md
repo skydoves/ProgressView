@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-🌊 A polished and flexible ProgressView, fully customizable with and animations.
+🌊 A polished and flexible ProgressView, fully customizable with animations.
 </p>
 
 <p align="center">
