@@ -24,7 +24,6 @@ import android.content.res.TypedArray
 import android.graphics.Typeface
 import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
-import android.util.TypedValue
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
@@ -94,6 +93,11 @@ class ProgressView : FrameLayout {
       updateProgressView()
     }
   var labelTypeface = Typeface.NORMAL
+    set(value) {
+      field = value
+      updateProgressView()
+    }
+  var labelTypefaceObject: Typeface? = null
     set(value) {
       field = value
       updateProgressView()
@@ -239,9 +243,12 @@ class ProgressView : FrameLayout {
       this.labelView.gravity = Gravity.BOTTOM or Gravity.CENTER_HORIZONTAL
     }
     this.labelView.layoutParams = params
-    this.labelView.text = labelText
-    this.labelView.setTextSize(TypedValue.COMPLEX_UNIT_PX, labelSize)
-    this.labelView.setTypeface(labelView.typeface, labelTypeface)
+    applyTextForm(textForm(context) {
+      text = labelText
+      textSize = labelSize
+      textTypeface = labelTypeface
+      textTypefaceObject = labelTypefaceObject
+    })
     removeView(labelView)
     addView(labelView)
 
@@ -362,6 +369,7 @@ class ProgressView : FrameLayout {
     fun setLabelColorInner(value: Int): Builder = apply { this.progressView.labelColorInner = value }
     fun setLabelColorOuter(value: Int): Builder = apply { this.progressView.labelColorOuter = value }
     fun setLabelTypeface(value: Int): Builder = apply { this.progressView.labelTypeface = value }
+    fun setLabelTypeface(value: Typeface): Builder = apply { this.progressView.labelTypefaceObject = value }
     fun setProgressbarAlpha(value: Float): Builder = apply { this.progressView.highlightView.alpha = value }
     fun setProgressbarColor(value: Int): Builder = apply { this.progressView.highlightView.color = value }
     fun setProgressbarColorGradientStart(value: Int): Builder = apply { this.progressView.highlightView.colorGradientStart = value }
