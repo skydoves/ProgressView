@@ -18,6 +18,7 @@
 
 package com.skydoves.progressview
 
+import android.util.TypedValue
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
@@ -27,6 +28,11 @@ import androidx.core.content.ContextCompat
 internal fun View.dp2Px(dp: Int): Int {
   val scale = resources.displayMetrics.density
   return (dp * scale).toInt()
+}
+
+/** sp size to px size. */
+internal fun View.sp2Px(sp: Float): Float {
+  return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp, context.resources.displayMetrics)
 }
 
 /** px size to sp size. */
