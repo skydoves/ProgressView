@@ -140,7 +140,7 @@ class ProgressView : FrameLayout {
 
   private fun setTypeArray(a: TypedArray) {
     this.labelText = a.getString(R.styleable.ProgressView_progressView_labelText)
-    this.labelSize = a.getDimension(R.styleable.ProgressView_progressView_labelSize, labelSize)
+    this.labelSize = px2Sp(a.getDimension(R.styleable.ProgressView_progressView_labelSize, labelSize))
     this.labelSpace = a.getDimension(R.styleable.ProgressView_progressView_labelSpace, labelSpace)
     this.labelColorInner = a.getColor(R.styleable.ProgressView_progressView_labelColorInner, labelColorInner)
     this.labelColorOuter = a.getColor(R.styleable.ProgressView_progressView_labelColorOuter, labelColorOuter)
@@ -240,7 +240,7 @@ class ProgressView : FrameLayout {
     }
     this.labelView.layoutParams = params
     this.labelView.text = labelText
-    this.labelView.setTextSize(TypedValue.COMPLEX_UNIT_PX, labelSize)
+    this.labelView.setTextSize(TypedValue.COMPLEX_UNIT_SP, labelSize)
     this.labelView.setTypeface(labelView.typeface, labelTypeface)
     removeView(labelView)
     addView(labelView)

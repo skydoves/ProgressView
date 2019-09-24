@@ -23,7 +23,7 @@ import android.widget.TextView
 @Suppress("unused")
 internal fun TextView.applyTextForm(textForm: TextForm) {
   text = textForm.text
-  setTextSize(TypedValue.COMPLEX_UNIT_PX, textForm.textSize)
+  setTextSize(TypedValue.COMPLEX_UNIT_SP, textForm.textSize)
   setTextColor(textForm.textColor)
   setTypeface(typeface, textForm.textStyle)
 }
