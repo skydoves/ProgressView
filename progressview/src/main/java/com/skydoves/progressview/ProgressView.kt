@@ -200,7 +200,6 @@ class ProgressView : FrameLayout {
       reset()
       addRoundRect(RectF(0f, 0f, w.toFloat(), h.toFloat()), floatArrayOf(radius, radius, radius, radius, radius, radius, radius, radius), Path.Direction.CCW)
     }
-
   }
 
   override fun dispatchDraw(canvas: Canvas) {
