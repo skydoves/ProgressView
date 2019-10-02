@@ -21,6 +21,9 @@ package com.skydoves.progressview
 import android.animation.ValueAnimator
 import android.content.Context
 import android.content.res.TypedArray
+import android.graphics.Canvas
+import android.graphics.Path
+import android.graphics.RectF
 import android.graphics.Typeface
 import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
@@ -114,6 +117,8 @@ class ProgressView : FrameLayout {
       this.highlightView.onProgressClickListener = value
     }
 
+  private val path = Path()
+
   constructor(context: Context) : super(context)
 
   constructor(context: Context, attributeSet: AttributeSet) : super(context, attributeSet) {
@@ -187,6 +192,20 @@ class ProgressView : FrameLayout {
   override fun onFinishInflate() {
     super.onFinishInflate()
     updateProgressView()
+  }
+
+  override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
+    super.onSizeChanged(w, h, oldw, oldh)
+    path.apply {
+      reset()
+      addRoundRect(RectF(0f, 0f, w.toFloat(), h.toFloat()), floatArrayOf(radius, radius, radius, radius, radius, radius, radius, radius), Path.Direction.CCW)
+    }
+
+  }
+
+  override fun dispatchDraw(canvas: Canvas) {
+    canvas.clipPath(path)
+    super.dispatchDraw(canvas)
   }
 
   private fun updateProgressView() {
