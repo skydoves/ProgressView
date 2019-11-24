@@ -336,28 +336,21 @@ class ProgressView : FrameLayout {
 
   /** animates [ProgressView]'s progress bar. */
   fun progressAnimate() {
-    this.labelView.x = 0f
-    this.highlightView.updateLayoutParams {
-      if (isVertical()) {
-        height = 0
-      } else {
-        width = 0
-      }
-    }
-    val animator = ValueAnimator.ofFloat(0f, 1f)
-    animator.duration = duration
-    animator.addUpdateListener {
-      val value = it.animatedValue as Float
-      setLabelViewPosition(getLabelPosition() * value)
-      this.highlightView.updateLayoutParams {
-        if (isVertical()) {
-          height = (getProgressSize() * value).toInt()
-        } else {
-          width = (getProgressSize() * value).toInt()
+    ValueAnimator.ofFloat(0f, 1f).apply {
+      duration = this@ProgressView.duration
+      addUpdateListener {
+        val value = it.animatedValue as Float
+        setLabelViewPosition(getLabelPosition() * value)
+        highlightView.updateLayoutParams {
+          if (isVertical()) {
+            height = (getProgressSize() * value).toInt()
+          } else {
+            width = (getProgressSize() * value).toInt()
+          }
         }
       }
+      start()
     }
-    animator.start()
   }
 
   private fun isVertical(): Boolean {
