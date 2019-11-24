@@ -48,6 +48,7 @@ class ProgressView : FrameLayout {
 
   var duration = 1000L
   var autoAnimate = true
+  var min = 0f
   var max = 100f
     set(value) {
       field = value
@@ -55,8 +56,11 @@ class ProgressView : FrameLayout {
     }
   var progress = 0f
     set(value) {
-      field = if (value >= max) max
-      else value
+      field = when {
+        value >= max -> max
+        value <= min -> min
+        else -> value
+      }
       updateProgressView()
       onProgressChangeListener?.onChange(field)
     }
@@ -125,7 +129,8 @@ class ProgressView : FrameLayout {
     getAttrs(attributeSet)
   }
 
-  constructor(context: Context, attributeSet: AttributeSet, defStyle: Int) : super(context, attributeSet, defStyle) {
+  constructor(context: Context, attributeSet: AttributeSet, defStyle: Int) : super(context,
+    attributeSet, defStyle) {
     getAttrs(attributeSet, defStyle)
   }
 
@@ -139,7 +144,8 @@ class ProgressView : FrameLayout {
   }
 
   private fun getAttrs(attributeSet: AttributeSet, defStyleAttr: Int) {
-    val typedArray = context.obtainStyledAttributes(attributeSet, R.styleable.ProgressView, defStyleAttr, 0)
+    val typedArray =
+      context.obtainStyledAttributes(attributeSet, R.styleable.ProgressView, defStyleAttr, 0)
     try {
       setTypeArray(typedArray)
     } finally {
@@ -149,16 +155,20 @@ class ProgressView : FrameLayout {
 
   private fun setTypeArray(a: TypedArray) {
     this.labelText = a.getString(R.styleable.ProgressView_progressView_labelText)
-    this.labelSize = px2Sp(a.getDimension(R.styleable.ProgressView_progressView_labelSize, labelSize))
+    this.labelSize =
+      px2Sp(a.getDimension(R.styleable.ProgressView_progressView_labelSize, labelSize))
     this.labelSpace = a.getDimension(R.styleable.ProgressView_progressView_labelSpace, labelSpace)
-    this.labelColorInner = a.getColor(R.styleable.ProgressView_progressView_labelColorInner, labelColorInner)
-    this.labelColorOuter = a.getColor(R.styleable.ProgressView_progressView_labelColorOuter, labelColorOuter)
+    this.labelColorInner =
+      a.getColor(R.styleable.ProgressView_progressView_labelColorInner, labelColorInner)
+    this.labelColorOuter =
+      a.getColor(R.styleable.ProgressView_progressView_labelColorOuter, labelColorOuter)
     when (a.getInt(R.styleable.ProgressView_progressView_labelTypeface, Typeface.NORMAL)) {
       0 -> this.labelTypeface = Typeface.NORMAL
       1 -> this.labelTypeface = Typeface.BOLD
       2 -> this.labelTypeface = Typeface.ITALIC
     }
-    when (a.getInt(R.styleable.ProgressView_progressView_orientation, ProgressViewOrientation.HORIZONTAL.value)) {
+    when (a.getInt(R.styleable.ProgressView_progressView_orientation,
+      ProgressViewOrientation.HORIZONTAL.value)) {
       0 -> {
         this.orientation = ProgressViewOrientation.HORIZONTAL
         this.highlightView.orientation = ProgressViewOrientation.HORIZONTAL
@@ -168,21 +178,27 @@ class ProgressView : FrameLayout {
         this.highlightView.orientation = ProgressViewOrientation.VERTICAL
       }
     }
+    this.min = a.getFloat(R.styleable.ProgressView_progressView_min, min)
     this.max = a.getFloat(R.styleable.ProgressView_progressView_max, max)
     this.progress = a.getFloat(R.styleable.ProgressView_progressView_progress, progress)
     this.radius = a.getDimension(R.styleable.ProgressView_progressView_radius, radius)
-    this.duration = a.getInteger(R.styleable.ProgressView_progressView_duration, duration.toInt()).toLong()
-    this.colorBackground = a.getColor(R.styleable.ProgressView_progressView_colorBackground, colorBackground)
+    this.duration =
+      a.getInteger(R.styleable.ProgressView_progressView_duration, duration.toInt()).toLong()
+    this.colorBackground =
+      a.getColor(R.styleable.ProgressView_progressView_colorBackground, colorBackground)
     this.autoAnimate = a.getBoolean(R.styleable.ProgressView_progressView_autoAnimate, autoAnimate)
     with(this.highlightView) {
       alpha = a.getFloat(R.styleable.ProgressView_progressView_highlightAlpha, highlightAlpha)
       color = a.getColor(R.styleable.ProgressView_progressView_colorProgress, color)
-      colorGradientStart = a.getColor(R.styleable.ProgressView_progressView_colorGradientStart, 65555)
+      colorGradientStart =
+        a.getColor(R.styleable.ProgressView_progressView_colorGradientStart, 65555)
       colorGradientEnd = a.getColor(R.styleable.ProgressView_progressView_colorGradientEnd, 65555)
       radius = a.getDimension(R.styleable.ProgressView_progressView_radius, radius)
       padding = a.getDimension(R.styleable.ProgressView_progressView_padding, padding)
-      highlightColor = a.getColor(R.styleable.ProgressView_progressView_highlightColor, highlightColor)
-      highlightThickness = a.getDimension(R.styleable.ProgressView_progressView_highlightWidth, highlightThickness.toFloat()).toInt()
+      highlightColor =
+        a.getColor(R.styleable.ProgressView_progressView_highlightColor, highlightColor)
+      highlightThickness = a.getDimension(R.styleable.ProgressView_progressView_highlightWidth,
+        highlightThickness.toFloat()).toInt()
       if (!a.getBoolean(R.styleable.ProgressView_progressView_highlighting, !highlighting)) {
         highlightThickness = 0
       }
@@ -198,7 +214,9 @@ class ProgressView : FrameLayout {
     super.onSizeChanged(w, h, oldw, oldh)
     path.apply {
       reset()
-      addRoundRect(RectF(0f, 0f, w.toFloat(), h.toFloat()), floatArrayOf(radius, radius, radius, radius, radius, radius, radius, radius), Path.Direction.CCW)
+      addRoundRect(RectF(0f, 0f, w.toFloat(), h.toFloat()),
+        floatArrayOf(radius, radius, radius, radius, radius, radius, radius, radius),
+        Path.Direction.CCW)
     }
   }
 
@@ -253,11 +271,13 @@ class ProgressView : FrameLayout {
   }
 
   private fun updateLabel() {
-    var params = ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT)
+    var params = ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+      ViewGroup.LayoutParams.MATCH_PARENT)
     if (!isVertical()) {
       this.labelView.gravity = Gravity.CENTER_VERTICAL
     } else {
-      params = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+      params = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+        ViewGroup.LayoutParams.WRAP_CONTENT)
       this.labelView.gravity = Gravity.BOTTOM or Gravity.CENTER_HORIZONTAL
     }
     this.labelView.layoutParams = params
@@ -316,28 +336,21 @@ class ProgressView : FrameLayout {
 
   /** animates [ProgressView]'s progress bar. */
   fun progressAnimate() {
-    this.labelView.x = 0f
-    this.highlightView.updateLayoutParams {
-      if (isVertical()) {
-        height = 0
-      } else {
-        width = 0
-      }
-    }
-    val animator = ValueAnimator.ofFloat(0f, 1f)
-    animator.duration = duration
-    animator.addUpdateListener {
-      val value = it.animatedValue as Float
-      setLabelViewPosition(getLabelPosition() * value)
-      this.highlightView.updateLayoutParams {
-        if (isVertical()) {
-          height = (getProgressSize() * value).toInt()
-        } else {
-          width = (getProgressSize() * value).toInt()
+    ValueAnimator.ofFloat(0f, 1f).apply {
+      duration = this@ProgressView.duration
+      addUpdateListener {
+        val value = it.animatedValue as Float
+        setLabelViewPosition(getLabelPosition() * value)
+        highlightView.updateLayoutParams {
+          if (isVertical()) {
+            height = (getProgressSize() * value).toInt()
+          } else {
+            width = (getProgressSize() * value).toInt()
+          }
         }
       }
+      start()
     }
-    animator.start()
   }
 
   private fun isVertical(): Boolean {
@@ -372,34 +385,93 @@ class ProgressView : FrameLayout {
   class Builder(context: Context) {
     private val progressView = ProgressView(context)
 
-    fun setSize(width: Int, height: Int): Builder = apply { this.progressView.layoutParams = LayoutParams(progressView.dp2Px(width), progressView.dp2Px(height)) }
+    fun setSize(width: Int, height: Int): Builder = apply {
+      this.progressView.layoutParams =
+        LayoutParams(progressView.dp2Px(width), progressView.dp2Px(height))
+    }
+
     fun setHeight(value: Int): Builder = apply { this.progressView.layoutParams.height = value }
     fun setDuration(value: Long): Builder = apply { this.progressView.duration = value }
     fun setAutoAnimate(value: Boolean): Builder = apply { this.progressView.autoAnimate = value }
+    fun setMin(value: Float): Builder = apply { this.progressView.min = value }
     fun setMax(value: Float): Builder = apply { this.progressView.max = value }
     fun setProgress(value: Float): Builder = apply { this.progressView.progress = value }
-    fun setOrientation(value: ProgressViewOrientation): Builder = apply { this.progressView.orientation = value }
-    fun setColorBackground(value: Int): Builder = apply { this.progressView.colorBackground = value }
+    fun setOrientation(value: ProgressViewOrientation): Builder = apply {
+      this.progressView.orientation = value
+    }
+
+    fun setColorBackground(value: Int): Builder = apply {
+      this.progressView.colorBackground = value
+    }
+
     fun setRadius(value: Float): Builder = apply { this.progressView.radius = value }
     fun setLabelText(value: String): Builder = apply { this.progressView.labelText = value }
-    fun setLabelSize(value: Float): Builder = apply { this.progressView.labelSize = this.progressView.sp2Px(value) }
+    fun setLabelSize(value: Float): Builder = apply {
+      this.progressView.labelSize = this.progressView.sp2Px(value)
+    }
+
     fun setLabelSpace(value: Float): Builder = apply { this.progressView.labelSpace = value }
-    fun setLabelColorInner(value: Int): Builder = apply { this.progressView.labelColorInner = value }
-    fun setLabelColorOuter(value: Int): Builder = apply { this.progressView.labelColorOuter = value }
+    fun setLabelColorInner(value: Int): Builder = apply {
+      this.progressView.labelColorInner = value
+    }
+
+    fun setLabelColorOuter(value: Int): Builder = apply {
+      this.progressView.labelColorOuter = value
+    }
+
     fun setLabelTypeface(value: Int): Builder = apply { this.progressView.labelTypeface = value }
-    fun setLabelTypeface(value: Typeface): Builder = apply { this.progressView.labelTypefaceObject = value }
-    fun setProgressbarAlpha(value: Float): Builder = apply { this.progressView.highlightView.alpha = value }
-    fun setProgressbarColor(value: Int): Builder = apply { this.progressView.highlightView.color = value }
-    fun setProgressbarColorGradientStart(value: Int): Builder = apply { this.progressView.highlightView.colorGradientStart = value }
-    fun setProgressbarColorGradientEnd(value: Int): Builder = apply { this.progressView.highlightView.colorGradientEnd = value }
-    fun setProgressbarRadius(value: Float): Builder = apply { this.progressView.highlightView.radius = value }
-    fun setProgressbarPadding(value: Float): Builder = apply { this.progressView.highlightView.padding = value }
-    fun setHighlightColor(value: Int): Builder = apply { this.progressView.highlightView.highlightColor = value }
-    fun setHighlighting(value: Boolean): Builder = apply { this.progressView.highlightView.highlighting = value }
-    fun setHighlightThickness(value: Int): Builder = apply { this.progressView.highlightView.highlightThickness = value }
-    fun setOnProgressChangeListener(value: OnProgressChangeListener): Builder = apply { this.progressView.onProgressChangeListener = value }
-    fun setOnProgressClickListener(value: OnProgressClickListener): Builder = apply { this.progressView.onProgressClickListener = value }
-    fun setTextForm(value: TextForm): Builder = apply { this.progressView.labelView.applyTextForm(value) }
+    fun setLabelTypeface(value: Typeface): Builder = apply {
+      this.progressView.labelTypefaceObject = value
+    }
+
+    fun setProgressbarAlpha(value: Float): Builder = apply {
+      this.progressView.highlightView.alpha = value
+    }
+
+    fun setProgressbarColor(value: Int): Builder = apply {
+      this.progressView.highlightView.color = value
+    }
+
+    fun setProgressbarColorGradientStart(value: Int): Builder = apply {
+      this.progressView.highlightView.colorGradientStart = value
+    }
+
+    fun setProgressbarColorGradientEnd(value: Int): Builder = apply {
+      this.progressView.highlightView.colorGradientEnd = value
+    }
+
+    fun setProgressbarRadius(value: Float): Builder = apply {
+      this.progressView.highlightView.radius = value
+    }
+
+    fun setProgressbarPadding(value: Float): Builder = apply {
+      this.progressView.highlightView.padding = value
+    }
+
+    fun setHighlightColor(value: Int): Builder = apply {
+      this.progressView.highlightView.highlightColor = value
+    }
+
+    fun setHighlighting(value: Boolean): Builder = apply {
+      this.progressView.highlightView.highlighting = value
+    }
+
+    fun setHighlightThickness(value: Int): Builder = apply {
+      this.progressView.highlightView.highlightThickness = value
+    }
+
+    fun setOnProgressChangeListener(value: OnProgressChangeListener): Builder = apply {
+      this.progressView.onProgressChangeListener = value
+    }
+
+    fun setOnProgressClickListener(value: OnProgressClickListener): Builder = apply {
+      this.progressView.onProgressClickListener = value
+    }
+
+    fun setTextForm(value: TextForm): Builder = apply {
+      this.progressView.labelView.applyTextForm(value)
+    }
+
     fun setOnProgressChangeListener(block: (Float) -> Unit): Builder = apply {
       this.progressView.onProgressChangeListener = object : OnProgressChangeListener {
         override fun onChange(progress: Float) {

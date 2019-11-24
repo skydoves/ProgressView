@@ -32,7 +32,7 @@ allprojects {
 And add a dependency code to your **module**'s `build.gradle` file.
 ```gradle
 dependencies {
-    implementation "com.github.skydoves:progressview:1.0.3"
+    implementation "com.github.skydoves:progressview:1.0.4"
 }
 ```
 
@@ -54,6 +54,7 @@ Here is a basic example of implementing `ProgressView`.
   app:progressView_colorBackground="@color/white" // the color of the container.
   app:progressView_colorProgress="@color/skyBlue" // the color of the progress bar.
   app:progressView_progress="40" // progress value.
+  app:progressView_min="15" // min progress value.
   app:progressView_max="100" // max progress value.
   app:progressView_autoAnimate="true" // starts filling animation automatically when finishing inflate.
   app:progressView_radius="12dp" // the corner radius of the progressView and progress bar.
@@ -186,6 +187,7 @@ This is how to create an instance of the `ProgressView` using kotlin dsl.
 val myProgressView = progressView(context) {
     setSize(300, 35)
     setProgress(70f)
+    setMin(10f)
     setMax(100f)
     setRadius(12f)
     setDuration(1200L)
@@ -207,7 +209,8 @@ Attributes | Type | Default | Description
 --- | --- | --- | ---
 orientation | ProgressViewOrientation | Horizontal | ProgressView's orientation.
 progress | Float | 0f | value of the progress.
-max | Float | 100f | value of the maximum progress. the progress value can not over the max value.
+min | Float | 0f | value of the minimum progress. The progress value can not under the min value.
+max | Float | 100f | value of the maximum progress. The progress value can not over the max value.
 radius | Dimension | 8dp | corner radius of the ProgressView.
 padding | Dimension | 0dp | padding of the prograssbar.
 duration | Long | 1000L | duration of the animation.

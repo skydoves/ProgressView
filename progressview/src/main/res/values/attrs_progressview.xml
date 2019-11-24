@@ -15,6 +15,7 @@
       <enum name="horizontal" value="0" />
       <enum name="vertical" value="1" />
     </attr>
+    <attr name="progressView_min" format="float" />
     <attr name="progressView_max" format="float" />
     <attr name="progressView_progress" format="float" />
     <attr name="progressView_radius" format="dimension" />
