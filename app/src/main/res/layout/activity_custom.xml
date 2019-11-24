@@ -40,6 +40,7 @@
         app:progressView_labelSpace="10dp"
         app:progressView_labelText="70%"
         app:progressView_labelTypeface="bold"
+        app:progressView_min="15"
         app:progressView_orientation="vertical"
         app:progressView_padding="1dp"
         app:progressView_progress="70" />
