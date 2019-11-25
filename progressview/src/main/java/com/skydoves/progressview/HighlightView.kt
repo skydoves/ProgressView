@@ -128,10 +128,11 @@ class HighlightView(context: Context, attrs: AttributeSet? = null) :
   }
 
   private fun updateStrokeView() {
-    val drawable = GradientDrawable()
-    drawable.setColor(Color.TRANSPARENT)
-    drawable.cornerRadius = radius
-    drawable.setStroke(highlightThickness, highlightColor)
+    val drawable = GradientDrawable().apply {
+      setColor(Color.TRANSPARENT)
+      cornerRadius = radius
+      setStroke(highlightThickness, highlightColor)
+    }
     this.strokeView.background = drawable
     this.strokeView.layoutParams =
       ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)

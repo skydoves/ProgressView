@@ -114,33 +114,16 @@ class ProgressView : FrameLayout {
       field = value
       updateProgressView()
     }
-  var onProgressChangeListener: OnProgressChangeListener? = null
-  var onProgressClickListener: OnProgressClickListener? = null
-    set(value) {
-      field = value
-      this.highlightView.onProgressClickListener = value
-    }
+  private var onProgressChangeListener: OnProgressChangeListener? = null
+  private var onProgressClickListener: OnProgressClickListener? = null
 
   private val path = Path()
 
   constructor(context: Context) : super(context)
-
-  constructor(context: Context, attributeSet: AttributeSet) : super(context, attributeSet) {
-    getAttrs(attributeSet)
-  }
-
+  constructor(context: Context, attributeSet: AttributeSet) : this(context, attributeSet, 0)
   constructor(context: Context, attributeSet: AttributeSet, defStyle: Int) : super(context,
     attributeSet, defStyle) {
     getAttrs(attributeSet, defStyle)
-  }
-
-  private fun getAttrs(attributeSet: AttributeSet) {
-    val typedArray = context.obtainStyledAttributes(attributeSet, R.styleable.ProgressView)
-    try {
-      setTypeArray(typedArray)
-    } finally {
-      typedArray.recycle()
-    }
   }
 
   private fun getAttrs(attributeSet: AttributeSet, defStyleAttr: Int) {
@@ -212,7 +195,7 @@ class ProgressView : FrameLayout {
 
   override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
     super.onSizeChanged(w, h, oldw, oldh)
-    path.apply {
+    this.path.apply {
       reset()
       addRoundRect(RectF(0f, 0f, w.toFloat(), h.toFloat()),
         floatArrayOf(radius, radius, radius, radius, radius, radius, radius, radius),
@@ -221,7 +204,7 @@ class ProgressView : FrameLayout {
   }
 
   override fun dispatchDraw(canvas: Canvas) {
-    canvas.clipPath(path)
+    canvas.clipPath(this.path)
     super.dispatchDraw(canvas)
   }
 
@@ -358,6 +341,11 @@ class ProgressView : FrameLayout {
   }
 
   /** sets a progress change listener. */
+  fun setOnProgressChangeListener(onProgressChangeListener: OnProgressChangeListener) {
+    this.onProgressChangeListener = onProgressChangeListener
+  }
+
+  /** sets a progress change listener. */
   fun setOnProgressChangeListener(block: (Float) -> Unit) {
     this.onProgressChangeListener = object : OnProgressChangeListener {
       override fun onChange(progress: Float) {
@@ -367,12 +355,19 @@ class ProgressView : FrameLayout {
   }
 
   /** sets a progress click listener. */
+  fun setOnProgressClickListener(onProgressClickListener: OnProgressClickListener) {
+    this.onProgressClickListener = onProgressClickListener
+    this.highlightView.onProgressClickListener = this.onProgressClickListener
+  }
+
+  /** sets a progress click listener. */
   fun setOnProgressClickListener(block: (Boolean) -> Unit) {
     this.onProgressClickListener = object : OnProgressClickListener {
       override fun onClickProgress(highlighting: Boolean) {
         block(highlighting)
       }
     }
+    this.highlightView.onProgressClickListener = this.onProgressClickListener
   }
 
   /** applies [TextForm] attributes to a TextView. */
