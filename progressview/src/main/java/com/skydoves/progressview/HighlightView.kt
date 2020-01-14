@@ -25,6 +25,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.LinearLayout
+import androidx.annotation.ColorInt
+import androidx.annotation.FloatRange
+import androidx.annotation.Px
 
 /** HighlightView is a view with stroke highlighting via onClickListener. */
 @Suppress("MemberVisibilityCanBePrivate")
@@ -39,17 +42,17 @@ class HighlightView(context: Context, attrs: AttributeSet? = null) :
       field = value
       updateHighlighting()
     }
-  var highlightThickness: Int = dp2Px(0)
+  @Px var highlightThickness: Int = dp2Px(0)
     set(value) {
       field = value
       updateHighlightView()
     }
-  var highlightColor: Int = compatColor(R.color.colorPrimary)
+  @ColorInt var highlightColor: Int = compatColor(R.color.colorPrimary)
     set(value) {
       field = value
       updateHighlightView()
     }
-  var highlightAlpha: Float = 1.0f
+  @FloatRange(from = 0.0, to = 1.0) var highlightAlpha: Float = 1.0f
     set(value) {
       field = value
       updateHighlightView()
@@ -59,22 +62,22 @@ class HighlightView(context: Context, attrs: AttributeSet? = null) :
       field = value
       updateHighlightView()
     }
-  var padding = dp2Px(0).toFloat()
+  @Px var padding = dp2Px(0).toFloat()
     set(value) {
       field = value
       updateHighlightView()
     }
-  var color: Int = compatColor(R.color.colorPrimary)
+  @ColorInt var color: Int = compatColor(R.color.colorPrimary)
     set(value) {
       field = value
       updateHighlightView()
     }
-  var colorGradientStart: Int = 65555
+  @ColorInt var colorGradientStart: Int = 65555
     set(value) {
       field = value
       updateHighlightView()
     }
-  var colorGradientEnd: Int = 65555
+  @ColorInt var colorGradientEnd: Int = 65555
     set(value) {
       field = value
       updateHighlightView()
@@ -109,7 +112,8 @@ class HighlightView(context: Context, attrs: AttributeSet? = null) :
       if (orientation == ProgressViewOrientation.VERTICAL) {
         gradientOrientation = GradientDrawable.Orientation.TOP_BOTTOM
       }
-      val gradient = GradientDrawable(gradientOrientation, intArrayOf(colorGradientStart, colorGradientEnd))
+      val gradient =
+        GradientDrawable(gradientOrientation, intArrayOf(colorGradientStart, colorGradientEnd))
       gradient.cornerRadius = radius
       this.bodyView.background = gradient
     } else if (this.drawable == null) {
@@ -120,22 +124,24 @@ class HighlightView(context: Context, attrs: AttributeSet? = null) :
     } else {
       this.bodyView.background = this.drawable
     }
-    val params = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
-    params.setMargins(padding.toInt(), padding.toInt(), padding.toInt(), padding.toInt())
+    val params = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+      ViewGroup.LayoutParams.MATCH_PARENT).apply {
+      setMargins(padding.toInt(), padding.toInt(), padding.toInt(), padding.toInt())
+    }
     this.bodyView.layoutParams = params
     removeView(bodyView)
     addView(bodyView)
   }
 
   private fun updateStrokeView() {
-    val drawable = GradientDrawable().apply {
+    this.strokeView.background = GradientDrawable().apply {
       setColor(Color.TRANSPARENT)
       cornerRadius = radius
       setStroke(highlightThickness, highlightColor)
     }
-    this.strokeView.background = drawable
     this.strokeView.layoutParams =
-      ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+      ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+        ViewGroup.LayoutParams.MATCH_PARENT)
     removeView(strokeView)
     addView(strokeView)
   }

@@ -20,6 +20,8 @@ package com.skydoves.progressview
 
 import android.content.Context
 import android.graphics.Typeface
+import androidx.annotation.ColorInt
+import androidx.annotation.Px
 import androidx.core.content.ContextCompat
 
 @DslMarker
@@ -36,8 +38,8 @@ fun textForm(context: Context, block: TextForm.Builder.() -> Unit): TextForm =
 class TextForm(builder: Builder) {
 
   val text = builder.text
-  val textSize = builder.textSize
-  val textColor = builder.textColor
+  @Px val textSize = builder.textSize
+  @ColorInt val textColor = builder.textColor
   val textStyle = builder.textTypeface
   val textStyleObject = builder.textTypefaceObject
 
@@ -46,9 +48,9 @@ class TextForm(builder: Builder) {
   class Builder(context: Context) {
     @JvmField
     var text: String? = ""
-    @JvmField
+    @JvmField @Px
     var textSize: Float = 12f
-    @JvmField
+    @JvmField @ColorInt
     var textColor = ContextCompat.getColor(context, R.color.white)
     @JvmField
     var textTypeface = Typeface.NORMAL
@@ -56,8 +58,8 @@ class TextForm(builder: Builder) {
     var textTypefaceObject: Typeface? = null
 
     fun setText(value: String): Builder = apply { this.text = value }
-    fun setTextSize(value: Float): Builder = apply { this.textSize = value }
-    fun setTextColor(value: Int): Builder = apply { this.textColor = value }
+    fun setTextSize(@Px value: Float): Builder = apply { this.textSize = value }
+    fun setTextColor(@ColorInt value: Int): Builder = apply { this.textColor = value }
     fun setTextTypeface(value: Int): Builder = apply { this.textTypeface = value }
     fun setTextTypeface(value: Typeface): Builder = apply { this.textTypefaceObject = value }
     fun build(): TextForm {
