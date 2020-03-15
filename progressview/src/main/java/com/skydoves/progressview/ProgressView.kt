@@ -35,6 +35,10 @@ import android.widget.TextView
 import androidx.annotation.ColorInt
 import androidx.annotation.FloatRange
 import androidx.annotation.Px
+import com.skydoves.progressview.ProgressViewAnimation.ACCELERATEDECELERATE
+import com.skydoves.progressview.ProgressViewAnimation.BOUNCE
+import com.skydoves.progressview.ProgressViewAnimation.DECELERATE
+import com.skydoves.progressview.ProgressViewAnimation.NORMAL
 
 @DslMarker
 annotation class ProgressViewDSL
@@ -80,6 +84,7 @@ class ProgressView : FrameLayout {
       updateProgressView()
       onProgressChangeListener?.onChange(field)
     }
+  var progressAnimation: ProgressViewAnimation = ACCELERATEDECELERATE
   var orientation = ProgressViewOrientation.HORIZONTAL
     set(value) {
       field = value
@@ -186,6 +191,14 @@ class ProgressView : FrameLayout {
     )) {
       0 -> this.orientation = ProgressViewOrientation.HORIZONTAL
       1 -> this.orientation = ProgressViewOrientation.VERTICAL
+    }
+    when (a.getInt(
+      R.styleable.ProgressView_progressView_animation, progressAnimation.value
+    )) {
+      0 -> this.progressAnimation = NORMAL
+      1 -> this.progressAnimation = BOUNCE
+      2 -> this.progressAnimation = DECELERATE
+      3 -> this.progressAnimation = ACCELERATEDECELERATE
     }
     this.min = a.getFloat(R.styleable.ProgressView_progressView_min, min)
     this.max = a.getFloat(R.styleable.ProgressView_progressView_max, max)
@@ -396,6 +409,7 @@ class ProgressView : FrameLayout {
   fun progressAnimate() {
     ValueAnimator.ofFloat(0f, 1f)
       .apply {
+        interpolator = progressAnimation.getInterpolator()
         duration = this@ProgressView.duration
         addUpdateListener {
           val value = it.animatedValue as Float

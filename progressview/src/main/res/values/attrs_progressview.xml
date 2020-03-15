@@ -15,6 +15,12 @@
       <enum name="horizontal" value="0" />
       <enum name="vertical" value="1" />
     </attr>
+    <attr name="progressView_animation" format="enum">
+      <enum name="normal" value="0" />
+      <enum name="bounce" value="1" />
+      <enum name="decelerate" value="2" />
+      <enum name="accelerateDecelerate" value="3" />
+    </attr>
     <attr name="progressView_min" format="float" />
     <attr name="progressView_max" format="float" />
     <attr name="progressView_progress" format="float" />

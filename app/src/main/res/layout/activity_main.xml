@@ -4,8 +4,7 @@
   android:id="@+id/parentLayout"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  android:background="@color/background"
-  >
+  android:background="@color/background">
 
   <Button
     android:id="@+id/button"
@@ -15,34 +14,30 @@
     android:layout_margin="20dp"
     android:background="@color/colorPrimaryDark"
     android:text="progress"
-    android:textColor="@color/white"
-    />
+    android:textColor="@color/white" />
 
   <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
     <ImageView
       android:layout_width="match_parent"
       android:layout_height="240dp"
       android:scaleType="fitXY"
-      android:src="@drawable/background"
-      />
+      android:src="@drawable/background" />
 
     <com.skydoves.progressview.ProgressView
       android:id="@+id/progressView"
       android:layout_width="match_parent"
       android:layout_height="35dp"
       android:layout_marginLeft="20dp"
-      android:layout_marginRight="20dp"
       android:layout_marginTop="28dp"
+      android:layout_marginRight="20dp"
       app:progressView_colorBackground="@color/white"
       app:progressView_colorGradientEnd="@color/colorPrimaryDark"
       app:progressView_colorGradientStart="@color/colorPrimary"
       app:progressView_colorProgress="@color/skyBlue"
-      app:progressView_duration="1400"
       app:progressView_highlightAlpha="0.8"
       app:progressView_highlightColor="@color/skyBlue"
       app:progressView_highlightWidth="1dp"
@@ -54,17 +49,15 @@
       app:progressView_labelTypeface="bold"
       app:progressView_padding="1dp"
       app:progressView_progress="20"
-      app:progressView_progressFromPrevious="true"
-      app:progressView_radius="12dp"
-      />
+      app:progressView_radius="12dp" />
 
     <com.skydoves.progressview.ProgressView
       android:id="@+id/progressView1"
       android:layout_width="match_parent"
       android:layout_height="35dp"
       android:layout_marginLeft="20dp"
-      android:layout_marginRight="20dp"
       android:layout_marginTop="20dp"
+      android:layout_marginRight="20dp"
       app:progressView_colorBackground="@color/white"
       app:progressView_colorGradientEnd="@color/md_yellow_200"
       app:progressView_colorGradientStart="@color/md_yellow_100"
@@ -80,16 +73,15 @@
       app:progressView_labelTypeface="bold"
       app:progressView_padding="1dp"
       app:progressView_progress="40"
-      app:progressView_radius="12dp"
-      />
+      app:progressView_radius="12dp" />
 
     <com.skydoves.progressview.ProgressView
       android:id="@+id/progressView2"
       android:layout_width="match_parent"
       android:layout_height="35dp"
       android:layout_marginLeft="20dp"
-      android:layout_marginRight="20dp"
       android:layout_marginTop="20dp"
+      android:layout_marginRight="20dp"
       app:progressView_colorBackground="@color/white"
       app:progressView_colorGradientEnd="@color/md_orange_200"
       app:progressView_colorGradientStart="@color/md_orange_100"
@@ -105,16 +97,15 @@
       app:progressView_labelTypeface="bold"
       app:progressView_padding="1dp"
       app:progressView_progress="10"
-      app:progressView_radius="12dp"
-      />
+      app:progressView_radius="12dp" />
 
     <com.skydoves.progressview.ProgressView
       android:id="@+id/progressView3"
       android:layout_width="match_parent"
       android:layout_height="35dp"
       android:layout_marginLeft="20dp"
-      android:layout_marginRight="20dp"
       android:layout_marginTop="20dp"
+      android:layout_marginRight="20dp"
       app:progressView_colorBackground="@color/white"
       app:progressView_colorGradientEnd="@color/md_green_200"
       app:progressView_colorGradientStart="@color/md_green_100"
@@ -130,16 +121,15 @@
       app:progressView_labelTypeface="bold"
       app:progressView_padding="1dp"
       app:progressView_progress="50"
-      app:progressView_radius="12dp"
-      />
+      app:progressView_radius="12dp" />
 
     <com.skydoves.progressview.ProgressView
       android:id="@+id/progressView4"
       android:layout_width="match_parent"
       android:layout_height="35dp"
       android:layout_marginLeft="20dp"
-      android:layout_marginRight="20dp"
       android:layout_marginTop="20dp"
+      android:layout_marginRight="20dp"
       app:progressView_colorBackground="@color/white"
       app:progressView_colorGradientEnd="@color/md_blue_200"
       app:progressView_colorGradientStart="@color/md_blue_100"
@@ -155,16 +145,15 @@
       app:progressView_labelTypeface="bold"
       app:progressView_padding="1dp"
       app:progressView_progress="70"
-      app:progressView_radius="12dp"
-      />
+      app:progressView_radius="12dp" />
 
     <com.skydoves.progressview.ProgressView
       android:id="@+id/progressView5"
       android:layout_width="match_parent"
       android:layout_height="35dp"
       android:layout_marginLeft="20dp"
-      android:layout_marginRight="20dp"
       android:layout_marginTop="20dp"
+      android:layout_marginRight="20dp"
       app:progressView_colorBackground="@color/white"
       app:progressView_colorGradientEnd="@color/md_purple_200"
       app:progressView_colorGradientStart="@color/md_purple_100"
@@ -180,7 +169,6 @@
       app:progressView_labelTypeface="bold"
       app:progressView_padding="1dp"
       app:progressView_progress="30"
-      app:progressView_radius="12dp"
-      />
+      app:progressView_radius="12dp" />
   </LinearLayout>
 </RelativeLayout>
