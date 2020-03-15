@@ -26,7 +26,7 @@ import com.skydoves.balloon.createBalloon
 
 class StarBalloonFactory : Balloon.Factory() {
 
-  override fun create(context: Context, lifecycle: LifecycleOwner): Balloon {
+  override fun create(context: Context, lifecycle: LifecycleOwner?): Balloon {
     return createBalloon(context) {
       setLayout(R.layout.layout_custom_star)
       setArrowSize(10)

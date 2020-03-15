@@ -26,7 +26,7 @@ import com.skydoves.balloon.createBalloon
 
 class TagBalloonFactory : Balloon.Factory() {
 
-  override fun create(context: Context, lifecycle: LifecycleOwner): Balloon {
+  override fun create(context: Context, lifecycle: LifecycleOwner?): Balloon {
     return createBalloon(context) {
       setLayout(R.layout.layout_custom_tag)
       setArrowSize(10)

@@ -29,8 +29,6 @@
         android:layout_height="300dp"
         android:layout_marginTop="28dp"
         app:progressView_colorBackground="@color/white"
-        app:progressView_colorGradientEnd="@color/colorPrimaryDark"
-        app:progressView_colorGradientStart="@color/md_red_400"
         app:progressView_highlightAlpha="0.8"
         app:progressView_highlightColor="@color/skyBlue"
         app:progressView_highlightWidth="1dp"
@@ -38,12 +36,12 @@
         app:progressView_labelColorOuter="@color/black"
         app:progressView_labelSize="13sp"
         app:progressView_labelSpace="10dp"
-        app:progressView_labelText="70%"
+        app:progressView_labelText="10%"
         app:progressView_labelTypeface="bold"
         app:progressView_min="15"
         app:progressView_orientation="vertical"
         app:progressView_padding="1dp"
-        app:progressView_progress="70" />
+        app:progressView_progress="10" />
 
       <com.skydoves.progressview.ProgressView
         android:id="@+id/progressView1"

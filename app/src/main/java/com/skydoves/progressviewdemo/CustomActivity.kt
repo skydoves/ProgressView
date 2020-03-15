@@ -19,7 +19,13 @@ package com.skydoves.progressviewdemo
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_custom.*
+import kotlinx.android.synthetic.main.activity_custom.button
+import kotlinx.android.synthetic.main.activity_custom.progressView
+import kotlinx.android.synthetic.main.activity_custom.progressView1
+import kotlinx.android.synthetic.main.activity_custom.progressView2
+import kotlinx.android.synthetic.main.activity_custom.progressView3
+import kotlinx.android.synthetic.main.activity_custom.progressView4
+import kotlinx.android.synthetic.main.activity_custom.progressView5
 
 class CustomActivity : AppCompatActivity() {
 
@@ -28,7 +34,7 @@ class CustomActivity : AppCompatActivity() {
     setContentView(R.layout.activity_custom)
 
     button.setOnClickListener {
-      progressView.progress += 5
+      progressView.progress += 35
       progressView1.progress += 20
       progressView2.progress += 15
       progressView3.progress += 25
@@ -43,11 +49,15 @@ class CustomActivity : AppCompatActivity() {
     progressView4.setOnProgressChangeListener { progressView4.labelText = "${it.toInt()}%" }
     progressView5.setOnProgressChangeListener { progressView5.labelText = "${it.toInt()}%" }
 
+    progressView.progressFromPrevious = true
+
     progressView3.setOnProgressClickListener {
       if (it) {
-        Toast.makeText(this, "highlight on", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "highlight on", Toast.LENGTH_SHORT)
+          .show()
       } else {
-        Toast.makeText(this, "highlight off", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "highlight off", Toast.LENGTH_SHORT)
+          .show()
       }
     }
   }

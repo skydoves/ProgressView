@@ -31,7 +31,10 @@ import androidx.annotation.Px
 
 /** HighlightView is a view with stroke highlighting via onClickListener. */
 @Suppress("MemberVisibilityCanBePrivate")
-class HighlightView(context: Context, attrs: AttributeSet? = null) :
+class HighlightView(
+  context: Context,
+  attrs: AttributeSet? = null
+) :
   FrameLayout(context, attrs) {
 
   private val bodyView = LinearLayout(context)
@@ -117,17 +120,20 @@ class HighlightView(context: Context, attrs: AttributeSet? = null) :
       gradient.cornerRadius = radius
       this.bodyView.background = gradient
     } else if (this.drawable == null) {
-      val drawable = GradientDrawable()
-      drawable.cornerRadius = radius
-      drawable.setColor(color)
-      this.bodyView.background = drawable
+      this.bodyView.background = GradientDrawable().apply {
+        cornerRadius = radius
+        setColor(this@HighlightView.color)
+      }
     } else {
       this.bodyView.background = this.drawable
     }
-    val params = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-      ViewGroup.LayoutParams.MATCH_PARENT).apply {
-      setMargins(padding.toInt(), padding.toInt(), padding.toInt(), padding.toInt())
-    }
+    val params = LinearLayout.LayoutParams(
+      ViewGroup.LayoutParams.MATCH_PARENT,
+      ViewGroup.LayoutParams.MATCH_PARENT
+    )
+      .apply {
+        setMargins(padding.toInt(), padding.toInt(), padding.toInt(), padding.toInt())
+      }
     this.bodyView.layoutParams = params
     removeView(bodyView)
     addView(bodyView)
@@ -140,8 +146,10 @@ class HighlightView(context: Context, attrs: AttributeSet? = null) :
       setStroke(highlightThickness, highlightColor)
     }
     this.strokeView.layoutParams =
-      ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-        ViewGroup.LayoutParams.MATCH_PARENT)
+      ViewGroup.LayoutParams(
+        ViewGroup.LayoutParams.MATCH_PARENT,
+        ViewGroup.LayoutParams.MATCH_PARENT
+      )
     removeView(strokeView)
     addView(strokeView)
   }

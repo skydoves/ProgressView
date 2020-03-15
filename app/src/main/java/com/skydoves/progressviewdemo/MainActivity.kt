@@ -18,13 +18,14 @@ package com.skydoves.progressviewdemo
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.skydoves.balloon.Balloon
 import com.skydoves.balloon.balloon
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-  private val customTagBalloon by balloon(TagBalloonFactory::class)
-  private val customStarBalloon by balloon(StarBalloonFactory::class)
+  private val customTagBalloon: Balloon by balloon(TagBalloonFactory::class)
+  private val customStarBalloon: Balloon by balloon(StarBalloonFactory::class)
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -37,6 +38,7 @@ class MainActivity : AppCompatActivity() {
     progressView4.setOnProgressChangeListener { progressView4.labelText = "achieve ${it.toInt()}%" }
     progressView5.setOnProgressChangeListener { progressView5.labelText = "achieve ${it.toInt()}%" }
 
+    progressView.progressFromPrevious = true
     progressView.setOnProgressClickListener {
       if (customTagBalloon.isShowing) {
         customTagBalloon.dismiss()
