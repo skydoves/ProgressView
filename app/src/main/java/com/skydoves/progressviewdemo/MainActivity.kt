@@ -38,7 +38,6 @@ class MainActivity : AppCompatActivity() {
     progressView4.setOnProgressChangeListener { progressView4.labelText = "achieve ${it.toInt()}%" }
     progressView5.setOnProgressChangeListener { progressView5.labelText = "achieve ${it.toInt()}%" }
 
-    progressView.progressFromPrevious = true
     progressView.setOnProgressClickListener {
       if (customTagBalloon.isShowing) {
         customTagBalloon.dismiss()
@@ -56,7 +55,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     button.setOnClickListener {
-      progressView.progress += 15
+      progressView.progress += 25
       progressView1.progress += 10
       progressView2.progress += 25
       progressView3.progress += 10

@@ -53,6 +53,7 @@ class ProgressView : FrameLayout {
   val highlightView = HighlightView(context)
 
   var duration: Long = 1000L
+  var isAnimating: Boolean = false
   var autoAnimate: Boolean = true
   var min: Float = 0f
   var max: Float = 100f
@@ -407,8 +408,12 @@ class ProgressView : FrameLayout {
             }
           }
         }
-        start()
+        doStartAndFinish(
+          start = { isAnimating = true },
+          finish = { isAnimating = false }
+        )
       }
+      .also { it.start() }
   }
 
   fun isVertical(): Boolean {
