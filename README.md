@@ -32,7 +32,7 @@ allprojects {
 And add a dependency code to your **module**'s `build.gradle` file.
 ```gradle
 dependencies {
-    implementation "com.github.skydoves:progressview:1.0.5"
+    implementation "com.github.skydoves:progressview:1.0.6"
 }
 ```
 
@@ -56,6 +56,7 @@ Here is a basic example of implementing `ProgressView`.
   app:progressView_progress="40" // progress value.
   app:progressView_min="15" // min progress value.
   app:progressView_max="100" // max progress value.
+  app:progressView_progressFromPrevious="true" // animates progress from previous progress.
   app:progressView_autoAnimate="true" // starts filling animation automatically when finishing inflate.
   app:progressView_radius="12dp" // the corner radius of the progressView and progress bar.
   app:progressView_padding="1dp" // the padding of the progress bar.
@@ -76,11 +77,21 @@ app:progressView_colorGradientStart="@color/md_yellow_100" // starting color of 
 app:progressView_colorGradientEnd="@color/md_yellow_200" // ending color of the gradient.
 ```
 
+We can change the progress color and gradient colors using below methods.
+```kotlin
+progressView.highlightView.color = ContextCompat.getColor(this, R.color.colorPrimary)
+progressView.highlightView.colorGradientEnd = ContextCompat.getColor(this, R.color.colorPrimary)
+progressView.highlightView.colorGradientStart = ContextCompat.getColor(this, R.color.colorPrimary)
+```
+
 ### Filling Animation
 We can implement the filling animation using below attributes or method.
 
 ```gradle
 app:progressView_autoAnimate="true" // starts filling animation automatically when progress is changed.
+
+// if you want to animate progress from previous progress.
+app:progressView_progressFromPrevious="true"
 ```
 
 or we can animate manually using below method.
@@ -219,6 +230,7 @@ colorBackground | Int(Color) | Color.WHITE | color of the container.
 colorGradientStart | Int(Color) | colorPrimary | starting color of the gradient.
 colorGradientEnd | Int(Color) | colorPrimary | ending color of the gradient.
 autoAnimate | Boolean | true | starts filling animation automatically when finishing inflate.
+progressFromPrevious | Boolean | false | animates progress from previous progress.
 
 ### Label
 Attributes | Type | Default | Description
