@@ -143,7 +143,7 @@ We should set the width and height value like vertical shape.
 TextFrom is an attribute class that has some attributes about TextView for customizing `ProgressView`'s label.
 
 ```java
-TextForm textForm = TextForm.Builder(context)
+TextForm textForm = new TextForm.Builder(context)
     .setText("This is a TextForm")
     .setTextColor(R.color.colorPrimary)
     .setTextSize(14f)
