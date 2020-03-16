@@ -30,6 +30,7 @@ import android.util.AttributeSet
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Interpolator
 import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.annotation.ColorInt
@@ -84,6 +85,7 @@ class ProgressView : FrameLayout {
       updateProgressView()
       onProgressChangeListener?.onChange(field)
     }
+  var interpolator: Interpolator? = null
   var progressAnimation: ProgressViewAnimation = ACCELERATEDECELERATE
   var orientation = ProgressViewOrientation.HORIZONTAL
     set(value) {
@@ -409,7 +411,11 @@ class ProgressView : FrameLayout {
   fun progressAnimate() {
     ValueAnimator.ofFloat(0f, 1f)
       .apply {
-        interpolator = progressAnimation.getInterpolator()
+        interpolator = if (this@ProgressView.interpolator != null) {
+          this@ProgressView.interpolator
+        } else {
+          progressAnimation.getInterpolator()
+        }
         duration = this@ProgressView.duration
         addUpdateListener {
           val value = it.animatedValue as Float
@@ -555,6 +561,14 @@ class ProgressView : FrameLayout {
 
     fun setOnProgressChangeListener(value: OnProgressChangeListener): Builder = apply {
       this.progressView.onProgressChangeListener = value
+    }
+
+    fun setProgressViewAnimation(value: ProgressViewAnimation): Builder = apply {
+      this.progressView.progressAnimation = value
+    }
+
+    fun setInterpolator(value: Interpolator): Builder = apply {
+      this.progressView.interpolator = value
     }
 
     fun setOnProgressClickListener(value: OnProgressClickListener): Builder = apply {
