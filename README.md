@@ -32,7 +32,7 @@ allprojects {
 And add a dependency code to your **module**'s `build.gradle` file.
 ```gradle
 dependencies {
-    implementation "com.github.skydoves:progressview:1.0.6"
+    implementation "com.github.skydoves:progressview:1.0.7"
 }
 ```
 
@@ -230,6 +230,7 @@ colorBackground | Int(Color) | Color.WHITE | color of the container.
 colorGradientStart | Int(Color) | colorPrimary | starting color of the gradient.
 colorGradientEnd | Int(Color) | colorPrimary | ending color of the gradient.
 autoAnimate | Boolean | true | starts filling animation automatically when finishing inflate.
+animation | ProgressViewAnimation | NORMAL | animation of the progress animation.
 progressFromPrevious | Boolean | false | animates progress from previous progress.
 
 ### Label

@@ -22,6 +22,7 @@ import android.view.animation.BounceInterpolator
 import android.view.animation.DecelerateInterpolator
 import android.view.animation.Interpolator
 
+/** ProgressViewAnimation is a collection of progress animation. */
 enum class ProgressViewAnimation(val value: Int) {
   NORMAL(0),
   BOUNCE(1),
