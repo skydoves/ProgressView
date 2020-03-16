@@ -54,24 +54,42 @@ fun progressView(
 /** ProgressView is a progress bar with a flexible text and animations. */
 class ProgressView : FrameLayout {
 
+  /** presents progress value on the [ProgressView]. */
   val labelView = TextView(context)
+
+  /** presents background color and highlighting colors of the [ProgressView]. */
   val highlightView = HighlightView(context)
 
+  /** duration of the progress animation. */
   var duration: Long = 1000L
+
+  /** returns the [ProgressView]'s animation is ongoing or not.*/
   var isAnimating: Boolean = false
+
+  /** starts progress animation automatically when [ProgressView] is initialized. */
   var autoAnimate: Boolean = true
+
+  /** minimum value of the progress. */
   var min: Float = 0f
+
+  /** maximum value of the progress. */
   var max: Float = 100f
     set(value) {
       field = value
       updateProgressView()
     }
+
+  /** a field for holding previous progressed value. */
   private var previousProgress: Float = 0f
+
+  /** starts progress animation from the [previousProgress] to a new progress value.  */
   var progressFromPrevious: Boolean = false
     set(value) {
       field = value
       previousProgress = 0f
     }
+
+  /** presents the progress value of the [ProgressView]. */
   var progress: Float = 0f
     set(value) {
       if (progressFromPrevious) {
@@ -85,62 +103,111 @@ class ProgressView : FrameLayout {
       updateProgressView()
       onProgressChangeListener?.onChange(field)
     }
+
+  /**
+   * a provided customized progress animation.
+   * [ProgressViewAnimation.NORMAL], [ProgressViewAnimation.BOUNCE], [ProgressViewAnimation.DECELERATE],
+   * [ProgressViewAnimation.ACCELERATEDECELERATE]
+   * the default animation is [ProgressViewAnimation.NORMAL].
+   */
+  var progressAnimation: ProgressViewAnimation = NORMAL
+
+  /** a customized animation interpolator. */
   var interpolator: Interpolator? = null
-  var progressAnimation: ProgressViewAnimation = ACCELERATEDECELERATE
+
+  /**
+   * an orientation of the [ProgressView].
+   * [ProgressViewOrientation.HORIZONTAL], [ProgressViewOrientation.VERTICAL]
+   * the default orientation is [ProgressViewOrientation.HORIZONTAL].
+   * */
   var orientation = ProgressViewOrientation.HORIZONTAL
     set(value) {
       field = value
       highlightView.orientation = value
       updateProgressView()
     }
+
+  /** background color of the [ProgressView]'s container. */
   @ColorInt var colorBackground: Int = compatColor(R.color.white)
     set(value) {
       field = value
       updateProgressView()
     }
+
+  /** corner radius of the [ProgressView]'s container. */
   @Px var radius: Float = dp2Px(5).toFloat()
     set(value) {
       field = value
       updateProgressView()
     }
+
+  /** text of the [labelView] for presenting progress. */
   var labelText: String? = ""
     set(value) {
       field = value
       updateProgressView()
     }
+
+  /** text size of the [labelView]. */
   @Px var labelSize: Float = 12f
     set(value) {
       field = value
       updateProgressView()
     }
+
+  /**
+   * text color of the [labelView] when the label is located inside of the progressed container.
+   * when your [labelText]'s length is shorter than the progressed container,
+   * the [labelView] will be located inside of the progressed container.
+   */
   @ColorInt var labelColorInner: Int = compatColor(R.color.white)
     set(value) {
       field = value
       updateProgressView()
     }
+
+  /**
+   * text color of the [labelView] when the label is located outside of the progressed container.
+   * when your [labelText]'s length is longer than the progressed container,
+   * the [labelView] will be located outside of the progressed container.
+   */
   @ColorInt var labelColorOuter: Int = compatColor(R.color.black)
     set(value) {
       field = value
       updateProgressView()
     }
+
+  /** typeface of the [labelView]. */
   var labelTypeface: Int = Typeface.NORMAL
     set(value) {
       field = value
       updateProgressView()
     }
+
+  /** typeface object of the [labelView]. */
   var labelTypefaceObject: Typeface? = null
     set(value) {
       field = value
       updateProgressView()
     }
+
+  /**
+   * spacing for [labelView] between progressed container.
+   * space will be applied if the labelView is located inside or outside.
+   */
   @Px var labelSpace: Float = dp2Px(8).toFloat()
     set(value) {
       field = value
       updateProgressView()
     }
+
+  /** interface for listening to the progress is changed. */
   private var onProgressChangeListener: OnProgressChangeListener? = null
+
+  /** interface for listening to the progress bar is clicked. */
   private var onProgressClickListener: OnProgressClickListener? = null
 
+  /** path for smoothing the container's corner. */
   private val path = Path()
 
   constructor(context: Context) : super(context)
