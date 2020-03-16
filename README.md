@@ -84,8 +84,8 @@ progressView.highlightView.colorGradientEnd = ContextCompat.getColor(this, R.col
 progressView.highlightView.colorGradientStart = ContextCompat.getColor(this, R.color.colorPrimary)
 ```
 
-### Filling Animation
-We can implement the filling animation using below attributes or method.
+### Progress filling Animation
+We can implement progress filling animation using the below attributes or method.
 
 ```gradle
 app:progressView_autoAnimate="true" // starts filling animation automatically when progress is changed.
@@ -98,6 +98,25 @@ or we can animate manually using below method.
 
 ```kotlin
 progressView.progressAnimate()
+```
+
+### ProgressViewAnimation
+We can implement progress animations when the progress value is changed.
+
+```kotlin
+BalloonAnimation.NORMAL
+BalloonAnimation.BOUNCE
+BalloonAnimation.DECELERATE
+BalloonAnimation.ACCELERATEDECELERATE
+```
+
+NORMAL | BOUNCE | DECELERATE | ACCELERATEDECELERATE |
+| :---------------: | :---------------: | :---------------: | :---------------: |
+| <img src="https://user-images.githubusercontent.com/24237865/76772026-926bd900-67e3-11ea-9843-13322bdb5328.gif" align="center" width="100%"/> | <img src="https://user-images.githubusercontent.com/24237865/76772034-9566c980-67e3-11ea-9bec-11efb6e2e4c0.gif" align="center" width="100%"/> | <img src="https://user-images.githubusercontent.com/24237865/76772038-9697f680-67e3-11ea-8fd8-3c1dd637fb73.gif" align="center" width="100%"/> | <img src="https://user-images.githubusercontent.com/24237865/76772042-97c92380-67e3-11ea-9a3b-60d5969af42c.gif" align="center" width="100%"/> |
+
+If we want to use our customized `interpolator`, we can use below method.
+```java
+progressView.interpolator = new NiceInterpolator(); 
 ```
 
 ### Hilighting Effect
