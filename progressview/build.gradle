@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'org.jetbrains.dokka-android'
+apply plugin: 'org.jetbrains.dokka'
 apply from: '../dependencies.gradle'
 apply from: '../publish.gradle'
 
@@ -21,10 +21,11 @@ dependencies {
 }
 
 dokka {
-    moduleName = 'progressview'
     outputFormat = 'html'
-    //noinspection GroovyAccessibility
     outputDirectory = "$buildDir/javadoc"
+    configuration {
+        moduleName = 'progressview'
+    }
 }
 
 tasks.withType(Javadoc) {
