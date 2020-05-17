@@ -242,7 +242,7 @@ progress | Float | 0f | value of the progress.
 min | Float | 0f | value of the minimum progress. The progress value can not under the min value.
 max | Float | 100f | value of the maximum progress. The progress value can not over the max value.
 radius | Dimension | 8dp | corner radius of the ProgressView.
-padding | Dimension | 0dp | padding of the prograssbar.
+padding | Dimension | 0dp | padding of the progressbar.
 duration | Long | 1000L | duration of the animation.
 colorProgress | Int(Color) | colorPrimary | color of the progressbar.
 colorBackground | Int(Color) | Color.WHITE | color of the container.

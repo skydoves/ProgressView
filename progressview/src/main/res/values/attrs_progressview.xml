@@ -1,41 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <declare-styleable name="ProgressView">
+    <!--  Default text of the progressbar label. -->
     <attr name="progressView_labelText" format="string" />
+    <!--  Text size of the progressbar label. -->
     <attr name="progressView_labelSize" format="dimension" />
+    <!--  Text color of the inside progressbar label. -->
     <attr name="progressView_labelColorInner" format="color" />
+    <!--  Text color of the outside progressbar label. -->
     <attr name="progressView_labelColorOuter" format="color" />
+    <!--  The space size of the between label and progress bar. -->
     <attr name="progressView_labelSpace" format="dimension" />
+    <!--  The typeface of the label. -->
     <attr name="progressView_labelTypeface" format="enum">
       <enum name="normal" value="0" />
       <enum name="bold" value="1" />
       <enum name="italic" value="2" />
     </attr>
+    <!--  orientation of the progressView. -->
     <attr name="progressView_orientation" format="enum">
       <enum name="horizontal" value="0" />
       <enum name="vertical" value="1" />
     </attr>
+    <!-- 	Animation of the progressing animation. -->
     <attr name="progressView_animation" format="enum">
       <enum name="normal" value="0" />
       <enum name="bounce" value="1" />
       <enum name="decelerate" value="2" />
       <enum name="accelerateDecelerate" value="3" />
     </attr>
+    <!--  value of the minimum progress. The progress value can not under the min value. -->
     <attr name="progressView_min" format="float" />
+    <!--	value of the maximum progress. The progress value can not over the max value. -->
     <attr name="progressView_max" format="float" />
+    <!--  value of the progress. -->
     <attr name="progressView_progress" format="float" />
+    <!--  corner radius of the ProgressView. -->
     <attr name="progressView_radius" format="dimension" />
+    <!--  padding of the progressbar. -->
     <attr name="progressView_padding" format="dimension" />
+    <!--  duration of the animation. -->
     <attr name="progressView_duration" format="integer" />
+    <!--  color of the progressbar. -->
     <attr name="progressView_colorProgress" format="color" />
+    <!--  color of the container. -->
     <attr name="progressView_colorBackground" format="color" />
+    <!--	starting color of the gradient. -->
     <attr name="progressView_colorGradientStart" format="color" />
+    <!--	ending color of the gradient. -->
     <attr name="progressView_colorGradientEnd" format="color" />
+    <!--  starts filling animation automatically when finishing inflate. -->
     <attr name="progressView_autoAnimate" format="boolean" />
+    <!--  highlights the progressbar when clicked. -->
     <attr name="progressView_highlighting" format="boolean" />
+    <!--  color of the highlighting effect. -->
     <attr name="progressView_highlightColor" format="color" />
+    <!-- 	alpha of the highlighting effect. -->
     <attr name="progressView_highlightAlpha" format="float" />
+    <!-- 	thickness of the highlighting effect. -->
     <attr name="progressView_highlightWidth" format="dimension" />
+    <!-- 	starts progress animation from the previous progressed value or not. -->
     <attr name="progressView_progressFromPrevious" format="boolean" />
   </declare-styleable>
 </resources>
