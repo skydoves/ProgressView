@@ -34,6 +34,7 @@ class StarBalloonFactory : Balloon.Factory() {
       setArrowPosition(0.5f)
       setWidth(110)
       setHeight(60)
+      setFocusable(false)
       setCornerRadius(4f)
       setBackgroundColor(ContextCompat.getColor(context, R.color.background800))
       setBalloonAnimation(BalloonAnimation.ELASTIC)

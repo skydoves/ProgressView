@@ -2,10 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
+  android:gravity="center"
   android:orientation="horizontal"
   android:padding="4dp">
 
-  <ImageView
+  <androidx.appcompat.widget.AppCompatImageView
     android:layout_width="24dp"
     android:layout_height="24dp"
     android:layout_gravity="center_vertical"
@@ -13,7 +14,7 @@
     android:src="@drawable/ic_star"
     android:tint="@color/md_yellow_200" />
 
-  <ImageView
+  <androidx.appcompat.widget.AppCompatImageView
     android:layout_width="24dp"
     android:layout_height="24dp"
     android:layout_gravity="center_vertical"
@@ -21,11 +22,12 @@
     android:src="@drawable/ic_star"
     android:tint="@color/md_yellow_200" />
 
-  <ImageView
+  <androidx.appcompat.widget.AppCompatImageView
     android:layout_width="24dp"
     android:layout_height="24dp"
     android:layout_gravity="center_vertical"
     android:scaleType="centerCrop"
     android:src="@drawable/ic_star"
     android:tint="@color/md_yellow_200" />
+
 </LinearLayout>

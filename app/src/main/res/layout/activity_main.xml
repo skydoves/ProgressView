@@ -39,7 +39,6 @@
       app:progressView_colorGradientStart="@color/colorPrimary"
       app:progressView_colorProgress="@color/skyBlue"
       app:progressView_highlightAlpha="0.8"
-      app:progressView_highlightColor="@color/skyBlue"
       app:progressView_highlightWidth="1dp"
       app:progressView_labelColorInner="@color/white"
       app:progressView_labelColorOuter="@color/black"

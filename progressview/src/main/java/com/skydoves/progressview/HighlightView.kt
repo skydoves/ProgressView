@@ -48,7 +48,7 @@ class HighlightView(
       field = value
       updateHighlightView()
     }
-  @ColorInt var highlightColor: Int = compatColor(R.color.colorPrimary)
+  @ColorInt var highlightColor: Int = accentColor()
     set(value) {
       field = value
       updateHighlightView()
@@ -68,7 +68,7 @@ class HighlightView(
       field = value
       updateHighlightView()
     }
-  @ColorInt var color: Int = compatColor(R.color.colorPrimary)
+  @ColorInt var color: Int = accentColor()
     set(value) {
       field = value
       updateHighlightView()
