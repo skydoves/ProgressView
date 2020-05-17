@@ -1,10 +1,10 @@
-# ProgressView <a href="https://github.com/skydoves"><img alt="License" src="https://skydoves.github.io/badges/skydoves.svg"/>
-
+<h1 align="center">ProgressView</h1></br>
 <p align="center">
   <a href="https://opensource.org/licenses/Apache-2.0"><img alt="License" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg"/></a>
   <a href="https://android-arsenal.com/api?level=16"><img alt="API" src="https://img.shields.io/badge/API-16%2B-brightgreen.svg?style=flat"/></a>
-  <a href="https://travis-ci.org/skydoves/ProgressView"><img alt="API" src="https://travis-ci.org/skydoves/ProgressView.svg?branch=master"/></a>
+  <a href="https://github.com/skydoves/progressview/actions"><img alt="CI" src="https://github.com/skydoves/ProgressView/workflows/Android%20CI/badge.svg"/></a>
   <a href="https://androidweekly.net/issues/issue-376"><img alt="Android Weekly" src="https://img.shields.io/badge/Android%20Weekly-%23376-orange"/></a>
+  <a href="https://github.com/skydoves"><img alt="License" src="https://skydoves.github.io/badges/skydoves.svg"/>
   <a href="https://skydoves.github.io/libraries/progressview/javadoc/progressview/com.skydoves.progressview/index.html"><img alt="API" src="https://img.shields.io/badge/Javadoc-ProgressView-yellow"/></a>
 </p>
 
@@ -32,7 +32,7 @@ allprojects {
 And add a dependency code to your **module**'s `build.gradle` file.
 ```gradle
 dependencies {
-    implementation "com.github.skydoves:progressview:1.0.7"
+    implementation "com.github.skydoves:progressview:1.0.8"
 }
 ```
 
