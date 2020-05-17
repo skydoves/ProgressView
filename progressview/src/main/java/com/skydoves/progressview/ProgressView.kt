@@ -22,6 +22,7 @@ import android.animation.ValueAnimator
 import android.content.Context
 import android.content.res.TypedArray
 import android.graphics.Canvas
+import android.graphics.Color
 import android.graphics.Path
 import android.graphics.RectF
 import android.graphics.Typeface
@@ -128,7 +129,7 @@ class ProgressView : FrameLayout {
     }
 
   /** background color of the [ProgressView]'s container. */
-  @ColorInt var colorBackground: Int = compatColor(R.color.white)
+  @ColorInt var colorBackground: Int = Color.WHITE
     set(value) {
       field = value
       updateProgressView()
@@ -160,7 +161,7 @@ class ProgressView : FrameLayout {
    * when your [labelText]'s length is shorter than the progressed container,
    * the [labelView] will be located inside of the progressed container.
    */
-  @ColorInt var labelColorInner: Int = compatColor(R.color.white)
+  @ColorInt var labelColorInner: Int = Color.WHITE
     set(value) {
       field = value
       updateProgressView()
@@ -171,7 +172,7 @@ class ProgressView : FrameLayout {
    * when your [labelText]'s length is longer than the progressed container,
    * the [labelView] will be located outside of the progressed container.
    */
-  @ColorInt var labelColorOuter: Int = compatColor(R.color.black)
+  @ColorInt var labelColorOuter: Int = Color.BLACK
     set(value) {
       field = value
       updateProgressView()
@@ -211,6 +212,7 @@ class ProgressView : FrameLayout {
   private val path = Path()
 
   constructor(context: Context) : super(context)
+
   constructor(
     context: Context,
     attributeSet: AttributeSet

@@ -30,12 +30,10 @@ import androidx.annotation.FloatRange
 import androidx.annotation.Px
 
 /** HighlightView is a view with stroke highlighting via onClickListener. */
-@Suppress("MemberVisibilityCanBePrivate")
 class HighlightView(
   context: Context,
   attrs: AttributeSet? = null
-) :
-  FrameLayout(context, attrs) {
+) : FrameLayout(context, attrs) {
 
   private val bodyView = LinearLayout(context)
   private val strokeView = View(context)
@@ -130,10 +128,9 @@ class HighlightView(
     val params = LinearLayout.LayoutParams(
       ViewGroup.LayoutParams.MATCH_PARENT,
       ViewGroup.LayoutParams.MATCH_PARENT
-    )
-      .apply {
-        setMargins(padding.toInt(), padding.toInt(), padding.toInt(), padding.toInt())
-      }
+    ).apply {
+      setMargins(padding.toInt(), padding.toInt(), padding.toInt(), padding.toInt())
+    }
     this.bodyView.layoutParams = params
     removeView(bodyView)
     addView(bodyView)
@@ -165,7 +162,7 @@ class HighlightView(
   private fun updateOnClickListener() {
     this.strokeView.setOnClickListener {
       this.highlighting = !highlighting
-      this.onProgressClickListener?.onClickProgress(this.highlighting)
+      this.onProgressClickListener?.onClickProgress(highlighting)
     }
   }
 }

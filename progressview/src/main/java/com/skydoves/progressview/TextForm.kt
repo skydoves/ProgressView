@@ -19,9 +19,12 @@
 package com.skydoves.progressview
 
 import android.content.Context
+import android.graphics.Color
 import android.graphics.Typeface
 import androidx.annotation.ColorInt
+import androidx.annotation.ColorRes
 import androidx.annotation.Px
+import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 
 @DslMarker
@@ -45,21 +48,29 @@ class TextForm(builder: Builder) {
 
   /** Builder class for [TextForm]. */
   @TextFormDsl
-  class Builder(context: Context) {
+  class Builder(private val context: Context) {
     @JvmField
     var text: String? = ""
     @JvmField @Px
     var textSize: Float = 12f
     @JvmField @ColorInt
-    var textColor = ContextCompat.getColor(context, R.color.white)
+    var textColor = Color.WHITE
     @JvmField
     var textTypeface = Typeface.NORMAL
     @JvmField
     var textTypefaceObject: Typeface? = null
 
     fun setText(value: String): Builder = apply { this.text = value }
+    fun setTextResource(@StringRes value: Int): Builder = apply {
+      this.text = context.getString(value)
+    }
+
     fun setTextSize(@Px value: Float): Builder = apply { this.textSize = value }
     fun setTextColor(@ColorInt value: Int): Builder = apply { this.textColor = value }
+    fun setTextColorResource(@ColorRes value: Int): Builder = apply {
+      this.textColor = ContextCompat.getColor(context, value)
+    }
+
     fun setTextTypeface(value: Int): Builder = apply { this.textTypeface = value }
     fun setTextTypeface(value: Typeface): Builder = apply { this.textTypefaceObject = value }
     fun build(): TextForm {

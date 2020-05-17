@@ -25,6 +25,9 @@
   <color name="md_purple_100">#AA00FF</color>
   <color name="md_purple_200">#7200CA</color>
 
+  <color name="white">#ffffff</color>
+  <color name="black">#000000</color>
+
   <color name="md_teal_100">#00BFA5</color>
   <color name="md_teal_200">#004D40</color>
 </resources>
