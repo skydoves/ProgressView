@@ -119,7 +119,7 @@ If we want to use our customized `interpolator`, we can use below method.
 progressView.interpolator = new NiceInterpolator(); 
 ```
 
-### Hilighting Effect
+### Highlighting Effect
 We can give a highlighting effect on the progress bar when clicked.
 
 ```gradle
