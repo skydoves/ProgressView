@@ -3,7 +3,7 @@
   <a href="https://opensource.org/licenses/Apache-2.0"><img alt="License" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg"/></a>
   <a href="https://android-arsenal.com/api?level=16"><img alt="API" src="https://img.shields.io/badge/API-16%2B-brightgreen.svg?style=flat"/></a>
   <a href="https://github.com/skydoves/progressview/actions"><img alt="CI" src="https://github.com/skydoves/ProgressView/workflows/Android%20CI/badge.svg"/></a>
-  <a href="https://androidweekly.net/issues/issue-376"><img alt="Android Weekly" src="https://img.shields.io/badge/Android%20Weekly-%23376-orange"/></a>
+  <a href="https://medium.com/@skydoves/a-polished-and-flexible-progress-view-for-android-5a4e90eff25e"><img alt="Medium" src="https://skydoves.github.io/badges/Story-Medium.svg"/></a>
   <a href="https://github.com/skydoves"><img alt="License" src="https://skydoves.github.io/badges/skydoves.svg"/>
   <a href="https://skydoves.github.io/libraries/progressview/javadoc/progressview/com.skydoves.progressview/index.html"><img alt="API" src="https://img.shields.io/badge/Javadoc-ProgressView-yellow"/></a>
 </p>
