@@ -17,6 +17,12 @@
 <img src="https://user-images.githubusercontent.com/24237865/63537603-182aed00-c551-11e9-95ea-08e25517f046.gif" width="32%"/>
 </p>
 
+## UI/UX Design Philosophy
+![1_z4zp5wWQ202LaX2q9zPyjA](https://user-images.githubusercontent.com/24237865/82746964-1e941100-9dd0-11ea-80a1-1ee88209c84b.png)
+
+> <p align="center">Label is integrated into the progress bar and the label moves flexibly according to the progress. <br>If the width size of the label is bigger than the width size of the progress, the label will be located on the outside (right side) of the progress bar. We can consider the color of the label according to the color of the container. <br>And if the width size of the progress is bigger than the width size of the label, the label will be located on the inside of the progress bar. ProgressView follows the color consistency of the label. <br>You can check more details about it on the <a href="https://medium.com/@skydoves/a-polished-and-flexible-progress-view-for-android-5a4e90eff25e" target="_blank"> medium post</a>. </p>
+
+
 ## Including in your project
 [![Download](https://api.bintray.com/packages/devmagician/maven/progressview/images/download.svg) ](https://bintray.com/devmagician/maven/progressview/_latestVersion)
 [![Jitpack](https://jitpack.io/v/skydoves/ProgressView.svg)](https://jitpack.io/#skydoves/ProgressView)
