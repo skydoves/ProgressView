@@ -50,17 +50,21 @@ class TextForm(builder: Builder) {
   @TextFormDsl
   class Builder(private val context: Context) {
     @JvmField
-    var text: String? = ""
+    var text: CharSequence? = ""
+
     @JvmField @Px
     var textSize: Float = 12f
+
     @JvmField @ColorInt
     var textColor = Color.WHITE
+
     @JvmField
     var textTypeface = Typeface.NORMAL
+
     @JvmField
     var textTypefaceObject: Typeface? = null
 
-    fun setText(value: String): Builder = apply { this.text = value }
+    fun setText(value: CharSequence): Builder = apply { this.text = value }
     fun setTextResource(@StringRes value: Int): Builder = apply {
       this.text = context.getString(value)
     }

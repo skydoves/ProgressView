@@ -143,7 +143,7 @@ class ProgressView : FrameLayout {
     }
 
   /** text of the [labelView] for presenting progress. */
-  var labelText: String? = ""
+  var labelText: CharSequence? = ""
     set(value) {
       field = value
       updateProgressView()
@@ -573,7 +573,7 @@ class ProgressView : FrameLayout {
     }
 
     fun setRadius(@Px value: Float): Builder = apply { this.progressView.radius = value }
-    fun setLabelText(value: String): Builder = apply { this.progressView.labelText = value }
+    fun setLabelText(value: CharSequence): Builder = apply { this.progressView.labelText = value }
     fun setLabelSize(value: Float): Builder = apply {
       this.progressView.labelSize = this.progressView.sp2Px(value)
     }
