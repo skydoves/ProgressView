@@ -22,7 +22,6 @@ import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
 import android.view.View
-import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import androidx.annotation.ColorInt
@@ -63,7 +62,7 @@ class HighlightView(
       field = value
       updateHighlightView()
     }
-  @Px var padding = dp2Px(0).toFloat()
+  @Px var padding = dp2Px(0)
     set(value) {
       field = value
       updateHighlightView()
@@ -113,10 +112,11 @@ class HighlightView(
       if (orientation == ProgressViewOrientation.VERTICAL) {
         gradientOrientation = GradientDrawable.Orientation.TOP_BOTTOM
       }
-      val gradient =
-        GradientDrawable(gradientOrientation, intArrayOf(colorGradientStart, colorGradientEnd))
-      gradient.cornerRadius = radius
-      this.bodyView.background = gradient
+      this.bodyView.background =
+        GradientDrawable(gradientOrientation,
+          intArrayOf(colorGradientStart, colorGradientEnd)).apply {
+          cornerRadius = radius
+        }
     } else if (this.drawable == null) {
       this.bodyView.background = GradientDrawable().apply {
         cornerRadius = radius
@@ -125,13 +125,11 @@ class HighlightView(
     } else {
       this.bodyView.background = this.drawable
     }
-    val params = LinearLayout.LayoutParams(
-      ViewGroup.LayoutParams.MATCH_PARENT,
-      ViewGroup.LayoutParams.MATCH_PARENT
-    ).apply {
-      setMargins(padding.toInt(), padding.toInt(), padding.toInt(), padding.toInt())
+    this.bodyView.layoutParams.apply {
+      if (this is MarginLayoutParams) {
+        setMargins(padding, padding, padding, padding)
+      }
     }
-    this.bodyView.layoutParams = params
     removeView(bodyView)
     addView(bodyView)
   }
@@ -142,11 +140,11 @@ class HighlightView(
       cornerRadius = radius
       setStroke(highlightThickness, highlightColor)
     }
-    this.strokeView.layoutParams =
-      ViewGroup.LayoutParams(
-        ViewGroup.LayoutParams.MATCH_PARENT,
-        ViewGroup.LayoutParams.MATCH_PARENT
-      )
+    this.strokeView.layoutParams.apply {
+      if (this is MarginLayoutParams) {
+        setMargins(padding, padding, padding, padding)
+      }
+    }
     removeView(strokeView)
     addView(strokeView)
   }
@@ -161,7 +159,7 @@ class HighlightView(
 
   private fun updateOnClickListener() {
     this.strokeView.setOnClickListener {
-      this.highlighting = !highlighting
+      this.highlighting = highlighting.not()
       this.onProgressClickListener?.onClickProgress(highlighting)
     }
   }

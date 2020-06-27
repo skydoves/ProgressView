@@ -51,6 +51,10 @@
     <attr name="progressView_colorGradientEnd" format="color" />
     <!--  starts filling animation automatically when finishing inflate. -->
     <attr name="progressView_autoAnimate" format="boolean" />
+    <!--  a border color of the progressbar container. -->
+    <attr name="progressView_borderColor" format="color" />
+    <!--  a border size of the progressbar container. -->
+    <attr name="progressView_borderWidth" format="dimension" />
     <!--  highlights the progressbar when clicked. -->
     <attr name="progressView_highlighting" format="boolean" />
     <!--  color of the highlighting effect. -->

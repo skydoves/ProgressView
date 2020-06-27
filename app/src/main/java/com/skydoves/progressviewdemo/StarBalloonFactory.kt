@@ -38,6 +38,7 @@ class StarBalloonFactory : Balloon.Factory() {
       setCornerRadius(4f)
       setBackgroundColor(ContextCompat.getColor(context, R.color.background800))
       setBalloonAnimation(BalloonAnimation.ELASTIC)
+      setDismissWhenShowAgain(true)
       setLifecycleOwner(lifecycle)
     }
   }

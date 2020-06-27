@@ -20,7 +20,13 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.skydoves.balloon.Balloon
 import com.skydoves.balloon.balloon
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.button
+import kotlinx.android.synthetic.main.activity_main.progressView
+import kotlinx.android.synthetic.main.activity_main.progressView1
+import kotlinx.android.synthetic.main.activity_main.progressView2
+import kotlinx.android.synthetic.main.activity_main.progressView3
+import kotlinx.android.synthetic.main.activity_main.progressView4
+import kotlinx.android.synthetic.main.activity_main.progressView5
 
 class MainActivity : AppCompatActivity() {
 
@@ -34,24 +40,18 @@ class MainActivity : AppCompatActivity() {
     progressView.setOnProgressChangeListener { progressView.labelText = "heart ${it.toInt()}%" }
     progressView1.setOnProgressChangeListener { progressView1.labelText = "star ${it.toInt()}%" }
     progressView2.setOnProgressChangeListener { progressView2.labelText = "achieve ${it.toInt()}%" }
-    progressView3.setOnProgressChangeListener { progressView3.labelText = "score ${it.toInt()}/100" }
+    progressView3.setOnProgressChangeListener {
+      progressView3.labelText = "score ${it.toInt()}/100"
+    }
     progressView4.setOnProgressChangeListener { progressView4.labelText = "achieve ${it.toInt()}%" }
     progressView5.setOnProgressChangeListener { progressView5.labelText = "achieve ${it.toInt()}%" }
 
     progressView.setOnProgressClickListener {
-      if (customTagBalloon.isShowing) {
-        customTagBalloon.dismiss()
-      } else {
-        customTagBalloon.showAlignTop(progressView.highlightView)
-      }
+      customTagBalloon.showAlignTop(progressView.highlightView)
     }
 
     progressView1.setOnProgressClickListener {
-      if (customStarBalloon.isShowing) {
-        customStarBalloon.dismiss()
-      } else {
-        customStarBalloon.showAlignTop(progressView1.highlightView)
-      }
+      customStarBalloon.showAlignTop(progressView1.highlightView)
     }
 
     button.setOnClickListener {

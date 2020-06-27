@@ -34,7 +34,9 @@
       android:layout_marginLeft="20dp"
       android:layout_marginTop="28dp"
       android:layout_marginRight="20dp"
-      app:progressView_colorBackground="@color/white"
+      app:progressView_borderColor="@color/white"
+      app:progressView_borderWidth="2dp"
+      app:progressView_colorBackground="@android:color/transparent"
       app:progressView_colorGradientEnd="@color/colorPrimaryDark"
       app:progressView_colorGradientStart="@color/colorPrimary"
       app:progressView_colorProgress="@color/skyBlue"
@@ -46,7 +48,6 @@
       app:progressView_labelSpace="10dp"
       app:progressView_labelText="heart 20%"
       app:progressView_labelTypeface="bold"
-      app:progressView_padding="1dp"
       app:progressView_progress="20"
       app:progressView_radius="12dp" />
 
