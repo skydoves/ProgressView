@@ -206,6 +206,20 @@ class ProgressView : FrameLayout {
       updateProgressView()
     }
 
+  /** determines the constraints of the label positioning. */
+  var labelConstraints: ProgressLabelConstraints = ProgressLabelConstraints.ALIGN_PROGRESS
+    set(value) {
+      field = value
+      updateProgressView()
+    }
+
+  /** the gravity of the label. */
+  var labelGravity: Int? = null
+    set(value) {
+      field = value
+      updateProgressView()
+    }
+
   /**
    * spacing for [labelView] between progressed container.
    * space will be applied if the labelView is located inside or outside.
@@ -265,11 +279,18 @@ class ProgressView : FrameLayout {
       a.getColor(R.styleable.ProgressView_progressView_labelColorInner, labelColorInner)
     this.labelColorOuter =
       a.getColor(R.styleable.ProgressView_progressView_labelColorOuter, labelColorOuter)
-    when (a.getInt(R.styleable.ProgressView_progressView_labelTypeface, Typeface.NORMAL)) {
-      0 -> this.labelTypeface = Typeface.NORMAL
-      1 -> this.labelTypeface = Typeface.BOLD
-      2 -> this.labelTypeface = Typeface.ITALIC
-    }
+    this.labelTypeface =
+      when (a.getInt(R.styleable.ProgressView_progressView_labelTypeface, Typeface.NORMAL)) {
+        1 -> Typeface.BOLD
+        2 -> Typeface.ITALIC
+        else -> Typeface.NORMAL
+      }
+    this.labelConstraints =
+      when (a.getInt(R.styleable.ProgressView_progressView_labelConstraints,
+        ProgressLabelConstraints.ALIGN_PROGRESS.ordinal)) {
+        1 -> ProgressLabelConstraints.ALIGN_CONTAINER
+        else -> ProgressLabelConstraints.ALIGN_PROGRESS
+      }
     when (a.getInt(
       R.styleable.ProgressView_progressView_orientation,
       ProgressViewOrientation.HORIZONTAL.value
@@ -396,20 +417,25 @@ class ProgressView : FrameLayout {
   }
 
   private fun updateLabel() {
-    var params = ViewGroup.LayoutParams(
-      ViewGroup.LayoutParams.WRAP_CONTENT,
-      ViewGroup.LayoutParams.MATCH_PARENT
-    )
-    if (!isVertical()) {
+    if (labelGravity != null) {
+      this.labelView.layoutParams = ViewGroup.LayoutParams(
+        ViewGroup.LayoutParams.MATCH_PARENT,
+        ViewGroup.LayoutParams.MATCH_PARENT
+      )
+      this.labelView.gravity = requireNotNull(labelGravity)
+    } else if (!isVertical()) {
+      this.labelView.layoutParams = ViewGroup.LayoutParams(
+        ViewGroup.LayoutParams.WRAP_CONTENT,
+        ViewGroup.LayoutParams.MATCH_PARENT
+      )
       this.labelView.gravity = Gravity.CENTER_VERTICAL
     } else {
-      params = ViewGroup.LayoutParams(
+      this.labelView.layoutParams = ViewGroup.LayoutParams(
         ViewGroup.LayoutParams.MATCH_PARENT,
         ViewGroup.LayoutParams.WRAP_CONTENT
       )
       this.labelView.gravity = Gravity.BOTTOM or Gravity.CENTER_HORIZONTAL
     }
-    this.labelView.layoutParams = params
     applyTextForm(textForm(context) {
       text = labelText
       textSize = labelSize
@@ -422,22 +448,27 @@ class ProgressView : FrameLayout {
     post {
       when {
         this.labelView.width + labelSpace < getProgressSize() -> {
-          setLabelViewPosition(getProgressSize() - this.labelView.width - this.labelSpace)
-          this.labelView.setTextColor(labelColorInner)
+          setLabelViewPosition(getProgressSize() - this.labelView.width - this.labelSpace) {
+            this.labelView.setTextColor(labelColorInner)
+          }
         }
         else -> {
-          setLabelViewPosition(getProgressSize() + this.labelSpace)
-          this.labelView.setTextColor(labelColorOuter)
+          setLabelViewPosition(getProgressSize() + this.labelSpace) {
+            this.labelView.setTextColor(labelColorOuter)
+          }
         }
       }
     }
   }
 
-  private fun setLabelViewPosition(position: Float) {
-    if (isVertical()) {
-      labelView.y = position
-    } else {
-      labelView.x = position
+  private fun setLabelViewPosition(position: Float, action: () -> Unit = {}) {
+    if (this.labelConstraints == ProgressLabelConstraints.ALIGN_PROGRESS) {
+      action()
+      if (isVertical()) {
+        labelView.y = position
+      } else {
+        labelView.x = position
+      }
     }
   }
 
@@ -609,6 +640,14 @@ class ProgressView : FrameLayout {
     fun setLabelTypeface(value: Int): Builder = apply { this.progressView.labelTypeface = value }
     fun setLabelTypeface(value: Typeface): Builder = apply {
       this.progressView.labelTypefaceObject = value
+    }
+
+    fun setLabelGravity(value: Int): Builder = apply {
+      this.progressView.labelGravity = value
+    }
+
+    fun setLabelConstraints(value: ProgressLabelConstraints) = apply {
+      this.progressView.labelConstraints = value
     }
 
     fun setProgressbarAlpha(@FloatRange(from = 0.0, to = 1.0) value: Float): Builder = apply {

@@ -17,6 +17,11 @@
       <enum name="bold" value="1" />
       <enum name="italic" value="2" />
     </attr>
+    <!--  The constraints of the label. -->
+    <attr name="progressView_labelConstraints" format="enum">
+      <enum name="align_progress" value="0" />
+      <enum name="align_container" value="1" />
+    </attr>
     <!--  orientation of the progressView. -->
     <attr name="progressView_orientation" format="enum">
       <enum name="horizontal" value="0" />

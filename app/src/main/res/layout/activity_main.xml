@@ -34,6 +34,7 @@
       android:layout_marginLeft="20dp"
       android:layout_marginTop="28dp"
       android:layout_marginRight="20dp"
+      app:progressView_labelConstraints="align_container"
       app:progressView_borderColor="@color/white"
       app:progressView_borderWidth="2dp"
       app:progressView_colorBackground="@android:color/transparent"
