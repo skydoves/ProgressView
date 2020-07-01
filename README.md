@@ -250,10 +250,12 @@ max | Float | 100f | value of the maximum progress. The progress value can not o
 radius | Dimension | 8dp | corner radius of the ProgressView.
 padding | Dimension | 0dp | padding of the progressbar.
 duration | Long | 1000L | duration of the animation.
-colorProgress | Int(Color) | colorPrimary | color of the progressbar.
-colorBackground | Int(Color) | Color.WHITE | color of the container.
-colorGradientStart | Int(Color) | colorPrimary | starting color of the gradient.
-colorGradientEnd | Int(Color) | colorPrimary | ending color of the gradient.
+colorProgress | Color | colorPrimary | color of the progressbar.
+colorBackground | Color | Color.WHITE | color of the container.
+colorGradientStart | Color | colorPrimary | starting color of the gradient.
+colorGradientEnd | Color | colorPrimary | ending color of the gradient.
+borderColor | Color | colorBackground | a border color of the container.
+borderWidth | Int | 0 | a border width size of the container.
 autoAnimate | Boolean | true | starts filling animation automatically when finishing inflate.
 animation | ProgressViewAnimation | NORMAL | animation of the progress animation.
 progressFromPrevious | Boolean | false | animates progress from previous progress.
@@ -267,6 +269,7 @@ labelColorInner | Int(Color) | colorPrimary | text color when the label placed o
 labelColorOuter | Int(Color) | colorPrimary | text color when the label placed out of the progress bar.
 labelSpace | Dimension | 8dp | space size of the between label and progress bar. 
 labelTypeface | Typeface | Typeface.NORMAL | typeface of the label.
+labelConstraints | ProgressLabelConstraints | Progress | determines the constraints of the label positioning.
 
 ### Highlighting
 Attributes | Type | Default | Description
