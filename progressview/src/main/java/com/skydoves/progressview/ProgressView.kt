@@ -37,6 +37,7 @@ import android.widget.TextView
 import androidx.annotation.ColorInt
 import androidx.annotation.FloatRange
 import androidx.annotation.Px
+import androidx.annotation.StringRes
 import com.skydoves.progressview.ProgressViewAnimation.ACCELERATEDECELERATE
 import com.skydoves.progressview.ProgressViewAnimation.BOUNCE
 import com.skydoves.progressview.ProgressViewAnimation.DECELERATE
@@ -150,7 +151,7 @@ class ProgressView : FrameLayout {
     }
 
   /** a border size of the [ProgressView]'s container. */
-  @Px var borderWidth: Int = dp2Px(0)
+  @Px var borderWidth: Int = 0
     set(value) {
       field = value
       updateProgressView()
@@ -624,6 +625,10 @@ class ProgressView : FrameLayout {
 
     fun setRadius(@Px value: Float): Builder = apply { this.progressView.radius = value }
     fun setLabelText(value: CharSequence): Builder = apply { this.progressView.labelText = value }
+    fun setLabelTextResource(@StringRes value: Int): Builder = apply {
+      setLabelText(progressView.context.getString(value))
+    }
+
     fun setLabelSize(value: Float): Builder = apply {
       this.progressView.labelSize = this.progressView.sp2Px(value)
     }
