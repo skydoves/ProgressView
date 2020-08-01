@@ -33,12 +33,12 @@ class TagBalloonFactory : Balloon.Factory() {
       setArrowOrientation(ArrowOrientation.BOTTOM)
       setArrowPosition(0.5f)
       setWidth(90)
-      setHeight(60)
       setFocusable(false)
       setCornerRadius(4f)
       setBackgroundColor(ContextCompat.getColor(context, R.color.white))
       setBalloonAnimation(BalloonAnimation.ELASTIC)
       setDismissWhenShowAgain(true)
+      setDismissWhenClicked(true)
       setLifecycleOwner(lifecycle)
     }
   }
