@@ -135,28 +135,28 @@ class ProgressView : FrameLayout {
   @ColorInt var colorBackground: Int = Color.WHITE
     set(value) {
       field = value
-      updateProgressView()
+      updateBackground()
     }
 
   /** corner radius of the [ProgressView]'s container. */
   @Px var radius: Float = dp2Px(5).toFloat()
     set(value) {
       field = value
-      updateProgressView()
+      updateBackground()
     }
 
   /** a border color of the [ProgressView]'s container. */
   @ColorInt var borderColor: Int = colorBackground
     set(value) {
       field = value
-      updateProgressView()
+      updateBackground()
     }
 
   /** a border size of the [ProgressView]'s container. */
   @Px var borderWidth: Int = 0
     set(value) {
       field = value
-      updateProgressView()
+      updateBackground()
     }
 
   /** text of the [labelView] for presenting progress. */
@@ -333,14 +333,19 @@ class ProgressView : FrameLayout {
     this.borderWidth =
       a.getDimensionPixelSize(R.styleable.ProgressView_progressView_borderWidth, borderWidth)
     this.autoAnimate = a.getBoolean(R.styleable.ProgressView_progressView_autoAnimate, autoAnimate)
+    this.progressFromPrevious =
+      a.getBoolean(R.styleable.ProgressView_progressView_progressFromPrevious, progressFromPrevious)
+
     with(highlightView) {
       alpha = a.getFloat(R.styleable.ProgressView_progressView_highlightAlpha, highlightAlpha)
       color = a.getColor(R.styleable.ProgressView_progressView_colorProgress, color)
       colorGradientStart =
         a.getColor(R.styleable.ProgressView_progressView_colorGradientStart, NO_COLOR)
-      colorGradientEnd = a.getColor(R.styleable.ProgressView_progressView_colorGradientEnd, NO_COLOR)
+      colorGradientEnd =
+        a.getColor(R.styleable.ProgressView_progressView_colorGradientEnd, NO_COLOR)
       radius = this@ProgressView.radius
-      padding = a.getDimension(R.styleable.ProgressView_progressView_padding, borderWidth.toFloat()).toInt()
+      padding =
+        a.getDimension(R.styleable.ProgressView_progressView_padding, borderWidth.toFloat()).toInt()
       highlightColor =
         a.getColor(R.styleable.ProgressView_progressView_highlightColor, highlightColor)
       highlightThickness = a.getDimension(
@@ -352,8 +357,6 @@ class ProgressView : FrameLayout {
         highlightThickness = 0
       }
     }
-    this.progressFromPrevious =
-      a.getBoolean(R.styleable.ProgressView_progressView_progressFromPrevious, progressFromPrevious)
   }
 
   override fun onFinishInflate() {
@@ -393,7 +396,6 @@ class ProgressView : FrameLayout {
   }
 
   private fun updateProgressView() {
-    updateBackground()
     post {
       updateHighlightView()
       updateLabel()
@@ -402,7 +404,7 @@ class ProgressView : FrameLayout {
   }
 
   private fun updateBackground() {
-    this.background = GradientDrawable().apply {
+    background = GradientDrawable().apply {
       cornerRadius = radius
       setColor(colorBackground)
       setStroke(borderWidth, borderColor)
@@ -498,7 +500,9 @@ class ProgressView : FrameLayout {
       to = 1.0
     ) progressRange: Float
   ): Float {
-    return if (getProgressSize(previousProgress) + getProgressSize() * progressRange <= getProgressSize()) {
+    return if (getProgressSize(previousProgress) +
+      getProgressSize() * progressRange <= getProgressSize()
+    ) {
       getProgressSize(previousProgress) + getProgressSize() * progressRange
     } else {
       getProgressSize()
@@ -520,7 +524,9 @@ class ProgressView : FrameLayout {
       to = 1.0
     ) progressRange: Float
   ): Float {
-    return if (getLabelPosition(previousProgress) + getLabelPosition() * progressRange <= getLabelPosition()) {
+    return if (getLabelPosition(previousProgress) +
+      getLabelPosition() * progressRange <= getLabelPosition()
+    ) {
       getLabelPosition(previousProgress) + getLabelPosition() * progressRange
     } else {
       getLabelPosition()

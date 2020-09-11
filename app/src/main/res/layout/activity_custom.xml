@@ -130,7 +130,6 @@
         app:progressView_labelText="60%"
         app:progressView_labelTypeface="bold"
         app:progressView_orientation="vertical"
-        app:progressView_padding="1.5dp"
         app:progressView_progress="60"
         app:progressView_radius="13dp" />
 
