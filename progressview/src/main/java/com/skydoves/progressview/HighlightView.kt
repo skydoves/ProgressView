@@ -79,13 +79,13 @@ class HighlightView(
       updateHighlightView()
     }
 
-  @ColorInt var colorGradientStart: Int = 65555
+  @ColorInt var colorGradientStart: Int = NO_COLOR
     set(value) {
       field = value
       updateHighlightView()
     }
 
-  @ColorInt var colorGradientEnd: Int = 65555
+  @ColorInt var colorGradientEnd: Int = NO_COLOR
     set(value) {
       field = value
       updateHighlightView()
@@ -121,7 +121,7 @@ class HighlightView(
   }
 
   private fun updateBodyView() {
-    bodyView.background = if (colorGradientStart != 65555 && colorGradientEnd != 65555) {
+    bodyView.background = if (colorGradientStart != NO_COLOR && colorGradientEnd != NO_COLOR) {
       var gradientOrientation = GradientDrawable.Orientation.LEFT_RIGHT
       if (orientation == ProgressViewOrientation.VERTICAL) {
         gradientOrientation = GradientDrawable.Orientation.TOP_BOTTOM
