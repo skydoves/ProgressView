@@ -333,14 +333,14 @@ class ProgressView : FrameLayout {
     this.borderWidth =
       a.getDimensionPixelSize(R.styleable.ProgressView_progressView_borderWidth, borderWidth)
     this.autoAnimate = a.getBoolean(R.styleable.ProgressView_progressView_autoAnimate, autoAnimate)
-    with(this.highlightView) {
+    with(highlightView) {
       alpha = a.getFloat(R.styleable.ProgressView_progressView_highlightAlpha, highlightAlpha)
       color = a.getColor(R.styleable.ProgressView_progressView_colorProgress, color)
       colorGradientStart =
         a.getColor(R.styleable.ProgressView_progressView_colorGradientStart, 65555)
       colorGradientEnd = a.getColor(R.styleable.ProgressView_progressView_colorGradientEnd, 65555)
       radius = this@ProgressView.radius
-      padding = borderWidth
+      padding = a.getDimension(R.styleable.ProgressView_progressView_padding, borderWidth.toFloat()).toInt()
       highlightColor =
         a.getColor(R.styleable.ProgressView_progressView_highlightColor, highlightColor)
       highlightThickness = a.getDimension(

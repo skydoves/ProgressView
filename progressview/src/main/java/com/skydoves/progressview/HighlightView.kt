@@ -121,31 +121,26 @@ class HighlightView(
   }
 
   private fun updateBodyView() {
-    if (colorGradientStart != 65555 && colorGradientEnd != 65555) {
+    bodyView.background = if (colorGradientStart != 65555 && colorGradientEnd != 65555) {
       var gradientOrientation = GradientDrawable.Orientation.LEFT_RIGHT
       if (orientation == ProgressViewOrientation.VERTICAL) {
         gradientOrientation = GradientDrawable.Orientation.TOP_BOTTOM
       }
-      bodyView.background =
-        GradientDrawable(
-          gradientOrientation,
-          intArrayOf(colorGradientStart, colorGradientEnd)
-        ).apply {
-          cornerRadius = radius
-        }
+      GradientDrawable(
+        gradientOrientation,
+        intArrayOf(colorGradientStart, colorGradientEnd)
+      ).apply {
+        cornerRadius = radius
+      }
     } else if (highlight == null) {
-      bodyView.background = GradientDrawable().apply {
+      GradientDrawable().apply {
         cornerRadius = radius
         setColor(this@HighlightView.color)
       }
     } else {
-      bodyView.background = highlight
+      highlight
     }
-    bodyView.layoutParams.apply {
-      if (this is MarginLayoutParams) {
-        setMargins(padding, padding, padding, padding)
-      }
-    }
+    bodyView.applyMargin()
   }
 
   private fun updateStrokeView() {
@@ -154,11 +149,7 @@ class HighlightView(
       cornerRadius = radius
       setStroke(highlightThickness, highlightColor)
     }
-    strokeView.layoutParams.apply {
-      if (this is MarginLayoutParams) {
-        setMargins(padding, padding, padding, padding)
-      }
-    }
+    strokeView.applyMargin()
   }
 
   private fun updateHighlighting() {
@@ -167,5 +158,9 @@ class HighlightView(
     } else {
       strokeView.alpha = 0f
     }
+  }
+
+  private fun View.applyMargin() {
+    (layoutParams as MarginLayoutParams).setMargins(padding, padding, padding, padding)
   }
 }

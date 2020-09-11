@@ -11,7 +11,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
       android:layout_width="match_parent"
       android:layout_height="240dp"
       android:scaleType="fitXY"
@@ -48,7 +48,6 @@
         android:layout_width="35dp"
         android:layout_height="300dp"
         android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
         android:layout_marginTop="28dp"
         app:progressView_colorBackground="@color/white"
         app:progressView_colorGradientEnd="@color/md_amber_700"
@@ -72,7 +71,6 @@
         android:layout_width="35dp"
         android:layout_height="300dp"
         android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
         android:layout_marginTop="28dp"
         app:progressView_colorBackground="@color/white"
         app:progressView_colorGradientEnd="@color/md_green_200"
@@ -96,7 +94,6 @@
         android:layout_width="35dp"
         android:layout_height="300dp"
         android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
         android:layout_marginTop="28dp"
         app:progressView_colorBackground="@color/white"
         app:progressView_colorProgress="@color/skyBlue"
@@ -119,7 +116,6 @@
         android:layout_width="35dp"
         android:layout_height="300dp"
         android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
         android:layout_marginTop="28dp"
         app:progressView_colorBackground="@color/white"
         app:progressView_colorGradientEnd="@color/md_purple_200"
@@ -143,7 +139,6 @@
         android:layout_width="35dp"
         android:layout_height="300dp"
         android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
         android:layout_marginTop="28dp"
         app:progressView_colorBackground="@color/white_87"
         app:progressView_colorGradientEnd="@color/black"
