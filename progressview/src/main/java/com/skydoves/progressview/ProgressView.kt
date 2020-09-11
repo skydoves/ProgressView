@@ -361,6 +361,15 @@ class ProgressView : FrameLayout {
     updateProgressView()
   }
 
+  override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
+    super.onLayout(changed, left, top, right, bottom)
+
+    if (changed && orientation == ProgressViewOrientation.VERTICAL) {
+      rotation = 180f
+      labelView.rotation = 180f
+    }
+  }
+
   override fun onSizeChanged(
     w: Int,
     h: Int,
@@ -385,7 +394,6 @@ class ProgressView : FrameLayout {
 
   private fun updateProgressView() {
     updateBackground()
-    updateOrientation()
     post {
       updateHighlightView()
       updateLabel()
@@ -398,13 +406,6 @@ class ProgressView : FrameLayout {
       cornerRadius = radius
       setColor(colorBackground)
       setStroke(borderWidth, borderColor)
-    }
-  }
-
-  private fun updateOrientation() {
-    if (this.orientation == ProgressViewOrientation.VERTICAL) {
-      rotation = 180f
-      labelView.rotation = 180f
     }
   }
 
