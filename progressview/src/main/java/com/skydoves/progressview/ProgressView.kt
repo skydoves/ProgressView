@@ -578,12 +578,9 @@ class ProgressView : FrameLayout {
   }
 
   /** sets a progress change listener. */
+  @JvmSynthetic
   fun setOnProgressChangeListener(block: (Float) -> Unit) {
-    this.onProgressChangeListener = object : OnProgressChangeListener {
-      override fun onChange(progress: Float) {
-        block(progress)
-      }
-    }
+    this.onProgressChangeListener = OnProgressChangeListener { progress -> block(progress) }
   }
 
   /** sets a progress click listener. */
@@ -593,12 +590,9 @@ class ProgressView : FrameLayout {
   }
 
   /** sets a progress click listener. */
+  @JvmSynthetic
   fun setOnProgressClickListener(block: (Boolean) -> Unit) {
-    this.onProgressClickListener = object : OnProgressClickListener {
-      override fun onClickProgress(highlighting: Boolean) {
-        block(highlighting)
-      }
-    }
+    this.onProgressClickListener = OnProgressClickListener { highlighting -> block(highlighting) }
     this.highlightView.onProgressClickListener = this.onProgressClickListener
   }
 
@@ -715,20 +709,16 @@ class ProgressView : FrameLayout {
       this.progressView.labelView.applyTextForm(value)
     }
 
+    @JvmSynthetic
     fun setOnProgressChangeListener(block: (Float) -> Unit): Builder = apply {
-      this.progressView.onProgressChangeListener = object : OnProgressChangeListener {
-        override fun onChange(progress: Float) {
-          block(progress)
-        }
-      }
+      this.progressView.onProgressChangeListener =
+        OnProgressChangeListener { progress -> block(progress) }
     }
 
+    @JvmSynthetic
     fun setOnProgressClickListener(block: (Boolean) -> Unit): Builder = apply {
-      this.progressView.onProgressClickListener = object : OnProgressClickListener {
-        override fun onClickProgress(highlighting: Boolean) {
-          block(highlighting)
-        }
-      }
+      this.progressView.onProgressClickListener =
+        OnProgressClickListener { highlighting -> block(highlighting) }
     }
 
     fun build() = progressView

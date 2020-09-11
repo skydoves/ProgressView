@@ -17,7 +17,8 @@
 package com.skydoves.progressview
 
 /**  OnProgressClickListener is an interface for listening to the progress bar is clicked. */
-interface OnProgressClickListener {
-  /** called when the progress is clicked. */
+fun interface OnProgressClickListener {
+
+  /** invoked when the progress bar is touched. */
   fun onClickProgress(highlighting: Boolean)
 }
