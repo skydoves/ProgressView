@@ -79,8 +79,6 @@ class TextForm(builder: Builder) {
 
     fun setTextTypeface(value: Int): Builder = apply { this.textTypeface = value }
     fun setTextTypeface(value: Typeface): Builder = apply { this.textTypefaceObject = value }
-    fun build(): TextForm {
-      return TextForm(this)
-    }
+    fun build() = TextForm(this)
   }
 }

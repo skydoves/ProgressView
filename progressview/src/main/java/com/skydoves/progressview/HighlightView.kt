@@ -42,68 +42,82 @@ class HighlightView(
       field = value
       updateHighlighting()
     }
+
   @Px var highlightThickness: Int = dp2Px(0)
     set(value) {
       field = value
       updateHighlightView()
     }
+
   @ColorInt var highlightColor: Int = accentColor()
     set(value) {
       field = value
       updateHighlightView()
     }
+
   @FloatRange(from = 0.0, to = 1.0) var highlightAlpha: Float = 1.0f
     set(value) {
       field = value
       updateHighlightView()
     }
+
   var radius: Float = dp2Px(5).toFloat()
     set(value) {
       field = value
       updateHighlightView()
     }
+
   @Px var padding = dp2Px(0)
     set(value) {
       field = value
       updateHighlightView()
     }
+
   @ColorInt var color: Int = accentColor()
     set(value) {
       field = value
       updateHighlightView()
     }
+
   @ColorInt var colorGradientStart: Int = 65555
     set(value) {
       field = value
       updateHighlightView()
     }
+
   @ColorInt var colorGradientEnd: Int = 65555
     set(value) {
       field = value
       updateHighlightView()
     }
-  var drawable: Drawable? = null
+
+  var highlight: Drawable? = null
     set(value) {
       field = value
       updateHighlightView()
     }
+
   var orientation = ProgressViewOrientation.HORIZONTAL
     set(value) {
       field = value
       updateHighlightView()
     }
+
   var onProgressClickListener: OnProgressClickListener? = null
 
-  override fun onFinishInflate() {
-    super.onFinishInflate()
-    updateHighlightView()
+  init {
+    addView(bodyView)
+    addView(strokeView)
+    strokeView.setOnClickListener {
+      highlighting = highlighting.not()
+      onProgressClickListener?.onClickProgress(highlighting)
+    }
   }
 
   fun updateHighlightView() {
     updateBodyView()
     updateStrokeView()
     updateHighlighting()
-    updateOnClickListener()
   }
 
   private fun updateBodyView() {
@@ -112,57 +126,46 @@ class HighlightView(
       if (orientation == ProgressViewOrientation.VERTICAL) {
         gradientOrientation = GradientDrawable.Orientation.TOP_BOTTOM
       }
-      this.bodyView.background =
+      bodyView.background =
         GradientDrawable(
           gradientOrientation,
           intArrayOf(colorGradientStart, colorGradientEnd)
         ).apply {
           cornerRadius = radius
         }
-    } else if (this.drawable == null) {
-      this.bodyView.background = GradientDrawable().apply {
+    } else if (highlight == null) {
+      bodyView.background = GradientDrawable().apply {
         cornerRadius = radius
         setColor(this@HighlightView.color)
       }
     } else {
-      this.bodyView.background = this.drawable
+      bodyView.background = highlight
     }
-    this.bodyView.layoutParams.apply {
+    bodyView.layoutParams.apply {
       if (this is MarginLayoutParams) {
         setMargins(padding, padding, padding, padding)
       }
     }
-    removeView(bodyView)
-    addView(bodyView)
   }
 
   private fun updateStrokeView() {
-    this.strokeView.background = GradientDrawable().apply {
+    strokeView.background = GradientDrawable().apply {
       setColor(Color.TRANSPARENT)
       cornerRadius = radius
       setStroke(highlightThickness, highlightColor)
     }
-    this.strokeView.layoutParams.apply {
+    strokeView.layoutParams.apply {
       if (this is MarginLayoutParams) {
         setMargins(padding, padding, padding, padding)
       }
     }
-    removeView(strokeView)
-    addView(strokeView)
   }
 
   private fun updateHighlighting() {
-    if (this.highlighting) {
-      this.strokeView.alpha = this.highlightAlpha
+    if (highlighting) {
+      strokeView.alpha = highlightAlpha
     } else {
-      this.strokeView.alpha = 0f
-    }
-  }
-
-  private fun updateOnClickListener() {
-    this.strokeView.setOnClickListener {
-      this.highlighting = highlighting.not()
-      this.onProgressClickListener?.onClickProgress(highlighting)
+      strokeView.alpha = 0f
     }
   }
 }
