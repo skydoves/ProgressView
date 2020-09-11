@@ -113,8 +113,10 @@ class HighlightView(
         gradientOrientation = GradientDrawable.Orientation.TOP_BOTTOM
       }
       this.bodyView.background =
-        GradientDrawable(gradientOrientation,
-          intArrayOf(colorGradientStart, colorGradientEnd)).apply {
+        GradientDrawable(
+          gradientOrientation,
+          intArrayOf(colorGradientStart, colorGradientEnd)
+        ).apply {
           cornerRadius = radius
         }
     } else if (this.drawable == null) {

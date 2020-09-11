@@ -253,7 +253,8 @@ class ProgressView : FrameLayout {
     defStyle: Int
   ) : super(
     context,
-    attributeSet, defStyle
+    attributeSet,
+    defStyle
   ) {
     getAttrs(attributeSet, defStyle)
   }
@@ -287,21 +288,30 @@ class ProgressView : FrameLayout {
         else -> Typeface.NORMAL
       }
     this.labelConstraints =
-      when (a.getInt(R.styleable.ProgressView_progressView_labelConstraints,
-        ProgressLabelConstraints.ALIGN_PROGRESS.ordinal)) {
+      when (
+        a.getInt(
+          R.styleable.ProgressView_progressView_labelConstraints,
+          ProgressLabelConstraints.ALIGN_PROGRESS.ordinal
+        )
+      ) {
         1 -> ProgressLabelConstraints.ALIGN_CONTAINER
         else -> ProgressLabelConstraints.ALIGN_PROGRESS
       }
-    when (a.getInt(
-      R.styleable.ProgressView_progressView_orientation,
-      ProgressViewOrientation.HORIZONTAL.value
-    )) {
+    when (
+      a.getInt(
+        R.styleable.ProgressView_progressView_orientation,
+        ProgressViewOrientation.HORIZONTAL.value
+      )
+    ) {
       0 -> this.orientation = ProgressViewOrientation.HORIZONTAL
       1 -> this.orientation = ProgressViewOrientation.VERTICAL
     }
-    when (a.getInt(
-      R.styleable.ProgressView_progressView_animation, progressAnimation.value
-    )) {
+    when (
+      a.getInt(
+        R.styleable.ProgressView_progressView_animation,
+        progressAnimation.value
+      )
+    ) {
       NORMAL.value -> this.progressAnimation = NORMAL
       BOUNCE.value -> this.progressAnimation = BOUNCE
       DECELERATE.value -> this.progressAnimation = DECELERATE
@@ -437,12 +447,14 @@ class ProgressView : FrameLayout {
       )
       this.labelView.gravity = Gravity.BOTTOM or Gravity.CENTER_HORIZONTAL
     }
-    applyTextForm(textForm(context) {
-      text = labelText
-      textSize = labelSize
-      textTypeface = labelTypeface
-      textTypefaceObject = labelTypefaceObject
-    })
+    applyTextForm(
+      textForm(context) {
+        text = labelText
+        textSize = labelSize
+        textTypeface = labelTypeface
+        textTypefaceObject = labelTypefaceObject
+      }
+    )
     removeView(labelView)
     addView(labelView)
 
@@ -479,14 +491,12 @@ class ProgressView : FrameLayout {
 
   private fun getPreviousMergedProgressSize(
     @FloatRange(
-      from = 0.0, to = 1.0
+      from = 0.0,
+      to = 1.0
     ) progressRange: Float
   ): Float {
-    return if (getProgressSize(
-        previousProgress
-      ) + getProgressSize() * progressRange <= getProgressSize()
-    ) {
-      (getProgressSize(previousProgress) + getProgressSize() * progressRange)
+    return if (getProgressSize(previousProgress) + getProgressSize() * progressRange <= getProgressSize()) {
+      getProgressSize(previousProgress) + getProgressSize() * progressRange
     } else {
       getProgressSize()
     }
@@ -503,13 +513,11 @@ class ProgressView : FrameLayout {
 
   private fun getPreviousMergedLabelPosition(
     @FloatRange(
-      from = 0.0, to = 1.0
+      from = 0.0,
+      to = 1.0
     ) progressRange: Float
   ): Float {
-    return if (getLabelPosition(
-        previousProgress
-      ) + getLabelPosition() * progressRange <= getLabelPosition()
-    ) {
+    return if (getLabelPosition(previousProgress) + getLabelPosition() * progressRange <= getLabelPosition()) {
       getLabelPosition(previousProgress) + getLabelPosition() * progressRange
     } else {
       getLabelPosition()
