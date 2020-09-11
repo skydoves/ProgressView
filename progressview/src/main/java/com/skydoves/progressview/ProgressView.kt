@@ -44,9 +44,11 @@ import com.skydoves.progressview.ProgressViewAnimation.DECELERATE
 import com.skydoves.progressview.ProgressViewAnimation.NORMAL
 
 @DslMarker
-annotation class ProgressViewDSL
+internal annotation class ProgressViewDSL
 
 /** creates an instance of [ProgressView] by [ProgressView.Builder] using kotlin dsl. */
+@JvmSynthetic
+@ProgressViewDSL
 fun progressView(
   context: Context,
   block: ProgressView.Builder.() -> Unit

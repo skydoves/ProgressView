@@ -17,10 +17,10 @@
 package com.skydoves.progressview
 
 /** ProgressLabelConstraints determines  the constraints aligning of the label position. */
-enum class ProgressLabelConstraints(values: Int) {
+enum class ProgressLabelConstraints {
   /** Aligning on the progressbar. */
-  ALIGN_PROGRESS(0),
+  ALIGN_PROGRESS,
 
   /** Aligning on the container. */
-  ALIGN_CONTAINER(1)
+  ALIGN_CONTAINER
 }

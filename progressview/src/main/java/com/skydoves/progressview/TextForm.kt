@@ -28,9 +28,11 @@ import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 
 @DslMarker
-annotation class TextFormDsl
+internal annotation class TextFormDsl
 
 /** creates an instance of [TextForm] from [TextForm.Builder] using kotlin dsl. */
+@TextFormDsl
+@JvmSynthetic
 fun textForm(context: Context, block: TextForm.Builder.() -> Unit): TextForm =
   TextForm.Builder(context).apply(block).build()
 
