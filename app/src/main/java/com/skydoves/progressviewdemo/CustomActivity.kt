@@ -19,45 +19,43 @@ package com.skydoves.progressviewdemo
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_custom.button
-import kotlinx.android.synthetic.main.activity_custom.progressView
-import kotlinx.android.synthetic.main.activity_custom.progressView1
-import kotlinx.android.synthetic.main.activity_custom.progressView2
-import kotlinx.android.synthetic.main.activity_custom.progressView3
-import kotlinx.android.synthetic.main.activity_custom.progressView4
-import kotlinx.android.synthetic.main.activity_custom.progressView5
+import com.skydoves.progressviewdemo.databinding.ActivityCustomBinding
 
 class CustomActivity : AppCompatActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_custom)
 
-    button.setOnClickListener {
-      progressView.progress += 35
-      progressView1.progress += 20
-      progressView2.progress += 15
-      progressView3.progress += 25
-      progressView4.progress += 15
-      progressView5.progress += 15
-    }
+    val binding = ActivityCustomBinding.inflate(layoutInflater)
+    setContentView(binding.root)
 
-    progressView.setOnProgressChangeListener { progressView.labelText = "${it.toInt()}%" }
-    progressView1.setOnProgressChangeListener { progressView1.labelText = "${it.toInt()}%" }
-    progressView2.setOnProgressChangeListener { progressView2.labelText = "${it.toInt()}%" }
-    progressView3.setOnProgressChangeListener { progressView3.labelText = "${it.toInt()}%" }
-    progressView4.setOnProgressChangeListener { progressView4.labelText = "${it.toInt()}%" }
-    progressView5.setOnProgressChangeListener { progressView5.labelText = "${it.toInt()}%" }
+    with(binding) {
+      button.setOnClickListener {
+        progressView.progress += 35
+        progressView1.progress += 20
+        progressView2.progress += 15
+        progressView3.progress += 25
+        progressView4.progress += 15
+        progressView5.progress += 15
+      }
 
-    progressView.progressFromPrevious = true
+      progressView.setOnProgressChangeListener { progressView.labelText = "${it.toInt()}%" }
+      progressView1.setOnProgressChangeListener { progressView1.labelText = "${it.toInt()}%" }
+      progressView2.setOnProgressChangeListener { progressView2.labelText = "${it.toInt()}%" }
+      progressView3.setOnProgressChangeListener { progressView3.labelText = "${it.toInt()}%" }
+      progressView4.setOnProgressChangeListener { progressView4.labelText = "${it.toInt()}%" }
+      progressView5.setOnProgressChangeListener { progressView5.labelText = "${it.toInt()}%" }
 
-    progressView3.setOnProgressClickListener {
-      if (it) {
-        Toast.makeText(this, "highlight on", Toast.LENGTH_SHORT)
-          .show()
-      } else {
-        Toast.makeText(this, "highlight off", Toast.LENGTH_SHORT)
-          .show()
+      progressView.progressFromPrevious = true
+
+      progressView3.setOnProgressClickListener {
+        if (it) {
+          Toast.makeText(this@CustomActivity, "highlight on", Toast.LENGTH_SHORT)
+            .show()
+        } else {
+          Toast.makeText(this@CustomActivity, "highlight off", Toast.LENGTH_SHORT)
+            .show()
+        }
       }
     }
   }

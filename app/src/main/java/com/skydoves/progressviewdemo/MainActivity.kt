@@ -20,13 +20,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.skydoves.balloon.Balloon
 import com.skydoves.balloon.balloon
-import kotlinx.android.synthetic.main.activity_main.button
-import kotlinx.android.synthetic.main.activity_main.progressView
-import kotlinx.android.synthetic.main.activity_main.progressView1
-import kotlinx.android.synthetic.main.activity_main.progressView2
-import kotlinx.android.synthetic.main.activity_main.progressView3
-import kotlinx.android.synthetic.main.activity_main.progressView4
-import kotlinx.android.synthetic.main.activity_main.progressView5
+import com.skydoves.progressviewdemo.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
@@ -35,32 +29,42 @@ class MainActivity : AppCompatActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_main)
 
-    progressView.setOnProgressChangeListener { progressView.labelText = "heart ${it.toInt()}%" }
-    progressView1.setOnProgressChangeListener { progressView1.labelText = "star ${it.toInt()}%" }
-    progressView2.setOnProgressChangeListener { progressView2.labelText = "achieve ${it.toInt()}%" }
-    progressView3.setOnProgressChangeListener {
-      progressView3.labelText = "score ${it.toInt()}/100"
-    }
-    progressView4.setOnProgressChangeListener { progressView4.labelText = "achieve ${it.toInt()}%" }
-    progressView5.setOnProgressChangeListener { progressView5.labelText = "achieve ${it.toInt()}%" }
+    val binding = ActivityMainBinding.inflate(layoutInflater)
+    setContentView(binding.root)
 
-    progressView.setOnProgressClickListener {
-      customTagBalloon.showAlignTop(progressView.highlightView)
-    }
+    with(binding) {
+      progressView.setOnProgressChangeListener { progressView.labelText = "heart ${it.toInt()}%" }
+      progressView1.setOnProgressChangeListener { progressView1.labelText = "star ${it.toInt()}%" }
+      progressView2.setOnProgressChangeListener {
+        progressView2.labelText = "achieve ${it.toInt()}%"
+      }
+      progressView3.setOnProgressChangeListener {
+        progressView3.labelText = "score ${it.toInt()}/100"
+      }
+      progressView4.setOnProgressChangeListener {
+        progressView4.labelText = "achieve ${it.toInt()}%"
+      }
+      progressView5.setOnProgressChangeListener {
+        progressView5.labelText = "achieve ${it.toInt()}%"
+      }
 
-    progressView1.setOnProgressClickListener {
-      customStarBalloon.showAlignTop(progressView1.highlightView)
-    }
+      progressView.setOnProgressClickListener {
+        customTagBalloon.showAlignTop(progressView.highlightView)
+      }
 
-    button.setOnClickListener {
-      progressView.progress += 25
-      progressView1.progress += 10
-      progressView2.progress += 25
-      progressView3.progress += 10
-      progressView4.progress += 5
-      progressView5.progress += 15
+      progressView1.setOnProgressClickListener {
+        customStarBalloon.showAlignTop(progressView1.highlightView)
+      }
+
+      button.setOnClickListener {
+        progressView.progress += 25
+        progressView1.progress += 10
+        progressView2.progress += 25
+        progressView3.progress += 10
+        progressView4.progress += 5
+        progressView5.progress += 15
+      }
     }
   }
 }
