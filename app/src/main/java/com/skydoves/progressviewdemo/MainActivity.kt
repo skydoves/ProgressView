@@ -18,14 +18,13 @@ package com.skydoves.progressviewdemo
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.skydoves.balloon.Balloon
 import com.skydoves.balloon.balloon
 import com.skydoves.progressviewdemo.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-  private val customTagBalloon: Balloon by balloon(TagBalloonFactory::class)
-  private val customStarBalloon: Balloon by balloon(StarBalloonFactory::class)
+  private val customTagBalloon by balloon<TagBalloonFactory>()
+  private val customStarBalloon by balloon<StarBalloonFactory>()
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
