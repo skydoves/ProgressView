@@ -154,7 +154,7 @@
         app:progressView_orientation="vertical"
         app:progressView_padding="1.5dp"
         app:progressView_progress="45"
-        app:progressView_radius="13dp" />
+        app:progressView_radius="70dp" />
     </LinearLayout>
   </LinearLayout>
 

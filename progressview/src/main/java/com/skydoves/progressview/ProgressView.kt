@@ -142,6 +142,14 @@ class ProgressView : FrameLayout {
   @Px var radius: Float = dp2Px(5).toFloat()
     set(value) {
       field = value
+      radiusCollection = floatArrayOf(value, value, value, value, value, value, value, value)
+      updateBackground()
+    }
+
+  var radiusCollection = floatArrayOf(5F, 5F, 5F, 5F, 5F, 5F, 5F, 5F)
+    set(value) {
+      field = value
+      highlightView.radiusCollection = value
       updateBackground()
     }
 
@@ -344,6 +352,7 @@ class ProgressView : FrameLayout {
       colorGradientEnd =
         a.getColor(R.styleable.ProgressView_progressView_colorGradientEnd, NO_COLOR)
       radius = this@ProgressView.radius
+      radiusCollection = this@ProgressView.radiusCollection
       padding =
         a.getDimension(R.styleable.ProgressView_progressView_padding, borderWidth.toFloat()).toInt()
       highlightColor =
@@ -384,7 +393,7 @@ class ProgressView : FrameLayout {
       reset()
       addRoundRect(
         RectF(0f, 0f, w.toFloat(), h.toFloat()),
-        floatArrayOf(radius, radius, radius, radius, radius, radius, radius, radius),
+        floatArrayOf(radiusCollection[0], radiusCollection[1], radiusCollection[2], radiusCollection[3], radiusCollection[4], radiusCollection[5], radiusCollection[6], radiusCollection[7]),
         Path.Direction.CCW
       )
     }
@@ -405,7 +414,7 @@ class ProgressView : FrameLayout {
 
   private fun updateBackground() {
     background = GradientDrawable().apply {
-      cornerRadius = radius
+      cornerRadii = radiusCollection
       setColor(colorBackground)
       setStroke(borderWidth, borderColor)
     }
@@ -633,8 +642,8 @@ class ProgressView : FrameLayout {
     fun setColorBackground(@ColorInt value: Int): Builder = apply {
       this.progressView.colorBackground = value
     }
-
     fun setRadius(@Px value: Float): Builder = apply { this.progressView.radius = value }
+    fun setRadii(value: FloatArray): Builder = apply { this.progressView.radiusCollection = value }
     fun setLabelText(value: CharSequence): Builder = apply { this.progressView.labelText = value }
     fun setLabelTextResource(@StringRes value: Int): Builder = apply {
       setLabelText(progressView.context.getString(value))
@@ -684,6 +693,10 @@ class ProgressView : FrameLayout {
 
     fun setProgressbarRadius(@Px value: Float): Builder = apply {
       this.progressView.highlightView.radius = value
+    }
+
+    fun setProgressbarRadii(value: FloatArray): Builder = apply {
+      this.progressView.highlightView.radiusCollection = value
     }
 
     fun setHighlightColor(@ColorInt value: Int): Builder = apply {
