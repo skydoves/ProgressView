@@ -49,9 +49,9 @@ internal annotation class ProgressViewDSL
 /** creates an instance of [ProgressView] by [ProgressView.Builder] using kotlin dsl. */
 @JvmSynthetic
 @ProgressViewDSL
-fun progressView(
+inline fun progressView(
   context: Context,
-  block: ProgressView.Builder.() -> Unit
+  crossinline block: ProgressView.Builder.() -> Unit
 ): ProgressView =
   ProgressView.Builder(context).apply(block).build()
 
@@ -494,7 +494,7 @@ class ProgressView : FrameLayout {
     }
   }
 
-  private fun setLabelViewPosition(position: Float, action: () -> Unit = {}) {
+  private inline fun setLabelViewPosition(position: Float, crossinline action: () -> Unit = {}) {
     if (this.labelConstraints == ProgressLabelConstraints.ALIGN_PROGRESS) {
       action()
       if (isVertical()) {

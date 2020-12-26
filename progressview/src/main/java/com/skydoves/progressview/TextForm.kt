@@ -33,7 +33,7 @@ internal annotation class TextFormDsl
 /** creates an instance of [TextForm] from [TextForm.Builder] using kotlin dsl. */
 @TextFormDsl
 @JvmSynthetic
-fun textForm(context: Context, block: TextForm.Builder.() -> Unit): TextForm =
+inline fun textForm(context: Context, crossinline block: TextForm.Builder.() -> Unit): TextForm =
   TextForm.Builder(context).apply(block).build()
 
 /**
@@ -52,18 +52,23 @@ class TextForm(builder: Builder) {
   @TextFormDsl
   class Builder(private val context: Context) {
     @JvmField
+    @set:JvmSynthetic
     var text: CharSequence? = ""
 
     @JvmField @Px
+    @set:JvmSynthetic
     var textSize: Float = 12f
 
     @JvmField @ColorInt
+    @set:JvmSynthetic
     var textColor = Color.WHITE
 
     @JvmField
+    @set:JvmSynthetic
     var textTypeface = Typeface.NORMAL
 
     @JvmField
+    @set:JvmSynthetic
     var textTypefaceObject: Typeface? = null
 
     fun setText(value: CharSequence): Builder = apply { this.text = value }
