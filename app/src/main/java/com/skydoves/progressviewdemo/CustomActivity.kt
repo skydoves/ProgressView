@@ -47,7 +47,7 @@ class CustomActivity : AppCompatActivity() {
       progressView5.setOnProgressChangeListener { progressView5.labelText = "${it.toInt()}%" }
 
       progressView.progressFromPrevious = true
-      progressView.radiusCollection = floatArrayOf(0f, 0f, 0f, 0f, 50f, 50f, 50f, 50f)
+      progressView5.radiusArray = floatArrayOf(0f, 0f, 0f, 0f, 50f, 50f, 50f, 50f)
 
       progressView3.setOnProgressClickListener {
         if (it) {

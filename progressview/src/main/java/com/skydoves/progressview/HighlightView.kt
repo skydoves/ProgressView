@@ -64,11 +64,10 @@ class HighlightView(
   var radius: Float = dp2Px(5).toFloat()
     set(value) {
       field = value
-      radiusCollection = floatArrayOf(value, value, value, value, value, value, value, value)
       updateHighlightView()
     }
 
-  var radiusCollection: FloatArray = floatArrayOf(5F, 5F, 5F, 5F, 5F, 5F, 5F, 5F)
+  var radiusArray: FloatArray? = null
     set(value) {
       field = value
       updateHighlightView()
@@ -137,12 +136,12 @@ class HighlightView(
         gradientOrientation,
         intArrayOf(colorGradientStart, colorGradientEnd)
       ).apply {
-        cornerRadii = radiusCollection
+        applyRadius(this)
       }
     } else if (highlight == null) {
       GradientDrawable().apply {
-        cornerRadii = radiusCollection
         setColor(this@HighlightView.color)
+        applyRadius(this)
       }
     } else {
       highlight
@@ -153,8 +152,8 @@ class HighlightView(
   private fun updateStrokeView() {
     strokeView.background = GradientDrawable().apply {
       setColor(Color.TRANSPARENT)
-      cornerRadii = radiusCollection
       setStroke(highlightThickness, highlightColor)
+      applyRadius(this)
     }
     strokeView.applyMargin()
   }
@@ -169,5 +168,13 @@ class HighlightView(
 
   private fun View.applyMargin() {
     (layoutParams as MarginLayoutParams).setMargins(padding, padding, padding, padding)
+  }
+
+  private fun applyRadius(gradientDrawable: GradientDrawable) {
+    if (radiusArray != null) {
+      gradientDrawable.cornerRadii = radiusArray
+    } else {
+      gradientDrawable.cornerRadius = radius
+    }
   }
 }
