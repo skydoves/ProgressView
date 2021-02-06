@@ -14,9 +14,7 @@
 
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'org.jetbrains.dokka'
 apply from: "$rootDir/dependencies.gradle"
-apply from: "$rootDir/publish.gradle"
 
 android {
     compileSdkVersion versions.compileSdk
@@ -39,17 +37,5 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$versions.androidxAppcompat"
 }
 
-dokka {
-    outputFormat = 'html'
-    outputDirectory = "$buildDir/javadoc"
-    configuration {
-        moduleName = 'progressview'
-    }
-}
-
-tasks.withType(Javadoc) {
-    excludes = ['**/*.kt']
-    options.addBooleanOption('Xdoclint:none', true)
-}
-
-apply from: "$rootDir/spotless.gradle"
+apply plugin: "com.vanniktech.maven.publish"
+apply from: '../spotless.gradle'
