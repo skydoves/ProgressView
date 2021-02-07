@@ -22,6 +22,7 @@ import androidx.lifecycle.LifecycleOwner
 import com.skydoves.balloon.ArrowOrientation
 import com.skydoves.balloon.Balloon
 import com.skydoves.balloon.BalloonAnimation
+import com.skydoves.balloon.BalloonSizeSpec
 import com.skydoves.balloon.createBalloon
 
 class TagBalloonFactory : Balloon.Factory() {
@@ -29,10 +30,10 @@ class TagBalloonFactory : Balloon.Factory() {
   override fun create(context: Context, lifecycle: LifecycleOwner?): Balloon {
     return createBalloon(context) {
       setLayout(R.layout.layout_custom_tag)
+      setWidth(BalloonSizeSpec.WRAP)
       setArrowSize(10)
       setArrowOrientation(ArrowOrientation.BOTTOM)
       setArrowPosition(0.5f)
-      setWidth(90)
       setCornerRadius(4f)
       setBackgroundColor(ContextCompat.getColor(context, R.color.white))
       setBalloonAnimation(BalloonAnimation.ELASTIC)
