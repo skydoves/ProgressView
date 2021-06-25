@@ -349,6 +349,8 @@ class ProgressView : FrameLayout {
       color = a.getColor(R.styleable.ProgressView_progressView_colorProgress, color)
       colorGradientStart =
         a.getColor(R.styleable.ProgressView_progressView_colorGradientStart, NO_COLOR)
+      colorGradientCenter =
+        a.getColor(R.styleable.ProgressView_progressView_colorGradientCenter, NO_COLOR)
       colorGradientEnd =
         a.getColor(R.styleable.ProgressView_progressView_colorGradientEnd, NO_COLOR)
       radius = this@ProgressView.radius
@@ -692,6 +694,10 @@ class ProgressView : FrameLayout {
 
     fun setProgressbarColorGradientStart(@ColorInt value: Int): Builder = apply {
       this.progressView.highlightView.colorGradientStart = value
+    }
+
+    fun setProgressbarColorGradientCenter(@ColorInt value: Int): Builder = apply {
+      this.progressView.highlightView.colorGradientCenter = value
     }
 
     fun setProgressbarColorGradientEnd(@ColorInt value: Int): Builder = apply {

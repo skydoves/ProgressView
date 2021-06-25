@@ -66,6 +66,8 @@
     <attr name="progressView_colorBackground" format="color" />
     <!--	starting color of the gradient. -->
     <attr name="progressView_colorGradientStart" format="color" />
+    <!--	center color of the gradient. -->
+    <attr name="progressView_colorGradientCenter" format="color" />
     <!--	ending color of the gradient. -->
     <attr name="progressView_colorGradientEnd" format="color" />
     <!--  starts filling animation automatically when finishing inflate. -->
