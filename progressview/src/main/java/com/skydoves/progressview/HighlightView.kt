@@ -91,19 +91,19 @@ class HighlightView(
       updateHighlightView()
     }
 
-    @ColorInt
-    var colorGradientCenter: Int = NO_COLOR
-        set(value) {
-            field = value
-            updateHighlightView()
-        }
+  @ColorInt
+  var colorGradientCenter: Int = NO_COLOR
+    set(value) {
+      field = value
+      updateHighlightView()
+    }
 
-    @ColorInt
-    var colorGradientEnd: Int = NO_COLOR
-        set(value) {
-            field = value
-            updateHighlightView()
-        }
+  @ColorInt
+  var colorGradientEnd: Int = NO_COLOR
+    set(value) {
+      field = value
+      updateHighlightView()
+    }
 
   var highlight: Drawable? = null
     set(value) {
@@ -140,13 +140,13 @@ class HighlightView(
       if (orientation == ProgressViewOrientation.VERTICAL) {
         gradientOrientation = GradientDrawable.Orientation.TOP_BOTTOM
       }
-        GradientDrawable(
-            gradientOrientation,
-            intArrayOf(colorGradientStart, colorGradientCenter, colorGradientEnd)
-                .filter { it != NO_COLOR }.toIntArray()
-        ).apply {
-            applyRadius(this)
-        }
+      GradientDrawable(
+        gradientOrientation,
+        intArrayOf(colorGradientStart, colorGradientCenter, colorGradientEnd)
+          .filter { it != NO_COLOR }.toIntArray()
+      ).apply {
+        applyRadius(this)
+      }
     } else if (highlight == null) {
       GradientDrawable().apply {
         setColor(this@HighlightView.color)
