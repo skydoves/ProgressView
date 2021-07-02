@@ -140,21 +140,13 @@ class HighlightView(
       if (orientation == ProgressViewOrientation.VERTICAL) {
         gradientOrientation = GradientDrawable.Orientation.TOP_BOTTOM
       }
-            if (colorGradientCenter == NO_COLOR) {
-                GradientDrawable(
-                    gradientOrientation,
-                    intArrayOf(colorGradientStart, colorGradientEnd)
-                ).apply {
-                    applyRadius(this)
-                }
-            } else {
-                GradientDrawable(
-                    gradientOrientation,
-                    intArrayOf(colorGradientStart, colorGradientCenter, colorGradientEnd)
-                ).apply {
-                    applyRadius(this)
-                }
-            }
+        GradientDrawable(
+            gradientOrientation,
+            intArrayOf(colorGradientStart, colorGradientCenter, colorGradientEnd)
+                .filter { it != NO_COLOR }.toIntArray()
+        ).apply {
+            applyRadius(this)
+        }
     } else if (highlight == null) {
       GradientDrawable().apply {
         setColor(this@HighlightView.color)
