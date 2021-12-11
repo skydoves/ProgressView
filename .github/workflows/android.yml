@@ -1,9 +1,12 @@
 name: Android CI
 
 on:
- push:
-  branches:
-   - master
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   lint:
