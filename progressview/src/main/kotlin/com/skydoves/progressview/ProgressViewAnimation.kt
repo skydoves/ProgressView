@@ -23,13 +23,13 @@ import android.view.animation.DecelerateInterpolator
 import android.view.animation.Interpolator
 
 /** ProgressViewAnimation is a collection of progress animation. */
-enum class ProgressViewAnimation(val value: Int) {
+public enum class ProgressViewAnimation(public val value: Int) {
   NORMAL(0),
   BOUNCE(1),
   DECELERATE(2),
   ACCELERATEDECELERATE(3);
 
-  fun getInterpolator(): Interpolator {
+  public fun getInterpolator(): Interpolator {
     return when (value) {
       BOUNCE.value -> BounceInterpolator()
       DECELERATE.value -> DecelerateInterpolator()

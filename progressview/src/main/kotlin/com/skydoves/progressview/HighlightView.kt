@@ -29,7 +29,7 @@ import androidx.annotation.FloatRange
 import androidx.annotation.Px
 
 /** HighlightView is a view with stroke highlighting via onClickListener. */
-class HighlightView(
+public class HighlightView(
   context: Context,
   attrs: AttributeSet? = null
 ) : FrameLayout(context, attrs) {
@@ -37,87 +37,93 @@ class HighlightView(
   private val bodyView = LinearLayout(context)
   private val strokeView = View(context)
 
-  var highlighting: Boolean = false
+  public var highlighting: Boolean = false
     set(value) {
       field = value
       updateHighlighting()
     }
 
-  @Px var highlightThickness: Int = dp2Px(0)
-    set(value) {
-      field = value
-      updateHighlightView()
-    }
-
-  @ColorInt var highlightColor: Int = accentColor()
-    set(value) {
-      field = value
-      updateHighlightView()
-    }
-
-  @FloatRange(from = 0.0, to = 1.0) var highlightAlpha: Float = 1.0f
-    set(value) {
-      field = value
-      updateHighlightView()
-    }
-
-  var radius: Float = dp2Px(5).toFloat()
-    set(value) {
-      field = value
-      updateHighlightView()
-    }
-
-  var radiusArray: FloatArray? = null
-    set(value) {
-      field = value
-      updateHighlightView()
-    }
-
-  @Px var padding = dp2Px(0)
-    set(value) {
-      field = value
-      updateHighlightView()
-    }
-
-  @ColorInt var color: Int = accentColor()
-    set(value) {
-      field = value
-      updateHighlightView()
-    }
-
-  @ColorInt var colorGradientStart: Int = NO_COLOR
+  @Px
+  public var highlightThickness: Int = dp2Px(0)
     set(value) {
       field = value
       updateHighlightView()
     }
 
   @ColorInt
-  var colorGradientCenter: Int = NO_COLOR
+  public var highlightColor: Int = accentColor()
+    set(value) {
+      field = value
+      updateHighlightView()
+    }
+
+  @FloatRange(from = 0.0, to = 1.0)
+  public var highlightAlpha: Float = 1.0f
+    set(value) {
+      field = value
+      updateHighlightView()
+    }
+
+  public var radius: Float = dp2Px(5).toFloat()
+    set(value) {
+      field = value
+      updateHighlightView()
+    }
+
+  public var radiusArray: FloatArray? = null
+    set(value) {
+      field = value
+      updateHighlightView()
+    }
+
+  @Px
+  public var padding: Int = dp2Px(0)
     set(value) {
       field = value
       updateHighlightView()
     }
 
   @ColorInt
-  var colorGradientEnd: Int = NO_COLOR
+  public var color: Int = accentColor()
     set(value) {
       field = value
       updateHighlightView()
     }
 
-  var highlight: Drawable? = null
+  @ColorInt
+  public var colorGradientStart: Int = NO_COLOR
     set(value) {
       field = value
       updateHighlightView()
     }
 
-  var orientation = ProgressViewOrientation.HORIZONTAL
+  @ColorInt
+  public var colorGradientCenter: Int = NO_COLOR
     set(value) {
       field = value
       updateHighlightView()
     }
 
-  var onProgressClickListener: OnProgressClickListener? = null
+  @ColorInt
+  public var colorGradientEnd: Int = NO_COLOR
+    set(value) {
+      field = value
+      updateHighlightView()
+    }
+
+  public var highlight: Drawable? = null
+    set(value) {
+      field = value
+      updateHighlightView()
+    }
+
+  public var orientation: ProgressViewOrientation = ProgressViewOrientation.HORIZONTAL
+    set(value) {
+      field = value
+      updateHighlightView()
+    }
+
+  public var onProgressClickListener: OnProgressClickListener? = null
 
   init {
     addView(bodyView)
@@ -128,7 +134,7 @@ class HighlightView(
     }
   }
 
-  fun updateHighlightView() {
+  public fun updateHighlightView() {
     updateBodyView()
     updateStrokeView()
     updateHighlighting()

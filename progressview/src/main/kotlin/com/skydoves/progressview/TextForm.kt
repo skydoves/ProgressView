@@ -33,57 +33,60 @@ internal annotation class TextFormDsl
 /** creates an instance of [TextForm] from [TextForm.Builder] using kotlin dsl. */
 @TextFormDsl
 @JvmSynthetic
-inline fun textForm(context: Context, crossinline block: TextForm.Builder.() -> Unit): TextForm =
+public inline fun textForm(
+  context: Context,
+  crossinline block: TextForm.Builder.() -> Unit
+): TextForm =
   TextForm.Builder(context).apply(block).build()
 
 /**
  * TextFrom is an attribute class what has some attributes about TextView
  * for customizing popup texts easily.
  */
-class TextForm(builder: Builder) {
+public class TextForm(builder: Builder) {
 
-  val text = builder.text
-  @Px val textSize = builder.textSize
-  @ColorInt val textColor = builder.textColor
-  val textStyle = builder.textTypeface
-  val textStyleObject = builder.textTypefaceObject
+  public val text: CharSequence? = builder.text
+  @Px public val textSize: Float = builder.textSize
+  @ColorInt public val textColor: Int = builder.textColor
+  public val textStyle: Int = builder.textTypeface
+  public val textStyleObject: Typeface? = builder.textTypefaceObject
 
   /** Builder class for [TextForm]. */
   @TextFormDsl
-  class Builder(private val context: Context) {
+  public class Builder(private val context: Context) {
     @JvmField
     @set:JvmSynthetic
-    var text: CharSequence? = ""
+    public var text: CharSequence? = ""
 
     @JvmField @Px
     @set:JvmSynthetic
-    var textSize: Float = 12f
+    public var textSize: Float = 12f
 
     @JvmField @ColorInt
     @set:JvmSynthetic
-    var textColor = Color.WHITE
+    public var textColor: Int = Color.WHITE
 
     @JvmField
     @set:JvmSynthetic
-    var textTypeface = Typeface.NORMAL
+    public var textTypeface: Int = Typeface.NORMAL
 
     @JvmField
     @set:JvmSynthetic
-    var textTypefaceObject: Typeface? = null
+    public var textTypefaceObject: Typeface? = null
 
-    fun setText(value: CharSequence): Builder = apply { this.text = value }
-    fun setTextResource(@StringRes value: Int): Builder = apply {
+    public fun setText(value: CharSequence): Builder = apply { this.text = value }
+    public fun setTextResource(@StringRes value: Int): Builder = apply {
       this.text = context.getString(value)
     }
 
-    fun setTextSize(@Px value: Float): Builder = apply { this.textSize = value }
-    fun setTextColor(@ColorInt value: Int): Builder = apply { this.textColor = value }
-    fun setTextColorResource(@ColorRes value: Int): Builder = apply {
+    public fun setTextSize(@Px value: Float): Builder = apply { this.textSize = value }
+    public fun setTextColor(@ColorInt value: Int): Builder = apply { this.textColor = value }
+    public fun setTextColorResource(@ColorRes value: Int): Builder = apply {
       this.textColor = ContextCompat.getColor(context, value)
     }
 
-    fun setTextTypeface(value: Int): Builder = apply { this.textTypeface = value }
-    fun setTextTypeface(value: Typeface): Builder = apply { this.textTypefaceObject = value }
-    fun build() = TextForm(this)
+    public fun setTextTypeface(value: Int): Builder = apply { this.textTypeface = value }
+    public fun setTextTypeface(value: Typeface): Builder = apply { this.textTypefaceObject = value }
+    public fun build(): TextForm = TextForm(this)
   }
 }
