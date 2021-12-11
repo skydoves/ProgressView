@@ -37,91 +37,39 @@ public class HighlightView(
   private val bodyView = LinearLayout(context)
   private val strokeView = View(context)
 
-  public var highlighting: Boolean = false
-    set(value) {
-      field = value
-      updateHighlighting()
-    }
+  public var highlighting: Boolean by highlightViewProperty(false)
 
-  @Px
-  public var highlightThickness: Int = dp2Px(0)
-    set(value) {
-      field = value
-      updateHighlightView()
-    }
+  @get:Px
+  public var highlightThickness: Int by highlightViewProperty(dp2Px(0))
 
-  @ColorInt
-  public var highlightColor: Int = accentColor()
-    set(value) {
-      field = value
-      updateHighlightView()
-    }
+  @get:ColorInt
+  public var highlightColor: Int by highlightViewProperty(accentColor())
 
-  @FloatRange(from = 0.0, to = 1.0)
-  public var highlightAlpha: Float = 1.0f
-    set(value) {
-      field = value
-      updateHighlightView()
-    }
+  @get:FloatRange(from = 0.0, to = 1.0)
+  public var highlightAlpha: Float by highlightViewProperty(1.0f)
 
-  public var radius: Float = dp2Px(5).toFloat()
-    set(value) {
-      field = value
-      updateHighlightView()
-    }
+  public var radius: Float by highlightViewProperty(dp2Px(5).toFloat())
 
-  public var radiusArray: FloatArray? = null
-    set(value) {
-      field = value
-      updateHighlightView()
-    }
+  public var radiusArray: FloatArray? by highlightViewProperty(null)
 
-  @Px
-  public var padding: Int = dp2Px(0)
-    set(value) {
-      field = value
-      updateHighlightView()
-    }
+  @get:Px
+  public var padding: Int by highlightViewProperty(dp2Px(0))
 
-  @ColorInt
-  public var color: Int = accentColor()
-    set(value) {
-      field = value
-      updateHighlightView()
-    }
+  @get:ColorInt
+  public var color: Int by highlightViewProperty(accentColor())
 
-  @ColorInt
-  public var colorGradientStart: Int = NO_COLOR
-    set(value) {
-      field = value
-      updateHighlightView()
-    }
+  @get:ColorInt
+  public var colorGradientStart: Int by highlightViewProperty(NO_COLOR)
 
-  @ColorInt
-  public var colorGradientCenter: Int = NO_COLOR
-    set(value) {
-      field = value
-      updateHighlightView()
-    }
+  @get:ColorInt
+  public var colorGradientCenter: Int by highlightViewProperty(NO_COLOR)
 
-  @ColorInt
-  public var colorGradientEnd: Int = NO_COLOR
-    set(value) {
-      field = value
-      updateHighlightView()
-    }
+  @get:ColorInt
+  public var colorGradientEnd: Int by highlightViewProperty(NO_COLOR)
 
-  public var highlight: Drawable? = null
-    set(value) {
-      field = value
-      updateHighlightView()
-    }
+  public var highlight: Drawable? by highlightViewProperty(null)
 
-  public var orientation: ProgressViewOrientation = ProgressViewOrientation.HORIZONTAL
-    set(value) {
-      field = value
-      updateHighlightView()
-    }
+  public var orientation: ProgressViewOrientation by highlightViewProperty(ProgressViewOrientation.HORIZONTAL)
 
   public var onProgressClickListener: OnProgressClickListener? = null
 
