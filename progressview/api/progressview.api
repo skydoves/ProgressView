@@ -1,0 +1,209 @@
+public final class com/skydoves/progressview/HighlightView : android/widget/FrameLayout {
+	public fun <init> (Landroid/content/Context;Landroid/util/AttributeSet;)V
+	public synthetic fun <init> (Landroid/content/Context;Landroid/util/AttributeSet;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getColor ()I
+	public final fun getColorGradientCenter ()I
+	public final fun getColorGradientEnd ()I
+	public final fun getColorGradientStart ()I
+	public final fun getHighlight ()Landroid/graphics/drawable/Drawable;
+	public final fun getHighlightAlpha ()F
+	public final fun getHighlightColor ()I
+	public final fun getHighlightThickness ()I
+	public final fun getHighlighting ()Z
+	public final fun getOnProgressClickListener ()Lcom/skydoves/progressview/OnProgressClickListener;
+	public final fun getOrientation ()Lcom/skydoves/progressview/ProgressViewOrientation;
+	public final fun getPadding ()I
+	public final fun getRadius ()F
+	public final fun getRadiusArray ()[F
+	public final fun setColor (I)V
+	public final fun setColorGradientCenter (I)V
+	public final fun setColorGradientEnd (I)V
+	public final fun setColorGradientStart (I)V
+	public final fun setHighlight (Landroid/graphics/drawable/Drawable;)V
+	public final fun setHighlightAlpha (F)V
+	public final fun setHighlightColor (I)V
+	public final fun setHighlightThickness (I)V
+	public final fun setHighlighting (Z)V
+	public final fun setOnProgressClickListener (Lcom/skydoves/progressview/OnProgressClickListener;)V
+	public final fun setOrientation (Lcom/skydoves/progressview/ProgressViewOrientation;)V
+	public final fun setPadding (I)V
+	public final fun setRadius (F)V
+	public final fun setRadiusArray ([F)V
+	public final fun updateHighlightView ()V
+}
+
+public abstract interface class com/skydoves/progressview/OnProgressChangeListener {
+	public abstract fun onChange (F)V
+}
+
+public abstract interface class com/skydoves/progressview/OnProgressClickListener {
+	public abstract fun onClickProgress (Z)V
+}
+
+public final class com/skydoves/progressview/ProgressLabelConstraints : java/lang/Enum {
+	public static final field ALIGN_CONTAINER Lcom/skydoves/progressview/ProgressLabelConstraints;
+	public static final field ALIGN_PROGRESS Lcom/skydoves/progressview/ProgressLabelConstraints;
+	public static fun valueOf (Ljava/lang/String;)Lcom/skydoves/progressview/ProgressLabelConstraints;
+	public static fun values ()[Lcom/skydoves/progressview/ProgressLabelConstraints;
+}
+
+public final class com/skydoves/progressview/ProgressView : android/widget/FrameLayout {
+	public fun <init> (Landroid/content/Context;)V
+	public fun <init> (Landroid/content/Context;Landroid/util/AttributeSet;)V
+	public fun <init> (Landroid/content/Context;Landroid/util/AttributeSet;I)V
+	public final fun applyTextForm (Lcom/skydoves/progressview/TextForm;)V
+	public final fun getAutoAnimate ()Z
+	public final fun getBorderColor ()I
+	public final fun getBorderWidth ()I
+	public final fun getColorBackground ()I
+	public final fun getDuration ()J
+	public final fun getHighlightView ()Lcom/skydoves/progressview/HighlightView;
+	public final fun getInterpolator ()Landroid/view/animation/Interpolator;
+	public final fun getLabelColorInner ()I
+	public final fun getLabelColorOuter ()I
+	public final fun getLabelConstraints ()Lcom/skydoves/progressview/ProgressLabelConstraints;
+	public final fun getLabelGravity ()Ljava/lang/Integer;
+	public final fun getLabelSize ()F
+	public final fun getLabelSpace ()F
+	public final fun getLabelText ()Ljava/lang/CharSequence;
+	public final fun getLabelTypeface ()I
+	public final fun getLabelTypefaceObject ()Landroid/graphics/Typeface;
+	public final fun getLabelView ()Landroid/widget/TextView;
+	public final fun getMax ()F
+	public final fun getMin ()F
+	public final fun getOrientation ()Lcom/skydoves/progressview/ProgressViewOrientation;
+	public final fun getProgress ()F
+	public final fun getProgressAnimation ()Lcom/skydoves/progressview/ProgressViewAnimation;
+	public final fun getProgressFromPrevious ()Z
+	public final fun getRadius ()F
+	public final fun getRadiusArray ()[F
+	public final fun isAnimating ()Z
+	public final fun isProgressedMax ()Z
+	public final fun isVertical ()Z
+	public final fun progressAnimate ()V
+	public final fun setAnimating (Z)V
+	public final fun setAutoAnimate (Z)V
+	public final fun setBorderColor (I)V
+	public final fun setBorderWidth (I)V
+	public final fun setColorBackground (I)V
+	public final fun setDuration (J)V
+	public final fun setInterpolator (Landroid/view/animation/Interpolator;)V
+	public final fun setLabelColorInner (I)V
+	public final fun setLabelColorOuter (I)V
+	public final fun setLabelConstraints (Lcom/skydoves/progressview/ProgressLabelConstraints;)V
+	public final fun setLabelGravity (Ljava/lang/Integer;)V
+	public final fun setLabelSize (F)V
+	public final fun setLabelSpace (F)V
+	public final fun setLabelText (Ljava/lang/CharSequence;)V
+	public final fun setLabelTypeface (I)V
+	public final fun setLabelTypefaceObject (Landroid/graphics/Typeface;)V
+	public final fun setMax (F)V
+	public final fun setMin (F)V
+	public final fun setOnProgressChangeListener (Lcom/skydoves/progressview/OnProgressChangeListener;)V
+	public final synthetic fun setOnProgressChangeListener (Lkotlin/jvm/functions/Function1;)V
+	public final fun setOnProgressClickListener (Lcom/skydoves/progressview/OnProgressClickListener;)V
+	public final synthetic fun setOnProgressClickListener (Lkotlin/jvm/functions/Function1;)V
+	public final fun setOrientation (Lcom/skydoves/progressview/ProgressViewOrientation;)V
+	public final fun setProgress (F)V
+	public final fun setProgressAnimation (Lcom/skydoves/progressview/ProgressViewAnimation;)V
+	public final fun setProgressFromPrevious (Z)V
+	public final fun setRadius (F)V
+	public final fun setRadiusArray ([F)V
+}
+
+public final class com/skydoves/progressview/ProgressView$Builder {
+	public fun <init> (Landroid/content/Context;)V
+	public final fun build ()Lcom/skydoves/progressview/ProgressView;
+	public final fun setAutoAnimate (Z)Lcom/skydoves/progressview/ProgressView$Builder;
+	public final fun setColorBackground (I)Lcom/skydoves/progressview/ProgressView$Builder;
+	public final fun setDuration (J)Lcom/skydoves/progressview/ProgressView$Builder;
+	public final fun setHeight (I)Lcom/skydoves/progressview/ProgressView$Builder;
+	public final fun setHighlightColor (I)Lcom/skydoves/progressview/ProgressView$Builder;
+	public final fun setHighlightThickness (I)Lcom/skydoves/progressview/ProgressView$Builder;
+	public final fun setHighlighting (Z)Lcom/skydoves/progressview/ProgressView$Builder;
+	public final fun setInterpolator (Landroid/view/animation/Interpolator;)Lcom/skydoves/progressview/ProgressView$Builder;
+	public final fun setLabelColorInner (I)Lcom/skydoves/progressview/ProgressView$Builder;
+	public final fun setLabelColorOuter (I)Lcom/skydoves/progressview/ProgressView$Builder;
+	public final fun setLabelConstraints (Lcom/skydoves/progressview/ProgressLabelConstraints;)Lcom/skydoves/progressview/ProgressView$Builder;
+	public final fun setLabelGravity (I)Lcom/skydoves/progressview/ProgressView$Builder;
+	public final fun setLabelSize (F)Lcom/skydoves/progressview/ProgressView$Builder;
+	public final fun setLabelSpace (F)Lcom/skydoves/progressview/ProgressView$Builder;
+	public final fun setLabelText (Ljava/lang/CharSequence;)Lcom/skydoves/progressview/ProgressView$Builder;
+	public final fun setLabelTextResource (I)Lcom/skydoves/progressview/ProgressView$Builder;
+	public final fun setLabelTypeface (I)Lcom/skydoves/progressview/ProgressView$Builder;
+	public final fun setLabelTypeface (Landroid/graphics/Typeface;)Lcom/skydoves/progressview/ProgressView$Builder;
+	public final fun setMax (F)Lcom/skydoves/progressview/ProgressView$Builder;
+	public final fun setMin (F)Lcom/skydoves/progressview/ProgressView$Builder;
+	public final fun setOnProgressChangeListener (Lcom/skydoves/progressview/OnProgressChangeListener;)Lcom/skydoves/progressview/ProgressView$Builder;
+	public final synthetic fun setOnProgressChangeListener (Lkotlin/jvm/functions/Function1;)Lcom/skydoves/progressview/ProgressView$Builder;
+	public final fun setOnProgressClickListener (Lcom/skydoves/progressview/OnProgressClickListener;)Lcom/skydoves/progressview/ProgressView$Builder;
+	public final synthetic fun setOnProgressClickListener (Lkotlin/jvm/functions/Function1;)Lcom/skydoves/progressview/ProgressView$Builder;
+	public final fun setOrientation (Lcom/skydoves/progressview/ProgressViewOrientation;)Lcom/skydoves/progressview/ProgressView$Builder;
+	public final fun setProgress (F)Lcom/skydoves/progressview/ProgressView$Builder;
+	public final fun setProgressViewAnimation (Lcom/skydoves/progressview/ProgressViewAnimation;)Lcom/skydoves/progressview/ProgressView$Builder;
+	public final fun setProgressbarAlpha (F)Lcom/skydoves/progressview/ProgressView$Builder;
+	public final fun setProgressbarColor (I)Lcom/skydoves/progressview/ProgressView$Builder;
+	public final fun setProgressbarColorGradientCenter (I)Lcom/skydoves/progressview/ProgressView$Builder;
+	public final fun setProgressbarColorGradientEnd (I)Lcom/skydoves/progressview/ProgressView$Builder;
+	public final fun setProgressbarColorGradientStart (I)Lcom/skydoves/progressview/ProgressView$Builder;
+	public final fun setProgressbarRadii ([F)Lcom/skydoves/progressview/ProgressView$Builder;
+	public final fun setProgressbarRadius (F)Lcom/skydoves/progressview/ProgressView$Builder;
+	public final fun setRadii ([F)Lcom/skydoves/progressview/ProgressView$Builder;
+	public final fun setRadius (F)Lcom/skydoves/progressview/ProgressView$Builder;
+	public final fun setSize (II)Lcom/skydoves/progressview/ProgressView$Builder;
+	public final fun setTextForm (Lcom/skydoves/progressview/TextForm;)Lcom/skydoves/progressview/ProgressView$Builder;
+}
+
+public final class com/skydoves/progressview/ProgressViewAnimation : java/lang/Enum {
+	public static final field ACCELERATEDECELERATE Lcom/skydoves/progressview/ProgressViewAnimation;
+	public static final field BOUNCE Lcom/skydoves/progressview/ProgressViewAnimation;
+	public static final field DECELERATE Lcom/skydoves/progressview/ProgressViewAnimation;
+	public static final field NORMAL Lcom/skydoves/progressview/ProgressViewAnimation;
+	public final fun getInterpolator ()Landroid/view/animation/Interpolator;
+	public final fun getValue ()I
+	public static fun valueOf (Ljava/lang/String;)Lcom/skydoves/progressview/ProgressViewAnimation;
+	public static fun values ()[Lcom/skydoves/progressview/ProgressViewAnimation;
+}
+
+public final class com/skydoves/progressview/ProgressViewKt {
+	public static final synthetic fun progressView (Landroid/content/Context;Lkotlin/jvm/functions/Function1;)Lcom/skydoves/progressview/ProgressView;
+}
+
+public final class com/skydoves/progressview/ProgressViewOrientation : java/lang/Enum {
+	public static final field HORIZONTAL Lcom/skydoves/progressview/ProgressViewOrientation;
+	public static final field VERTICAL Lcom/skydoves/progressview/ProgressViewOrientation;
+	public final fun getValue ()I
+	public static fun valueOf (Ljava/lang/String;)Lcom/skydoves/progressview/ProgressViewOrientation;
+	public static fun values ()[Lcom/skydoves/progressview/ProgressViewOrientation;
+}
+
+public final class com/skydoves/progressview/TextForm {
+	public fun <init> (Lcom/skydoves/progressview/TextForm$Builder;)V
+	public final fun getText ()Ljava/lang/CharSequence;
+	public final fun getTextColor ()I
+	public final fun getTextSize ()F
+	public final fun getTextStyle ()I
+	public final fun getTextStyleObject ()Landroid/graphics/Typeface;
+}
+
+public final class com/skydoves/progressview/TextForm$Builder {
+	public field text Ljava/lang/CharSequence;
+	public field textColor I
+	public field textSize F
+	public field textTypeface I
+	public field textTypefaceObject Landroid/graphics/Typeface;
+	public fun <init> (Landroid/content/Context;)V
+	public final fun build ()Lcom/skydoves/progressview/TextForm;
+	public final fun setText (Ljava/lang/CharSequence;)Lcom/skydoves/progressview/TextForm$Builder;
+	public final fun setTextColor (I)Lcom/skydoves/progressview/TextForm$Builder;
+	public final fun setTextColorResource (I)Lcom/skydoves/progressview/TextForm$Builder;
+	public final fun setTextResource (I)Lcom/skydoves/progressview/TextForm$Builder;
+	public final fun setTextSize (F)Lcom/skydoves/progressview/TextForm$Builder;
+	public final fun setTextTypeface (I)Lcom/skydoves/progressview/TextForm$Builder;
+	public final fun setTextTypeface (Landroid/graphics/Typeface;)Lcom/skydoves/progressview/TextForm$Builder;
+}
+
+public final class com/skydoves/progressview/TextFormKt {
+	public static final synthetic fun textForm (Landroid/content/Context;Lkotlin/jvm/functions/Function1;)Lcom/skydoves/progressview/TextForm;
+}
+
