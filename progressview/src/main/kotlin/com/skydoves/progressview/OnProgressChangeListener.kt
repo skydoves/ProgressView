@@ -17,8 +17,8 @@
 package com.skydoves.progressview
 
 /**  OnProgressChangeListener is an interface for listening to the progress is changed. */
-fun interface OnProgressChangeListener {
+public fun interface OnProgressChangeListener {
 
   /** invoked when progress value is changed. */
-  fun onChange(progress: Float)
+  public fun onChange(progress: Float)
 }

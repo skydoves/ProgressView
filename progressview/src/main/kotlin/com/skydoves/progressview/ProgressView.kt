@@ -49,35 +49,35 @@ internal annotation class ProgressViewDSL
 /** creates an instance of [ProgressView] by [ProgressView.Builder] using kotlin dsl. */
 @JvmSynthetic
 @ProgressViewDSL
-inline fun progressView(
+public inline fun progressView(
   context: Context,
   crossinline block: ProgressView.Builder.() -> Unit
 ): ProgressView =
   ProgressView.Builder(context).apply(block).build()
 
 /** ProgressView is a progress bar with a flexible text and animations. */
-class ProgressView : FrameLayout {
+public class ProgressView : FrameLayout {
 
   /** presents progress value on the [ProgressView]. */
-  val labelView = TextView(context)
+  public val labelView: TextView = TextView(context)
 
   /** presents background color and highlighting colors of the [ProgressView]. */
-  val highlightView = HighlightView(context)
+  public val highlightView: HighlightView = HighlightView(context)
 
   /** duration of the progress animation. */
-  var duration: Long = 1000L
+  public var duration: Long = 1000L
 
   /** returns the [ProgressView]'s animation is ongoing or not.*/
-  var isAnimating: Boolean = false
+  public var isAnimating: Boolean = false
 
   /** starts progress animation automatically when [ProgressView] is initialized. */
-  var autoAnimate: Boolean = true
+  public var autoAnimate: Boolean = true
 
   /** minimum value of the progress. */
-  var min: Float = 0f
+  public var min: Float = 0f
 
   /** maximum value of the progress. */
-  var max: Float = 100f
+  public var max: Float = 100f
     set(value) {
       field = value
       updateProgressView()
@@ -87,14 +87,14 @@ class ProgressView : FrameLayout {
   private var previousProgress: Float = 0f
 
   /** starts progress animation from the [previousProgress] to a new progress value.  */
-  var progressFromPrevious: Boolean = false
+  public var progressFromPrevious: Boolean = false
     set(value) {
       field = value
       previousProgress = 0f
     }
 
   /** presents the progress value of the [ProgressView]. */
-  var progress: Float = 0f
+  public var progress: Float = 0f
     set(value) {
       if (progressFromPrevious) {
         previousProgress = field
@@ -114,17 +114,17 @@ class ProgressView : FrameLayout {
    * [ProgressViewAnimation.ACCELERATEDECELERATE]
    * the default animation is [ProgressViewAnimation.NORMAL].
    */
-  var progressAnimation: ProgressViewAnimation = NORMAL
+  public var progressAnimation: ProgressViewAnimation = NORMAL
 
   /** a customized animation interpolator. */
-  var interpolator: Interpolator? = null
+  public var interpolator: Interpolator? = null
 
   /**
    * an orientation of the [ProgressView].
    * [ProgressViewOrientation.HORIZONTAL], [ProgressViewOrientation.VERTICAL]
    * the default orientation is [ProgressViewOrientation.HORIZONTAL].
    * */
-  var orientation = ProgressViewOrientation.HORIZONTAL
+  public var orientation: ProgressViewOrientation = ProgressViewOrientation.HORIZONTAL
     set(value) {
       field = value
       highlightView.orientation = value
@@ -132,21 +132,23 @@ class ProgressView : FrameLayout {
     }
 
   /** background color of the [ProgressView]'s container. */
-  @ColorInt var colorBackground: Int = Color.WHITE
+  @ColorInt
+  public var colorBackground: Int = Color.WHITE
     set(value) {
       field = value
       updateBackground()
     }
 
   /** corner radius of the [ProgressView]'s container. */
-  @Px var radius: Float = dp2Px(5).toFloat()
+  @Px
+  public var radius: Float = dp2Px(5).toFloat()
     set(value) {
       field = value
       highlightView.radius = value
       updateBackground()
     }
 
-  var radiusArray: FloatArray? = null
+  public var radiusArray: FloatArray? = null
     set(value) {
       field = value
       highlightView.radiusArray = value
@@ -154,28 +156,31 @@ class ProgressView : FrameLayout {
     }
 
   /** a border color of the [ProgressView]'s container. */
-  @ColorInt var borderColor: Int = colorBackground
+  @ColorInt
+  public var borderColor: Int = colorBackground
     set(value) {
       field = value
       updateBackground()
     }
 
   /** a border size of the [ProgressView]'s container. */
-  @Px var borderWidth: Int = 0
+  @Px
+  public var borderWidth: Int = 0
     set(value) {
       field = value
       updateBackground()
     }
 
   /** text of the [labelView] for presenting progress. */
-  var labelText: CharSequence? = ""
+  public var labelText: CharSequence? = ""
     set(value) {
       field = value
       updateProgressView()
     }
 
   /** text size of the [labelView]. */
-  @Px var labelSize: Float = 12f
+  @Px
+  public var labelSize: Float = 12f
     set(value) {
       field = value
       updateProgressView()
@@ -186,7 +191,8 @@ class ProgressView : FrameLayout {
    * when your [labelText]'s length is shorter than the progressed container,
    * the [labelView] will be located inside of the progressed container.
    */
-  @ColorInt var labelColorInner: Int = Color.WHITE
+  @ColorInt
+  public var labelColorInner: Int = Color.WHITE
     set(value) {
       field = value
       updateProgressView()
@@ -197,35 +203,36 @@ class ProgressView : FrameLayout {
    * when your [labelText]'s length is longer than the progressed container,
    * the [labelView] will be located outside of the progressed container.
    */
-  @ColorInt var labelColorOuter: Int = Color.BLACK
+  @ColorInt
+  public var labelColorOuter: Int = Color.BLACK
     set(value) {
       field = value
       updateProgressView()
     }
 
   /** typeface of the [labelView]. */
-  var labelTypeface: Int = Typeface.NORMAL
+  public var labelTypeface: Int = Typeface.NORMAL
     set(value) {
       field = value
       updateProgressView()
     }
 
   /** typeface object of the [labelView]. */
-  var labelTypefaceObject: Typeface? = null
+  public var labelTypefaceObject: Typeface? = null
     set(value) {
       field = value
       updateProgressView()
     }
 
   /** determines the constraints of the label positioning. */
-  var labelConstraints: ProgressLabelConstraints = ProgressLabelConstraints.ALIGN_PROGRESS
+  public var labelConstraints: ProgressLabelConstraints = ProgressLabelConstraints.ALIGN_PROGRESS
     set(value) {
       field = value
       updateProgressView()
     }
 
   /** the gravity of the label. */
-  var labelGravity: Int? = null
+  public var labelGravity: Int? = null
     set(value) {
       field = value
       updateProgressView()
@@ -235,7 +242,8 @@ class ProgressView : FrameLayout {
    * spacing for [labelView] between progressed container.
    * space will be applied if the labelView is located inside or outside.
    */
-  @Px var labelSpace: Float = dp2Px(8).toFloat()
+  @Px
+  public var labelSpace: Float = dp2Px(8).toFloat()
     set(value) {
       field = value
       updateProgressView()
@@ -250,14 +258,14 @@ class ProgressView : FrameLayout {
   /** path for smoothing the container's corner. */
   private val path = Path()
 
-  constructor(context: Context) : super(context)
+  public constructor(context: Context) : super(context)
 
-  constructor(
+  public constructor(
     context: Context,
     attributeSet: AttributeSet
   ) : this(context, attributeSet, 0)
 
-  constructor(
+  public constructor(
     context: Context,
     attributeSet: AttributeSet,
     defStyle: Int
@@ -562,7 +570,7 @@ class ProgressView : FrameLayout {
   }
 
   /** animates [ProgressView]'s progress bar. */
-  fun progressAnimate() {
+  public fun progressAnimate() {
     ValueAnimator.ofFloat(0f, 1f)
       .apply {
         interpolator = if (this@ProgressView.interpolator != null) {
@@ -590,172 +598,185 @@ class ProgressView : FrameLayout {
       .also { it.start() }
   }
 
-  fun isVertical(): Boolean {
+  public fun isVertical(): Boolean {
     return orientation == ProgressViewOrientation.VERTICAL
   }
 
-  fun isProgressedMax(): Boolean {
+  public fun isProgressedMax(): Boolean {
     return progress == max
   }
 
   /** sets a progress change listener. */
-  fun setOnProgressChangeListener(onProgressChangeListener: OnProgressChangeListener) {
+  public fun setOnProgressChangeListener(onProgressChangeListener: OnProgressChangeListener) {
     this.onProgressChangeListener = onProgressChangeListener
   }
 
   /** sets a progress change listener. */
   @JvmSynthetic
-  fun setOnProgressChangeListener(block: (Float) -> Unit) {
+  public fun setOnProgressChangeListener(block: (Float) -> Unit) {
     this.onProgressChangeListener = OnProgressChangeListener { progress -> block(progress) }
   }
 
   /** sets a progress click listener. */
-  fun setOnProgressClickListener(onProgressClickListener: OnProgressClickListener) {
+  public fun setOnProgressClickListener(onProgressClickListener: OnProgressClickListener) {
     this.onProgressClickListener = onProgressClickListener
     this.highlightView.onProgressClickListener = this.onProgressClickListener
   }
 
   /** sets a progress click listener. */
   @JvmSynthetic
-  fun setOnProgressClickListener(block: (Boolean) -> Unit) {
+  public fun setOnProgressClickListener(block: (Boolean) -> Unit) {
     this.onProgressClickListener = OnProgressClickListener { highlighting -> block(highlighting) }
     this.highlightView.onProgressClickListener = this.onProgressClickListener
   }
 
   /** applies [TextForm] attributes to a TextView. */
-  fun applyTextForm(textForm: TextForm) {
+  public fun applyTextForm(textForm: TextForm) {
     this.labelView.applyTextForm(textForm)
   }
 
   /** Builder class for creating [ProgressView]. */
   @ProgressViewDSL
-  class Builder(context: Context) {
+  public class Builder(context: Context) {
     private val progressView = ProgressView(context)
 
-    fun setSize(@Px width: Int, @Px height: Int): Builder = apply {
+    public fun setSize(@Px width: Int, @Px height: Int): Builder = apply {
       this.progressView.layoutParams =
         LayoutParams(progressView.dp2Px(width), progressView.dp2Px(height))
     }
 
-    fun setHeight(@Px value: Int): Builder = apply { this.progressView.layoutParams.height = value }
-    fun setDuration(value: Long): Builder = apply { this.progressView.duration = value }
-    fun setAutoAnimate(value: Boolean): Builder = apply { this.progressView.autoAnimate = value }
-    fun setMin(value: Float): Builder = apply { this.progressView.min = value }
-    fun setMax(value: Float): Builder = apply { this.progressView.max = value }
-    fun setProgress(value: Float): Builder = apply { this.progressView.progress = value }
-    fun setOrientation(value: ProgressViewOrientation): Builder = apply {
+    public fun setHeight(@Px value: Int): Builder =
+      apply { this.progressView.layoutParams.height = value }
+
+    public fun setDuration(value: Long): Builder = apply { this.progressView.duration = value }
+    public fun setAutoAnimate(value: Boolean): Builder =
+      apply { this.progressView.autoAnimate = value }
+
+    public fun setMin(value: Float): Builder = apply { this.progressView.min = value }
+    public fun setMax(value: Float): Builder = apply { this.progressView.max = value }
+    public fun setProgress(value: Float): Builder = apply { this.progressView.progress = value }
+    public fun setOrientation(value: ProgressViewOrientation): Builder = apply {
       this.progressView.orientation = value
     }
 
-    fun setColorBackground(@ColorInt value: Int): Builder = apply {
+    public fun setColorBackground(@ColorInt value: Int): Builder = apply {
       this.progressView.colorBackground = value
     }
 
-    fun setRadius(@Px value: Float): Builder = apply { this.progressView.radius = value }
-    fun setRadii(value: FloatArray): Builder = apply { this.progressView.radiusArray = value }
-    fun setLabelText(value: CharSequence): Builder = apply { this.progressView.labelText = value }
-    fun setLabelTextResource(@StringRes value: Int): Builder = apply {
+    public fun setRadius(@Px value: Float): Builder = apply { this.progressView.radius = value }
+    public fun setRadii(value: FloatArray): Builder =
+      apply { this.progressView.radiusArray = value }
+
+    public fun setLabelText(value: CharSequence): Builder =
+      apply { this.progressView.labelText = value }
+
+    public fun setLabelTextResource(@StringRes value: Int): Builder = apply {
       setLabelText(progressView.context.getString(value))
     }
 
-    fun setLabelSize(value: Float): Builder = apply {
+    public fun setLabelSize(value: Float): Builder = apply {
       this.progressView.labelSize = this.progressView.sp2Px(value)
     }
 
-    fun setLabelSpace(@Px value: Float): Builder = apply { this.progressView.labelSpace = value }
-    fun setLabelColorInner(@ColorInt value: Int): Builder = apply {
+    public fun setLabelSpace(@Px value: Float): Builder =
+      apply { this.progressView.labelSpace = value }
+
+    public fun setLabelColorInner(@ColorInt value: Int): Builder = apply {
       this.progressView.labelColorInner = value
     }
 
-    fun setLabelColorOuter(@ColorInt value: Int): Builder = apply {
+    public fun setLabelColorOuter(@ColorInt value: Int): Builder = apply {
       this.progressView.labelColorOuter = value
     }
 
-    fun setLabelTypeface(value: Int): Builder = apply { this.progressView.labelTypeface = value }
-    fun setLabelTypeface(value: Typeface): Builder = apply {
+    public fun setLabelTypeface(value: Int): Builder =
+      apply { this.progressView.labelTypeface = value }
+
+    public fun setLabelTypeface(value: Typeface): Builder = apply {
       this.progressView.labelTypefaceObject = value
     }
 
-    fun setLabelGravity(value: Int): Builder = apply {
+    public fun setLabelGravity(value: Int): Builder = apply {
       this.progressView.labelGravity = value
     }
 
-    fun setLabelConstraints(value: ProgressLabelConstraints) = apply {
+    public fun setLabelConstraints(value: ProgressLabelConstraints): Builder = apply {
       this.progressView.labelConstraints = value
     }
 
-    fun setProgressbarAlpha(@FloatRange(from = 0.0, to = 1.0) value: Float): Builder = apply {
-      this.progressView.highlightView.alpha = value
-    }
+    public fun setProgressbarAlpha(@FloatRange(from = 0.0, to = 1.0) value: Float): Builder =
+      apply {
+        this.progressView.highlightView.alpha = value
+      }
 
-    fun setProgressbarColor(@ColorInt value: Int): Builder = apply {
+    public fun setProgressbarColor(@ColorInt value: Int): Builder = apply {
       this.progressView.highlightView.color = value
     }
 
-    fun setProgressbarColorGradientStart(@ColorInt value: Int): Builder = apply {
+    public fun setProgressbarColorGradientStart(@ColorInt value: Int): Builder = apply {
       this.progressView.highlightView.colorGradientStart = value
     }
 
-    fun setProgressbarColorGradientCenter(@ColorInt value: Int): Builder = apply {
+    public fun setProgressbarColorGradientCenter(@ColorInt value: Int): Builder = apply {
       this.progressView.highlightView.colorGradientCenter = value
     }
 
-    fun setProgressbarColorGradientEnd(@ColorInt value: Int): Builder = apply {
+    public fun setProgressbarColorGradientEnd(@ColorInt value: Int): Builder = apply {
       this.progressView.highlightView.colorGradientEnd = value
     }
 
-    fun setProgressbarRadius(@Px value: Float): Builder = apply {
+    public fun setProgressbarRadius(@Px value: Float): Builder = apply {
       this.progressView.highlightView.radius = value
     }
 
-    fun setProgressbarRadii(value: FloatArray): Builder = apply {
+    public fun setProgressbarRadii(value: FloatArray): Builder = apply {
       this.progressView.highlightView.radiusArray = value
     }
 
-    fun setHighlightColor(@ColorInt value: Int): Builder = apply {
+    public fun setHighlightColor(@ColorInt value: Int): Builder = apply {
       this.progressView.highlightView.highlightColor = value
     }
 
-    fun setHighlighting(value: Boolean): Builder = apply {
+    public fun setHighlighting(value: Boolean): Builder = apply {
       this.progressView.highlightView.highlighting = value
     }
 
-    fun setHighlightThickness(@Px value: Int): Builder = apply {
+    public fun setHighlightThickness(@Px value: Int): Builder = apply {
       this.progressView.highlightView.highlightThickness = value
     }
 
-    fun setOnProgressChangeListener(value: OnProgressChangeListener): Builder = apply {
+    public fun setOnProgressChangeListener(value: OnProgressChangeListener): Builder = apply {
       this.progressView.onProgressChangeListener = value
     }
 
-    fun setProgressViewAnimation(value: ProgressViewAnimation): Builder = apply {
+    public fun setProgressViewAnimation(value: ProgressViewAnimation): Builder = apply {
       this.progressView.progressAnimation = value
     }
 
-    fun setInterpolator(value: Interpolator): Builder = apply {
+    public fun setInterpolator(value: Interpolator): Builder = apply {
       this.progressView.interpolator = value
     }
 
-    fun setOnProgressClickListener(value: OnProgressClickListener): Builder = apply {
+    public fun setOnProgressClickListener(value: OnProgressClickListener): Builder = apply {
       this.progressView.onProgressClickListener = value
     }
 
-    fun setTextForm(value: TextForm): Builder = apply {
+    public fun setTextForm(value: TextForm): Builder = apply {
       this.progressView.labelView.applyTextForm(value)
     }
 
     @JvmSynthetic
-    fun setOnProgressChangeListener(block: (Float) -> Unit): Builder = apply {
+    public fun setOnProgressChangeListener(block: (Float) -> Unit): Builder = apply {
       this.progressView.onProgressChangeListener =
         OnProgressChangeListener { progress -> block(progress) }
     }
 
     @JvmSynthetic
-    fun setOnProgressClickListener(block: (Boolean) -> Unit): Builder = apply {
+    public fun setOnProgressClickListener(block: (Boolean) -> Unit): Builder = apply {
       this.progressView.onProgressClickListener =
         OnProgressClickListener { highlighting -> block(highlighting) }
     }
 
-    fun build() = progressView
+    public fun build(): ProgressView = progressView
   }
 }

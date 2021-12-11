@@ -17,7 +17,7 @@
 package com.skydoves.progressview
 
 /** ProgressViewOrientation is the orientation attribute. */
-enum class ProgressViewOrientation(val value: Int) {
+public enum class ProgressViewOrientation(public val value: Int) {
   HORIZONTAL(0),
   VERTICAL(1)
 }
